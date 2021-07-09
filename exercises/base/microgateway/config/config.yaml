@@ -1,0 +1,5 @@
+---
+license_file: /secret/config/license
+
+session:
+  encryption_passphrase: /secret/config/passphrase

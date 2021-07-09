@@ -1,0 +1,16 @@
+---
+license_file: /secret/config/license
+
+session:
+  encryption_passphrase: /secret/config/passphrase
+
+apps:
+  - virtual_host:
+      name: echoserver
+      hostname: echoserver.virtinc.local
+    mappings:
+      - name: echoserver
+        operational_mode: integration
+        deny_rule_groups:
+          - level: strict
+            log_only: true

@@ -1,0 +1,90 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: microgateway
+  labels:
+    app: microgateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: microgateway
+  template:
+    metadata:
+      labels:
+        app: microgateway
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "9102"
+    spec:
+      imagePullSecrets:
+        - name: dockerregcred
+      initContainers:
+        - name: configbuilder
+          image: docker.io/ergon/airlock-microgateway-configbuilder-nightly:latest-2.1
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: config
+              mountPath: /config/config.yaml
+              subPath: config.yaml
+            - name: secret
+              mountPath: /secret/config
+            - name: config-files
+              mountPath: /resources-gen
+          env:
+            - name: TZ
+              value: "Europe/Zurich"
+      containers:
+        - name: microgateway
+          image: docker.io/ergon/airlock-microgateway-nightly:latest-2.1
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: config-files
+              mountPath: /config/
+          env:
+            - name: TZ
+              value: "Europe/Zurich"
+          ports:
+            - name: http
+              containerPort: 8080
+            - name: https
+              containerPort: 8443
+            - name: probes
+              containerPort: 9090
+            - name: metrics
+              containerPort: 9102
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /healthy
+              port: probes
+            initialDelaySeconds: 10
+          livenessProbe:
+            failureThreshold: 9
+            timeoutSeconds: 5
+            httpGet:
+              path: /alive
+              port: probes
+            initialDelaySeconds: 90
+          lifecycle:
+            preStop:
+              exec:
+                command:
+                  - /usr/bin/sleep
+                  - "10"
+          resources:
+            requests:
+              memory: 256Mi
+              cpu: 30m
+            limits:
+              memory: 4048Mi
+      volumes:
+        - name: secret
+          secret:
+            secretName: microgateway-secret
+        - name: config
+          configMap:
+            name: microgateway-config
+        - name: config-files
+          emptyDir: {}
