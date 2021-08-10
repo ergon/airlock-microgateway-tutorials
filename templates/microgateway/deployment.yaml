@@ -22,7 +22,7 @@ spec:
         - name: dockerregcred
       initContainers:
         - name: configbuilder
-          image: docker.io/ergon/airlock-microgateway-configbuilder-nightly:latest-2.1
+          image: docker.io/ergon/airlock-microgateway-configbuilder:2.1.0
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - name: config
@@ -37,7 +37,7 @@ spec:
               value: "Europe/Zurich"
       containers:
         - name: microgateway
-          image: docker.io/ergon/airlock-microgateway-nightly:latest-2.1
+          image: docker.io/ergon/airlock-microgateway:2.1.0
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - name: config-files
