@@ -23,4 +23,5 @@ echo "-------------------------------------------------"
 echo "| verifying tutorial ..."
 echo "-------------------------------------------------"
 echo ""
-./verify.sh
+../../templates/verify.sh
+../verify.sh

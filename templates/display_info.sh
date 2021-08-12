@@ -17,6 +17,13 @@ kubectl describe pod -l app=microgateway
 
 echo ""
 echo "-------------------------------------------------"
+echo "| displaying microgateway configuration ..."
+echo "-------------------------------------------------"
+echo ""
+kubectl get configmap microgateway-config -o jsonpath='{.data.config\.yaml}'
+
+echo ""
+echo "-------------------------------------------------"
 echo "| displaying microgateway configbuilder log ..."
 echo "-------------------------------------------------"
 echo ""
