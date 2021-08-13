@@ -9,7 +9,7 @@ echo "| deploying tutorial ..."
 echo "-------------------------------------------------"
 echo ""
 kubectl apply -k .
-kubectl wait --for=condition=ready  --timeout=120s pod --all
+kubectl wait --for=condition=ready  --timeout=120s pod -l app=microgateway
 
 echo ""
 echo "-------------------------------------------------"

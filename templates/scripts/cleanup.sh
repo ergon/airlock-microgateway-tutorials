@@ -6,4 +6,4 @@ echo "-------------------------------------------------"
 echo "| cleaning up ..."
 echo "-------------------------------------------------"
 echo ""
-kubectl delete all,ingress,configmap,secrets --all
+kubectl delete all,ingress,configmap,secrets -l app=microgateway --wait=true
