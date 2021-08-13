@@ -2,6 +2,8 @@
 
 EXITCODE=$?
 if [ $EXITCODE -ne 0 ]; then
+
+  ../../templates/scripts/display_info.sh 
   echo ""
   echo "**************************************************"
   echo "* Deployment NOK                                 *"

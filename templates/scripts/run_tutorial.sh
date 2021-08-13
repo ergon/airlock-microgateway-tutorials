@@ -11,8 +11,6 @@ echo ""
 kubectl apply -k .
 kubectl wait --for=condition=ready  --timeout=120s pod --all
 
-../../templates/scripts/display_info.sh
-
 echo ""
 echo "-------------------------------------------------"
 echo "| verifying tutorial ..."
