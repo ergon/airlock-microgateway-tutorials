@@ -1,4 +1,4 @@
-../../templates/run_tutorial.sh
+../../templates/scripts/run_tutorial.sh
 
 EXITCODE=$?
 if [ $EXITCODE -ne 0 ]; then

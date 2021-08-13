@@ -1,15 +1,1 @@
-../../templates/run_tutorial.sh
-
-EXITCODE=$?
-if [ $EXITCODE -ne 0 ]; then
-  echo "**************************************************"
-  echo "* Deployment NOK                                 *"
-  echo "**************************************************"
-  echo ""
-  exit $EXITCODE
-fi
-
-echo "**************************************************"
-echo "* Deployment OK                                  *"
-echo "**************************************************"
-echo ""
+../../templates/scripts/run.sh
