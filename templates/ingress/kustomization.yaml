@@ -4,3 +4,6 @@ kind: Kustomization
 
 resources:
   - ingress.yaml
+
+commonLabels:
+  purpose: microgateway-tutorial

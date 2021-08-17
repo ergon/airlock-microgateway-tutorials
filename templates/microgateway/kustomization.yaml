@@ -6,6 +6,9 @@ resources:
   - deployment.yaml
   - service.yaml
 
+commonLabels:
+  purpose: microgateway-tutorial
+
 generatorOptions:
   disableNameSuffixHash: true
   labels:

@@ -20,7 +20,28 @@ echo "-------------------------------------------------"
 echo "| displaying microgateway configuration ..."
 echo "-------------------------------------------------"
 echo ""
-kubectl get configmap microgateway-config -o jsonpath='{.data.config\.yaml}'
+kubectl describe configmap microgateway-config
+
+echo ""
+echo "-------------------------------------------------"
+echo "| displaying microgateway secrets ..."
+echo "-------------------------------------------------"
+echo ""
+kubectl describe secret microgateway-secret
+
+echo ""
+echo "-------------------------------------------------"
+echo "| displaying microgateway service ..."
+echo "-------------------------------------------------"
+echo ""
+kubectl describe service microgateway
+
+echo ""
+echo "-------------------------------------------------"
+echo "| displaying ingress ..."
+echo "-------------------------------------------------"
+echo ""
+kubectl describe ingress ingress-microgateway-default
 
 echo ""
 echo "-------------------------------------------------"
