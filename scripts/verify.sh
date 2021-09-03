@@ -1,7 +1,9 @@
+#!/bin/bash
+
 display_usage() {
         echo "Usage: $0 tutorial_dir\n"
         echo "tutorial_dir: Tutorial to verify. Should point to an Exercise or Solution folder of an exercise."
-        echo "Example: $0 Getting_used_to_DSL/Excercise\n"
+        echo "Example: $0 Getting_used_to_DSL/Excercise"
         }
 
 if [ -n "$1" ]; then
