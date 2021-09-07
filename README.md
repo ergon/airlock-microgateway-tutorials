@@ -3,7 +3,7 @@ In this tutorial, you will learn how to protect your web applications and servic
 
 We will add additional tutorials over time, so make sure to come back from time to time.
 
-This tutorial works with Airlock Microgateway 2.1.0. Check out released versions of the tutorial if you want to use the tutorial with another version of the Airlock Microgateway.
+This tutorial works with Airlock Microgateway 2.1.0. Check out released versions of the tutorial if you want to use it with another Airlock Microgateway version.
 
 ## Airlock Microgateway
 The *Airlock Microgateway* is a component of the [Airlock Secure Access Hub].
@@ -14,7 +14,7 @@ It is the lightweight, container-based deployment form of the *Airlock Gateway*,
 *Airlock* is a registered trademark of [Ergon]. Ergon is a Swiss leader in leveraging digitalisation to create unique and effective client benefits, from conception to market, the result of which is the international distribution of globally revered products.
 
 # The Tutorials
-The tutorials are intended to show different aspects of running and configuring the Airlock Microgateway. They are independent of each other and can be done in any order.
+The tutorials are intended to show different aspects of running and configuring the Airlock Microgateway. The tutorials are independent of each other and can be done in any order.
 
 Each tutorial consists of
 - an *exercise* folder. The exercise is accompanied by a [guide][Microgateway Tutorials] with detailed instructions and hints. In most cases, Kubernetes resource files have to be updated and deployed in order to solve the exercise.
@@ -32,7 +32,7 @@ The [kubectl][Kubectl] command-line tool has to be configured for the cluster yo
 You can find additional information in our [guide][Microgateway Tutorials].
 
 # Additional Information
-[Airlock Microgateway Tutorials][Microgateway Tutorials]
+[Airlock Microgateway Tutorials]Microgateway Tutorial Guide]
 
 [Airlock Microgateway Documentation][Microgateway Documentation]
 
