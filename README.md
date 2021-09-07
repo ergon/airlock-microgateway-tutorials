@@ -16,20 +16,22 @@ It is the lightweight, container-based deployment form of the *Airlock Gateway*,
 The tutorials are intended to show different aspects of running and configuring the Airlock Microgateway. The tutorials are independent of each other and can be done in any order.
 
 Each tutorial consists of
-- an Exercise folder. The exercise is accompanied by a [lab guide][Microgateway Lab Guide] with detailed instructions and hints. In most cases, kubernetes resource files have to be updated and deployed in order to solve the exercise.
-- a Solution folder containing a potential solution for the exercise.
+- an *exercise* folder. The exercise is accompanied by a [guide][Microgateway Tutorials] with detailed instructions and hints. In most cases, Kubernetes resource files have to be updated and deployed in order to solve the exercise.
+- a *solution* folder containing a potential solution for the exercise.
 
-Please consult the [Microgateway Lab Guide] for a list of tutorials and the topics covered.
+The Kubernetes resources created for the exercises have the labels *purpose: microgateway-tutorial*. Therefore, it is easy to distinguish which resources have been created while proceeding the exercises.
+
+Please consult the [Microgateway Tutorials] for a list of tutorials and the topics covered.
 
 # Setup the Environment
 You need a Kubernetes cluster to run this tutorial. You can use [Minikube][Minikube start] to create one, if you do not have a cluster available.
 
-The [kubectl command-line tool][Kubectl] has to be configured for the cluster you intend to use.
+The [kubectl][Kubectl] command-line tool has to be configured for the cluster you intend to use.
 
-You can find additional information in our [lab guide][Microgateway Lab Guide].
+You can find additional information in our [guide][Microgateway Tutorials].
 
 # Additional Information
-[Airlock Microgateway Lab Guide][Microgateway Lab Guide]
+[Airlock Microgateway Tutorials]Microgateway Tutorial Guide]
 
 [Airlock Microgateway Documentation][Microgateway Documentation]
 
@@ -45,7 +47,7 @@ You can find additional information in our [lab guide][Microgateway Lab Guide].
 
 [Microgateway Documentation]: https://docs.airlock.com/microgateway/latest/
 
-[Microgateway Lab Guide]: https://docs.airlock.com/microgateway/latest/#data/tutorials.html
+[Microgateway Tutorials]: https://docs.airlock.com/microgateway/latest/#data/tutorials.html
 
 [Minikube start]: https://minikube.sigs.k8s.io/docs/start/
 
