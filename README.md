@@ -19,7 +19,6 @@ It is the lightweight, container-based deployment form of the *Airlock Gateway*,
   - [Table of contents](#table-of-contents)
 - [Setup the Environment](#setup-the-environment)
 - [The Tutorials](#the-tutorials)
-  - [Tutorial Overview](#tutorial-overview)
 - [Additional Information](#additional-information)
 
 
@@ -38,12 +37,7 @@ Each tutorial consists of
 - an Exercise folder. The exercise is accompanied by a [lab guide][Microgateway Lab Guide] with detailed instructions and hints. In most cases, kubernetes resource files have to be updated and deployed in order to solve the exercise.
 - a Solution folder containing a potential solution for the exercise.
 
-## Tutorial Overview
-Tutorial | Goal | Lab Guide
---- | --- | ---
-Getting Started | Deploy the Microgateway and get familiar with it's components|[Lab Guide](https://docs.airlock.com/microgateway/nightly/#data/gettingstart_1.html)
-Getting Used to DSL | Configure the Microgateway to protect a simple backend service |[Lab Guide](https://docs.airlock.com/microgateway/nightly/#data/gettingusedt.html)
-
+Please consult the [Microgateway Lab Guide] for a list of tutorials and the topics covered.
 
 # Additional Information
 [Airlock Microgateway Lab Guide][Microgateway Lab Guide]
