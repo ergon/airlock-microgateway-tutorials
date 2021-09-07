@@ -12,24 +12,6 @@ It is the lightweight, container-based deployment form of the *Airlock Gateway*,
 ## About Ergon
 *Airlock* is a registered trademark of [Ergon]. Ergon is a Swiss leader in leveraging digitalisation to create unique and effective client benefits, from conception to market, the result of which is the international distribution of globally revered products.
 
-## Table of contents
-- [Airlock Microgateway Tutorials](#airlock-microgateway-tutorials)
-  - [Airlock Microgateway](#airlock-microgateway)
-  - [About Ergon](#about-ergon)
-  - [Table of contents](#table-of-contents)
-- [Setup the Environment](#setup-the-environment)
-- [The Tutorials](#the-tutorials)
-- [Additional Information](#additional-information)
-
-
-# Setup the Environment
-You need a Kubernetes cluster to run this tutorial. You can use [Minikube][Minikube start] to create one, if you do not have a cluster available.
-
-The [kubectl command-line tool][Kubectl] has to be configured for the cluster you intend to use.
-
-You can find additional information in our [lab guide][Microgateway Lab Guide].
-
-
 # The Tutorials
 The tutorials are intended to show different aspects of running and configuring the Airlock Microgateway. The tutorials are independent of each other and can be done in any order.
 
@@ -38,6 +20,13 @@ Each tutorial consists of
 - a Solution folder containing a potential solution for the exercise.
 
 Please consult the [Microgateway Lab Guide] for a list of tutorials and the topics covered.
+
+# Setup the Environment
+You need a Kubernetes cluster to run this tutorial. You can use [Minikube][Minikube start] to create one, if you do not have a cluster available.
+
+The [kubectl command-line tool][Kubectl] has to be configured for the cluster you intend to use.
+
+You can find additional information in our [lab guide][Microgateway Lab Guide].
 
 # Additional Information
 [Airlock Microgateway Lab Guide][Microgateway Lab Guide]
