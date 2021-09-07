@@ -32,7 +32,7 @@ The [kubectl][Kubectl] command-line tool has to be configured for the cluster yo
 You can find additional information in our [guide][Microgateway Tutorials].
 
 # Additional Information
-[Airlock Microgateway Tutorials]Microgateway Tutorial Guide]
+[Airlock Microgateway Tutorials][Microgateway Tutorials]
 
 [Airlock Microgateway Documentation][Microgateway Documentation]
 
