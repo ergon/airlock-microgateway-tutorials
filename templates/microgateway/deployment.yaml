@@ -28,8 +28,15 @@ spec:
             - name: config
               mountPath: /config/config.yaml
               subPath: config.yaml
-            - name: secret
-              mountPath: /secret/config
+              readOnly: true
+            - name: passphrase-secret
+              mountPath: /secret/passphrase
+              subPath: passphrase
+              readOnly: true
+            - name: license-secret
+              mountPath: /secret/license
+              subPath: license
+              readOnly: true
             - name: config-files
               mountPath: /resources-gen
           env:
@@ -80,9 +87,12 @@ spec:
             limits:
               memory: 4048Mi
       volumes:
-        - name: secret
+        - name: passphrase-secret
           secret:
-            secretName: microgateway-secret
+            secretName: microgateway-passphrase
+        - name: license-secret
+          secret:
+            secretName: microgateway-license
         - name: config
           configMap:
             name: microgateway-config

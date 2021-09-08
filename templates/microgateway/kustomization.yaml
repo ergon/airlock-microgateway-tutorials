@@ -15,6 +15,9 @@ configMapGenerator:
       - config/config.yaml
 
 secretGenerator:
-  - name: microgateway-secret
+  - name: microgateway-passphrase
     files:
       - secret/passphrase
+  - name: microgateway-license
+    files:
+      - license=secret/microgateway.lic
