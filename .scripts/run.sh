@@ -14,12 +14,12 @@ else
         exit 1
 fi
 
-scripts/run_tutorial.sh $TUTORIAL_DIR
+.scripts/run_tutorial.sh $TUTORIAL_DIR
 
 EXITCODE=$?
 if [ $EXITCODE -ne 0 ]; then
 
-  scripts/display_info.sh 
+  .scripts/display_info.sh 
   echo ""
   echo "**************************************************"
   echo "* Deployment NOK                                 *"

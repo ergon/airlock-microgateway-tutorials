@@ -15,7 +15,7 @@ else
         exit 1
 fi
 
-scripts/cleanup.sh
+.scripts/cleanup.sh
 
 echo ""
 echo "-------------------------------------------------"
@@ -30,4 +30,4 @@ echo "-------------------------------------------------"
 echo "| verifying tutorial ..."
 echo "-------------------------------------------------"
 echo ""
-scripts/verify.sh $TUTORIAL_DIR
+.scripts/verify.sh $TUTORIAL_DIR
