@@ -9,10 +9,6 @@ resources:
 commonLabels:
   purpose: microgateway-tutorial
 
-generatorOptions:
-  labels:
-    app: microgateway
-
 configMapGenerator:
   - name: microgateway-config
     files:
