@@ -8,3 +8,7 @@ apps:
       hostname: echoserver.virtinc.local
     mappings:
       - name: echoserver
+        deny_rule_groups:
+          - level: strict
+        # extend the configuration according
+        # to the instructions

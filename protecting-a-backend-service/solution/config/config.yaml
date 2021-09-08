@@ -8,7 +8,11 @@ apps:
       hostname: echoserver.virtinc.local
     mappings:
       - name: echoserver
-        operational_mode: integration
         deny_rule_groups:
           - level: strict
-            log_only: true
+        backend:
+          name: echoserver
+          hosts:
+            - name: echoserver
+              protocol: http
+              port: 8080
