@@ -5,6 +5,7 @@ kind: Kustomization
 bases:
   - ../../templates/ingress
   - ../../templates/microgateway
+  - ../../templates/echoserver
 
 configMapGenerator:
   - name: microgateway-config

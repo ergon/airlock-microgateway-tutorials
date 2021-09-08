@@ -10,7 +10,6 @@ commonLabels:
   purpose: microgateway-tutorial
 
 generatorOptions:
-  disableNameSuffixHash: true
   labels:
     app: microgateway
 
