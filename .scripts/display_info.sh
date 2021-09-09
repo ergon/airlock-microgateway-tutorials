@@ -50,10 +50,9 @@ echo "-------------------------------------------------"
 echo ""
 kubectl logs -l app=microgateway -c configbuilder
 
-echo "displaying microgateway runtime log ..."
 echo ""
 echo "-------------------------------------------------"
-echo "| displaying microgateway runtime log ..."
+echo "| displaying logs for all pods ..."
 echo "-------------------------------------------------"
 echo ""
-kubectl logs -l app=microgateway -c microgateway
+kubectl logs -l purpose=microgateway-tutorial
