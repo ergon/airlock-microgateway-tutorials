@@ -1,7 +1,13 @@
 # lab specific additional verifications
 EXIT_CODE=0
 minikube_ip=$(minikube ip)
-STATUSCODE=$(curl -k -s -o /dev/null -w "%{http_code}" https://$minikube_ip/)
+if [ $? -ne 0 ]; then
+    kubernetes_ip="localhost"
+else
+    kubernetes_ip=${minikube_ip}
+fi
+
+STATUSCODE=$(curl -k -s -o /dev/null -w "%{http_code}" https://${kubernetes_ip}/)
 if [ "${STATUSCODE}" = "200" ]
 then
     echo "OK: Microgateway returned status code 200"

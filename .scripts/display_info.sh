@@ -48,7 +48,7 @@ echo "-------------------------------------------------"
 echo "| displaying microgateway configbuilder log ..."
 echo "-------------------------------------------------"
 echo ""
-kubectl logs -l app=microgateway -c configbuilder
+kubectl logs -l purpose=microgateway-tutorial -l app=microgateway -c configbuilder
 
 echo ""
 echo "-------------------------------------------------"
