@@ -1,7 +1,4 @@
 ---
-session:
-  encryption_passphrase: /secret/config/passphrase
-
 apps:
   - virtual_host:
       name: echoserver
