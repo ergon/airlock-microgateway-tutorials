@@ -10,12 +10,10 @@ spec:
     app: wordpress
   ports:
     - name: http
-      port: 80
+      port: 8080
       protocol: TCP
       targetPort: http
     - name: https
-      port: 443
+      port: 8443
       protocol: TCP
       targetPort: https
-  type: LoadBalancer
-  externalTrafficPolicy: "Cluster"

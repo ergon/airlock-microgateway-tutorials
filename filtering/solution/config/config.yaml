@@ -1,0 +1,46 @@
+---
+apps:
+  - virtual_host:
+      name: wordpress
+      hostname: wordpress.virtinc.local
+    mappings:
+      - name: wordpress
+        entry_path:
+          value: /
+        backend_path: /
+        operational_mode: integration
+        threat_handling: block
+        response:
+          rewrites:
+            location_header:
+              - url:
+                  pattern: ^(?:https?://%BACKENDHOSTNAME%(?::%BACKENDPORT%)?)?/%BACKENDPATH%(.*)?$
+                to: /%ENTRYPATH%$1
+            any:
+              - content_type: ^(?:text|application)/(?:html|xhtml)
+                content:
+                  pattern: https?://%BACKENDHOSTNAME%(?::%BACKENDPORT%)?/
+                to: /
+              - content_type: ^(?:text|application)/(?:html|xhtml)
+                content:
+                  pattern: https?:\\/\\/%BACKENDHOSTNAME%(?::%BACKENDPORT%)?\\/
+                to: \\/
+              # - content_type: ^(?:text|application)/(?:html|xhtml)
+              #   content:
+              #     pattern: (?!https)http
+              #   to: https
+            html:
+              - url:
+                  pattern: https?://%BACKENDHOSTNAME%(?::%BACKENDPORT%)?/
+                options: ["url", "event", "embedded"]
+                to: /
+              - url:
+                  pattern: ^(?:/%ENTRYPATH%)?/wp-login\.php\?action=logout.*
+                options: ["url", "event", "embedded"]
+                to: /auth/logout
+        backend:
+          name: wordpress
+          hosts:
+            - name: wordpress
+              protocol: http
+              port: 8080
