@@ -1,0 +1,128 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wordpress
+  labels:
+    app: wordpress
+spec:
+  selector:
+    matchLabels:
+      app: wordpress
+  strategy:
+    rollingUpdate: {}
+    type: RollingUpdate
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: wordpress
+    spec:
+      serviceAccountName: default
+      # yamllint disable rule:indentation
+      hostAliases:
+        - hostnames:
+            - status.localhost
+          ip: 127.0.0.1
+      # yamllint enable rule:indentation
+      affinity:
+        podAffinity:
+
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+                    app: wordpress
+                namespaces:
+                  - "default"
+                topologyKey: kubernetes.io/hostname
+              weight: 1
+        nodeAffinity:
+
+      securityContext:
+        fsGroup: 1001
+      containers:
+        - name: wordpress
+          image: docker.io/bitnami/wordpress:5.8.1-debian-10-r2
+          imagePullPolicy: "IfNotPresent"
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 1001
+          env:
+            - name: WORDPRESS_DATABASE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mariadb
+                  key: mariadb-password
+            - name: WORDPRESS_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: wordpress
+                  key: wordpress-username
+            - name: WORDPRESS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: wordpress
+                  key: wordpress-password
+          envFrom:
+            - secretRef:
+                name: jwt-secrets
+            - configMapRef:
+                name: wordpress
+          ports:
+            - name: http
+              containerPort: 8080
+            - name: https
+              containerPort: 8443
+          livenessProbe:
+            failureThreshold: 6
+            httpGet:
+              httpHeaders: []
+              path: /wp-admin/install.php
+              port: http
+              scheme: HTTP
+            initialDelaySeconds: 120
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 5
+          readinessProbe:
+            failureThreshold: 6
+            httpGet:
+              httpHeaders: []
+              path: /wp-login.php
+              port: http
+              scheme: HTTP
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 5
+          resources:
+            limits: {}
+            requests:
+              cpu: 300m
+              memory: 512Mi
+          volumeMounts:
+            - name: wordpress-data
+              mountPath: /bitnami/wordpress
+              subPath: wordpress
+            - name: custom-postinit
+              mountPath: /docker-entrypoint-init.d
+            - name: plugin-simple-jwt-login
+              mountPath: /var/tmp/plugins/simple-jwt-login/
+            - name: plugin-wordpress-importer
+              mountPath: /var/tmp/plugins/wordpress-importer/
+      volumes:
+        - name: custom-postinit
+          configMap:
+            name: wordpress-postinit
+            defaultMode: 0755
+        - name: plugin-simple-jwt-login
+          configMap:
+            name: wordpress-plugin-simple-jwt-login
+        - name: plugin-wordpress-importer
+          configMap:
+            name: wordpress-plugin-importer
+        - name: wordpress-data
+          persistentVolumeClaim:
+            claimName: wordpress
