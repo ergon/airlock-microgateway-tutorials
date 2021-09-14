@@ -8,7 +8,6 @@ apps:
         entry_path:
           value: /
         backend_path: /
-        operational_mode: integration
         threat_handling: block
         response:
           rewrites:
@@ -26,7 +25,6 @@ apps:
         entry_path:
           value: /v3/
         backend_path: /v3/
-        operational_mode: integration
         threat_handling: block
         api_security:
           openapi:
