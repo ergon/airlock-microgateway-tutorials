@@ -3,7 +3,7 @@
 display_usage() {
         echo "Usage: $0 tutorial_dir"
         echo "tutorial_dir: Tutorial to run. Should point to an Exercise or Solution folder of an exercise."
-        echo "Example: $0 Getting_used_to_DSL/Excercise"
+        echo "Example: $0 getting-started/solution"
         }
 
 if [ -n "$1" ]; then
