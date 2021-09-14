@@ -25,10 +25,6 @@ apps:
                 content:
                   pattern: https?:\\/\\/%BACKENDHOSTNAME%(?::%BACKENDPORT%)?\\/
                 to: \\/
-              # - content_type: ^(?:text|application)/(?:html|xhtml)
-              #   content:
-              #     pattern: (?!https)http
-              #   to: https
             html:
               - url:
                   pattern: https?://%BACKENDHOSTNAME%(?::%BACKENDPORT%)?/
@@ -38,6 +34,9 @@ apps:
                   pattern: ^(?:/%ENTRYPATH%)?/wp-login\.php\?action=logout.*
                 options: ["url", "event", "embedded"]
                 to: /auth/logout
+        expert_settings:
+          security_gate: |
+            LogoutPropagation.Backend.LogoutUrl   "/wp-login.php?action=logout"
         backend:
           name: wordpress
           hosts:

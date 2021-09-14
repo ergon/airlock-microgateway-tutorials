@@ -7,8 +7,8 @@ resources:
   - service.yaml
   - serviceaccount.yaml
 
-generatorOptions:
-  disableNameSuffixHash: true
+commonLabels:
+  purpose: microgateway-tutorial
 
 configMapGenerator:
   - name: mariadb
