@@ -13,8 +13,9 @@ apps:
           - log_only: false
           # Exceptions for the comment form
           - rule_group_keys:
-              - HTML_PARAM_VALUE
               - SQLI_PARAM_VALUE
+              - XSS_PARAM_VALUE
+              - HTML_PARAM_VALUE
             exceptions:
               - path:
                   pattern: ^/wp-comments-post.php$
@@ -22,8 +23,9 @@ apps:
                   pattern: ^(?:comment|author)$
           # Exceptions for the search field
           - rule_group_keys:
-              - HTML_PARAM_VALUE
               - SQLI_PARAM_VALUE
+              - XSS_PARAM_VALUE
+              - HTML_PARAM_VALUE
             exceptions:
               - path:
                   pattern: ^/$
