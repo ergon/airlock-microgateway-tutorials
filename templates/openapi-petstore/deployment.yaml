@@ -24,6 +24,10 @@ spec:
           env:
             - name: OPENAPI_BASE_PATH
               value: /v3
+            - name: DISABLE_API_KEY
+              value: "1"
+            - name: DISABLE_OAUTH
+              value: "1"              
           ports:
             - name: http
               containerPort: 8080
