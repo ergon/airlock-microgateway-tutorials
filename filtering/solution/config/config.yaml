@@ -10,8 +10,7 @@ apps:
         backend_path: /
         operational_mode: integration
         deny_rule_groups:
-          - level: standard
-            log_only: false
+          - log_only: false
           # Exceptions for the comment form
           - rule_group_keys:
               - HTML_PARAM_VALUE
