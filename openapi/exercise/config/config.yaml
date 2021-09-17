@@ -26,8 +26,7 @@ apps:
           value: /v3/
         backend_path: /v3/
         threat_handling: block
-        # adapt the configuration
-        # according to the instructions
+        # Configure here ...
         backend:
           name: openapi-petstore
           hosts:

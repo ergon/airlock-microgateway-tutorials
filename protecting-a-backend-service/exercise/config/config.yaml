@@ -7,5 +7,4 @@ apps:
       - name: echoserver
         deny_rule_groups:
           - level: strict
-        # adapt the configuration
-        # according to the instructions
+        # Configure here ...
