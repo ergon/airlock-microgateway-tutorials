@@ -25,7 +25,7 @@ else
     EXIT_CODE=1
 fi
 
-curl -k -X PUT 'https://10.211.55.36/v3/pet' -H  'accept: */*' -H  'Content-Type: application/json' -d '{"photoUrls":["photoUrls","photoUrls"],"name":"doggie","id":0,"category":{"name":"name","id":6},"tags":[{"name":"name","id":1},{"name":"name","id":1}],"status":"available"}'
+curl -k -X PUT "https://${kubernetes_ip}/v3/pet" -H  'accept: */*' -H  'Content-Type: application/json' -d '{"photoUrls":["photoUrls","photoUrls"],"name":"doggie","id":0,"category":{"name":"name","id":6},"tags":[{"name":"name","id":1},{"name":"name","id":1}],"status":"available"}'
 REQUEST_COUNT=$(kubectl logs -l app=microgateway -c microgateway --tail=-1 | grep -c "WR-SG-SUMMARY")
 if [ "${REQUEST_COUNT}" -ge "2" ]
 then
@@ -35,7 +35,7 @@ else
     EXIT_CODE=1
 fi
 
-curl -k -X PUT 'https://10.211.55.36/v3/pet' -H  'accept: */*' -H  'Content-Type: application/json' -d '{"photoUrl":["photoUrls","photoUrls"],"name":"doggie","id":0,"category":{"name":"name","id":6},"tags":[{"name":"name","id":1},{"name":"name","id":1}],"status":"available"}'
+curl -k -X PUT "https://${kubernetes_ip}/v3/pet" -H  'accept: */*' -H  'Content-Type: application/json' -d '{"photoUrl":["photoUrls","photoUrls"],"name":"doggie","id":0,"category":{"name":"name","id":6},"tags":[{"name":"name","id":1},{"name":"name","id":1}],"status":"available"}'
 REQUEST_COUNT=$(kubectl logs -l app=microgateway -c microgateway --tail=-1 | grep -c "WR-SG-SUMMARY")
 if [ "${REQUEST_COUNT}" -ge "3" ]
 then
