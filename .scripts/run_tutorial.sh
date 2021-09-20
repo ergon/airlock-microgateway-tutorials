@@ -30,4 +30,5 @@ echo "-------------------------------------------------"
 echo "| verifying tutorial ..."
 echo "-------------------------------------------------"
 echo ""
+sleep 1
 .scripts/verify.sh $TUTORIAL_DIR
