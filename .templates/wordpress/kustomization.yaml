@@ -1,0 +1,57 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+bases:
+  - ../mariadb
+  - ../jwt-secrets
+
+resources:
+  - deployment.yaml
+  - service.yaml
+  - pvc.yaml
+
+commonLabels:
+  purpose: microgateway-tutorial
+
+configMapGenerator:
+  - name: wordpress
+    literals:
+      - BITNAMI_DEBUG=false
+      - ALLOW_EMPTY_PASSWORD=yes
+      - MARIADB_HOST=mariadb
+      - MARIADB_PORT_NUMBER=3306
+      - WORDPRESS_DATABASE_NAME=bitnami_wordpress
+      - WORDPRESS_DATABASE_USER=bn_wordpress
+      - WORDPRESS_EMAIL=admin@virtinc.com
+      - WORDPRESS_FIRST_NAME=Airlock
+      - WORDPRESS_LAST_NAME=By Ergon
+      - WORDPRESS_HTACCESS_OVERRIDE_NONE=no
+      - WORDPRESS_ENABLE_HTACCESS_PERSISTENCE=no
+      - WORDPRESS_BLOG_NAME=Virtinc
+      - WORDPRESS_SKIP_BOOTSTRAP=no
+      - WORDPRESS_TABLE_PREFIX=wp_
+      - WORDPRESS_SCHEME=http
+      - WORDPRESS_EXTRA_WP_CONFIG_CONTENT=""
+      - WORDPRESS_AUTO_UPDATE_LEVEL=none
+      - WORDPRESS_PLUGINS=none
+      - APACHE_HTTP_PORT_NUMBER=8080
+      - APACHE_HTTPS_PORT_NUMBER=8443
+  - name: wordpress-plugin-simple-jwt-login
+    files:
+      - config/simple-jwt-login.zip
+  - name: wordpress-plugin-importer
+    files:
+      - wordpress-importer.zip=config/wordpress-importer.0.7.zip
+      - config/welcome_post.xml
+  - name: wordpress-postinit
+    files:
+      - config/configure-wordpress.sh
+      - config/install-simple-jwt-login.sh
+      - config/install-wordpress-importer.sh
+
+secretGenerator:
+  - name: wordpress
+    literals:
+      - wordpress-password=password
+      - wordpress-username=admin

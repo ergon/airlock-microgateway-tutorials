@@ -1,0 +1,18 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: microgateway
+spec:
+  template:
+    spec:
+      initContainers:
+        - name: configbuilder
+          volumeMounts:
+            - name: openapi-spec
+              mountPath: /config/openapi-petstore.json
+              subPath: openapi-petstore.json
+      volumes:
+        - name: openapi-spec
+          configMap:
+            name: petshop-openapi-spec

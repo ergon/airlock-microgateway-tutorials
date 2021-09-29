@@ -1,0 +1,35 @@
+---
+apps:
+  - virtual_host:
+      name: openapi-petstore
+      hostname: openapi-petstore.virtinc.local
+    mappings:
+      - name: openapi-petstore-ui
+        entry_path:
+          value: /
+        backend_path: /
+        threat_handling: block
+        response:
+          rewrites:
+            location_header:
+              - url:
+                  pattern: ^(?:https?://%BACKENDHOST%)?(/.*)?$
+                to: $1
+        backend:
+          name: openapi-petstore
+          hosts:
+            - name: openapi-petstore
+              protocol: http
+              port: 8080
+      - name: openapi-petstore-api
+        entry_path:
+          value: /v3/
+        backend_path: /v3/
+        threat_handling: block
+        # Configure here ...
+        backend:
+          name: openapi-petstore
+          hosts:
+            - name: openapi-petstore
+              protocol: http
+              port: 8080

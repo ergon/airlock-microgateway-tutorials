@@ -1,0 +1,66 @@
+---
+apps:
+  - virtual_host:
+      name: wordpress
+      hostname: wordpress.virtinc.local
+    mappings:
+      - name: wordpress
+        entry_path:
+          value: /
+        backend_path: /
+        operational_mode: integration
+        deny_rule_groups:
+          - log_only: false
+          # Exceptions for the comment form
+          - rule_group_keys:
+              - SQLI_PARAM_VALUE
+              - XSS_PARAM_VALUE
+              - HTML_PARAM_VALUE
+            exceptions:
+              - path:
+                  pattern: ^/wp-comments-post.php$
+                parameter_name:
+                  pattern: ^(?:comment|author)$
+          # Exceptions for the search field
+          - rule_group_keys:
+              - SQLI_PARAM_VALUE
+              - XSS_PARAM_VALUE
+              - HTML_PARAM_VALUE
+            exceptions:
+              - path:
+                  pattern: ^/$
+                parameter_name:
+                  pattern: ^(?:s)$
+        response:
+          rewrites:
+            location_header:
+              - url:
+                  pattern: ^(?:https?://%BACKENDHOSTNAME%(?::%BACKENDPORT%)?)?/%BACKENDPATH%(.*)?$
+                to: /%ENTRYPATH%$1
+            any:
+              - content_type: ^(?:text|application)/(?:html|xhtml)
+                content:
+                  pattern: https?://%BACKENDHOSTNAME%(?::%BACKENDPORT%)?/
+                to: /
+              - content_type: ^(?:text|application)/(?:html|xhtml)
+                content:
+                  pattern: https?:\\/\\/%BACKENDHOSTNAME%(?::%BACKENDPORT%)?\\/
+                to: \\/
+            html:
+              - url:
+                  pattern: https?://%BACKENDHOSTNAME%(?::%BACKENDPORT%)?/
+                options: ["url", "event", "embedded"]
+                to: /
+              - url:
+                  pattern: ^(?:/%ENTRYPATH%)?/wp-login\.php\?action=logout.*
+                options: ["url", "event", "embedded"]
+                to: /auth/logout
+        expert_settings:
+          security_gate: |
+            LogoutPropagation.Backend.LogoutUrl   "/wp-login.php?action=logout"
+        backend:
+          name: wordpress
+          hosts:
+            - name: wordpress
+              protocol: http
+              port: 8080

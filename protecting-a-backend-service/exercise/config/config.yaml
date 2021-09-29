@@ -1,0 +1,10 @@
+---
+apps:
+  - virtual_host:
+      name: echoserver
+      hostname: echoserver.virtinc.local
+    mappings:
+      - name: echoserver
+        deny_rule_groups:
+          - level: strict
+        # Configure here ...

@@ -1,0 +1,15 @@
+---
+apps:
+  - virtual_host:
+      name: echoserver
+      hostname: echoserver.virtinc.local
+    mappings:
+      - name: echoserver
+        deny_rule_groups:
+          - level: strict
+        backend:
+          name: echoserver
+          hosts:
+            - name: echoserver
+              protocol: http
+              port: 8080

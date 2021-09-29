@@ -1,0 +1,33 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: openapi-petstore
+  labels:
+    app: openapi-petstore
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: openapi-petstore
+  template:
+    metadata:
+      labels:
+        app: openapi-petstore
+    spec:
+      imagePullSecrets:
+        - name: dockerregcred
+      containers:
+        - name: openapi-petstore
+          image: docker.io/openapitools/openapi-petstore@sha256:4568958456abce146cb2542fffc5fb2c8a973a1014cbb20ceee1f3d24fbe3468
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: OPENAPI_BASE_PATH
+              value: /v3
+            - name: DISABLE_API_KEY
+              value: "1"
+            - name: DISABLE_OAUTH
+              value: "1"              
+          ports:
+            - name: http
+              containerPort: 8080
