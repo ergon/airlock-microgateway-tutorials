@@ -3,7 +3,7 @@ In this tutorial, you will learn how to protect your web applications and servic
 
 We will add additional tutorials over time, so make sure to come back from time to time.
 
-This tutorial works with Airlock Microgateway 2.1.0. Check out released versions of the tutorial if you want to use it with another Airlock Microgateway version.
+This tutorial works with Airlock Microgateway 3.0.0. Check out released versions of the tutorial if you want to use it with another Airlock Microgateway version.
 
 ## Airlock Microgateway
 The *Airlock Microgateway* is a component of the [Airlock Secure Access Hub].
