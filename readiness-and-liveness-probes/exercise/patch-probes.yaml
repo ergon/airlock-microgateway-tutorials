@@ -1,0 +1,16 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: microgateway
+spec:
+  template:
+    spec:
+      containers:
+        - name: microgateway
+          readinessProbe:
+            httpGet:
+              port: 443
+          livenessProbe:
+            httpGet:
+              port: 443
