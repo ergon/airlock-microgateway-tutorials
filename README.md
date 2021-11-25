@@ -3,15 +3,12 @@ In this tutorial, you will learn how to protect your web applications and servic
 
 We will add additional tutorials over time, so make sure to come back from time to time.
 
-This tutorial works with Airlock Microgateway 2.1.0. Check out released versions of the tutorial if you want to use it with another Airlock Microgateway version.
+This tutorial works with Airlock Microgateway 3.0.0. Check out released versions of the tutorial if you want to use it with another Airlock Microgateway version.
 
 ## Airlock Microgateway
 The *Airlock Microgateway* is a component of the [Airlock Secure Access Hub].
 It is the lightweight, container-based deployment form of the *Airlock Gateway*, a software appliance with reverse-proxy, Web Application Firewall (WAF) and API security functionality.
 
-
-## About Ergon
-*Airlock* is a registered trademark of [Ergon]. Ergon is a Swiss leader in leveraging digitalisation to create unique and effective client benefits, from conception to market, the result of which is the international distribution of globally revered products.
 
 # The Tutorials
 The tutorials are intended to show different aspects of running and configuring the Airlock Microgateway. The tutorials are independent of each other and can be done in any order.
@@ -32,11 +29,14 @@ The [kubectl][Kubectl] command-line tool has to be configured for the cluster yo
 You can find additional information in our [guide][Microgateway Tutorials].
 
 # Additional Information
-[Airlock Microgateway Tutorials][Microgateway Tutorials]
+- Guide for the Tutorials: [Airlock Microgateway Tutorials][Microgateway Tutorials]
+- Introduction: [Airlock Microgateway](https://www.airlock.com/microgateway)
+- Documentation: [Airlock Microgateway Manual][Microgateway Documentation]
+- Community Support: [Airlock Community Forum][Airlock Forum]
+- Integration Example: [Airlock Minikube Example](https://github.com/ergon/airlock-minikube-example)
 
-[Airlock Microgateway Documentation][Microgateway Documentation]
-
-[Airlock Forum][Airlock Forum]
+## About Ergon
+*Airlock* is a registered trademark of [Ergon](https://www.ergon.ch). Ergon is a Swiss leader in leveraging digitalisation to create unique and effective client benefits, from conception to market, the result of which is the international distribution of globally revered products.
 
 
 
