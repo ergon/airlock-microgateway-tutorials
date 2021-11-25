@@ -23,6 +23,15 @@ else
     exit 1
 fi
 
+mgw_ready_count="$(kubectl get pod -l app=microgateway  | grep 1/1 | wc -l)"
+
+if [[ $mgw_ready_count -eq 1 ]]; then
+    echo "OK: Microgateway is ready"
+else
+    echo "NOK: Microgateway is not running - number of pods ready: $mgw_ready_count"
+    exit 1
+fi
+
 if [[ -f "${TUTORIAL_DIR}/../.scripts/verify.sh" ]]; then
     ${TUTORIAL_DIR}/../.scripts/verify.sh
 fi
