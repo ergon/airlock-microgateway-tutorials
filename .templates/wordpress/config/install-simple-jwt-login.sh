@@ -3,7 +3,7 @@ wp plugin install /var/tmp/plugins/simple-jwt-login/simple-jwt-login.zip --activ
 wp option update simple_jwt_login_settings "
   {
     \"route_namespace\":\"simple-jwt-login\/v1\/\",
-    \"decryption_key\":\"${JWT_DECRYPTION_KEY2:-c3VwZXJsb25ndGV4dHRoYXRpc3VzZWRmb3Jqd3R0b2tlbgo=}\",
+    \"decryption_key\":\"${JWT_DECRYPTION_KEY:-c3VwZXJsb25ndGV4dHRoYXRpc3VzZWRmb3Jqd3R0b2tlbgo=}\",
     \"jwt_algorithm\":\"HS512\",
     \"jwt_login_by\":0,
     \"jwt_login_by_parameter\":\"email\",
@@ -19,7 +19,7 @@ wp option update simple_jwt_login_settings "
     \"require_register_auth\":true,
     \"auth_codes\":[
         {
-          \"code\":\"${JWT_AUTH_CODE2:-superlongtextthatisusedforjwttoken}\",
+          \"code\":\"${JWT_AUTH_CODE:-superlongtextthatisusedforjwttoken}\",
           \"role\":\"\",
           \"expiration_date\":\"\"
         }
