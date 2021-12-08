@@ -1,0 +1,67 @@
+---
+apps:
+  - virtual_host:
+      name: echo
+      hostname: echo.virtinc.local
+    mappings:
+      - name: echoserver
+        entry_path:
+          value: /echo/
+        session_handling: ignore_session
+        deny_rule_groups:
+          - level: strict
+            log_only: false
+        auth:
+          flow: deny_access
+          access:
+            - path:
+                pattern: ^%ENTRYDIR%/member/
+              roles:
+                - member
+        access_token:
+          mandatory: true
+          expiry_checked: true
+          audittoken: true
+          extraction:
+            mode: header
+            header:
+              regex:
+                pattern: "^Authorization: Bearer (.*)$"
+              substitution: "$1"
+          jwks_providers:
+            - airlock-iam
+          roles:
+            - claim: roles
+              extraction:
+                regex:
+                  pattern: customer
+                substitution: member
+        backend:
+          name: echoserver
+          hosts:
+            - protocol: http
+              name: echoserver
+              port: 8080
+
+jwks_providers:
+  local:
+    - name: airlock-iam
+      jwks: |
+        {
+            "keys":
+            [
+                {
+                    "kty": "oct",
+                    "use": "sig",
+                    "alg": "HS512",
+                    "k": "${JWT_SIGNATURE_PASSPHRASE}",
+                    "key_ops": ["verify"]
+                },
+                {
+                    "kty": "oct",
+                    "alg": "dir",
+                    "k": "${JWT_ENCRYPTION_PASSPHRASE}",
+                    "key_ops": ["decrypt"]
+                }
+            ]
+        }
