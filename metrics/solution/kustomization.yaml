@@ -5,6 +5,7 @@ kind: Kustomization
 bases:
   - ../../.templates/ingress
   - ../../.templates/echoserver
+  - ../../.templates/prometheus
   - artillery
   - echo-microgateway
 
