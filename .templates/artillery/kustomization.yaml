@@ -4,15 +4,11 @@ kind: Kustomization
 
 resources:
   - deployment.yaml
-  - service.yaml
-
-commonLabels:
-  purpose: microgateway-tutorial
 
 generatorOptions:
   disableNameSuffixHash: true
 
 configMapGenerator:
-  - name: echoserver-nginx-config
+  - name: artillery-config
     files:
-      - config/nginx.conf
+      - config/artillery.yaml
