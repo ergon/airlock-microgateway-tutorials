@@ -5,9 +5,13 @@ kind: Kustomization
 bases:
   - ../../.templates/ingress
   - ../../.templates/echoserver
+  - ../../.templates/grafana
   - ../../.templates/prometheus
+  - ../../.templates/redis
   - artillery
   - echo-microgateway
+  - grafana-microgateway
+  - prometheus-microgateway
 
 patchesStrategicMerge:
   - patch-ingress.yaml

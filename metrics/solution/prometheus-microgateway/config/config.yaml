@@ -1,4 +1,7 @@
 ---
+session:
+  redis_hosts: [redis-master]
+
 apps:
   - virtual_host:
       name: prometheus
@@ -8,12 +11,12 @@ apps:
         entry_path:
           value: /prometheus/
         backend_path: /
-        session_handling: ignore_session
+        session_handling: enforce_session
         deny_rule_groups:
           - log_only: true
         backend:
           name: prometheus
           hosts:
             - protocol: http
-              name: prometheus
-              port: 9090
+              name: prometheus-server
+              port: 80

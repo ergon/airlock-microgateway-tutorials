@@ -1,0 +1,7 @@
+apiVersion: 1
+datasources:
+  - access: proxy
+    editable: false
+    name: Prometheus
+    type: prometheus
+    url: http://prometheus-server:80

@@ -5,9 +5,9 @@ kind: Kustomization
 bases:
   - ../../../.templates/microgateway
 
-namePrefix: prometheus-
+namePrefix: grafana-
 commonLabels:
-  backend: prometheus
+  backend: grafana
 
 configMapGenerator:
   - name: microgateway-config

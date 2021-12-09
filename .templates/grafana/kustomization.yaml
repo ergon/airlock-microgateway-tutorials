@@ -1,0 +1,42 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - deployment.yaml
+  - podsecuritypolicy.yaml
+  - service.yaml
+  - serviceaccount.yaml
+  - clusterrole.yaml
+  - clusterrolebinding.yaml
+  - role.yaml
+  - rolebinding.yaml
+
+commonLabels:
+  purpose: microgateway-tutorial
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+configMapGenerator:
+  - name: grafana-config-files
+    files:
+      - config/dashboardproviders.yaml
+      - config/datasources.yaml
+      - config/grafana.ini
+  - name: grafana-settings
+    literals:
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+      - GF_SERVER_ROOT_URL=/grafana/
+      - GF_SERVER_SERVE_FROM_SUB_PATH=true
+  - name: grafana-dashboard-airlock-microgateway
+    files:
+      - config/dashboard-airlock-microgateway.json
+
+secretGenerator:
+  - name: grafana
+    literals:
+      - admin-user=YWRtaW4=
+      - admin-password=YjZwTmhteWdNam82OE0xQzAxOW4zY3hBRU1BcTA0alNBYkQ1cDVFQQ==
+      - ldap-toml=""
