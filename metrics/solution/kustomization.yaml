@@ -13,6 +13,9 @@ bases:
   - grafana-microgateway
   - prometheus-microgateway
 
+commonLabels:
+  purpose: microgateway-tutorial
+
 patchesStrategicMerge:
   - patch-ingress.yaml
 
