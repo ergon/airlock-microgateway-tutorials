@@ -7,6 +7,9 @@ bases:
   - ../../.templates/microgateway
   - ../../.templates/openapi-petstore
 
+commonLabels:
+  purpose: microgateway-tutorial
+
 patchesStrategicMerge:
   - patch-volume.yaml
 
