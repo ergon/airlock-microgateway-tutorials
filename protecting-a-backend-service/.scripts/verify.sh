@@ -7,6 +7,11 @@ else
     kubernetes_ip=${minikube_ip}
 fi
 
+.scripts/common_verifications.sh
+if [ "$?" -ne "0" ]; then
+    EXIT_CODE=1
+fi
+
 STATUSCODE=$(curl -k -s -o /dev/null -w "%{http_code}" https://${kubernetes_ip}/)
 if [ "${STATUSCODE}" = "200" ]
 then
