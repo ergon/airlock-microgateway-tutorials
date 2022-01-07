@@ -1,0 +1,19 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+bases:
+  - ../../../.templates/microgateway
+
+namePrefix: echo-
+commonLabels:
+  backend: echo
+
+configMapGenerator:
+  - name: microgateway-config
+    behavior: replace
+    files:
+      - config/config.yaml
+
+patchesStrategicMerge:
+  - patch-deployment.yaml

@@ -1,0 +1,10 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: echo-microgateway
+spec:
+  template:
+    metadata:
+      annotations:
+        prometheus.io/port: "9090"

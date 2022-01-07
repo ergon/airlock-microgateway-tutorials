@@ -67,7 +67,7 @@ spec:
                   key: wordpress-password
           envFrom:
             - secretRef:
-                name: jwt-secrets
+                name: wordpress-jwt-secrets
             - configMapRef:
                 name: wordpress
           ports:

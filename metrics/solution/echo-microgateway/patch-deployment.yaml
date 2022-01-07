@@ -1,0 +1,21 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: microgateway
+spec:
+  template:
+    spec:
+      initContainers:
+        - name: configbuilder
+          env:
+            - name: JWT_ENCRYPTION_PASSPHRASE
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: JWT_ENCRYPTION_PASSPHRASE
+            - name: JWT_SIGNATURE_PASSPHRASE
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: JWT_SIGNATURE_PASSPHRASE

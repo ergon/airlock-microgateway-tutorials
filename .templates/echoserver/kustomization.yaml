@@ -8,3 +8,11 @@ resources:
 
 commonLabels:
   purpose: microgateway-tutorial
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+configMapGenerator:
+  - name: echoserver-nginx-config
+    files:
+      - config/nginx.conf

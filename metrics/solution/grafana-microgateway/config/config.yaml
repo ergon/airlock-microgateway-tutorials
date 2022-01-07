@@ -1,0 +1,26 @@
+---
+session:
+  redis_hosts: [redis-master]
+
+apps:
+  - virtual_host:
+      name: grafana
+      hostname: grafana.virtinc.local
+      redirects:
+        - path:
+            pattern: ^/$
+          dest: https://%{ENV:HTTP_HOST_NOPORT}/grafana/d/airlock_microgateway/airlock-microgateway
+          status_code: 303
+    mappings:
+      - name: grafana
+        entry_path:
+          value: /grafana/
+        session_handling: enforce_session
+        deny_rule_groups:
+          - log_only: true
+        backend:
+          name: grafana
+          hosts:
+            - protocol: http
+              name: grafana
+              port: 80

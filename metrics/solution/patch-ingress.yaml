@@ -1,0 +1,37 @@
+---
+kind: Ingress
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: ingress-microgateway-default
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: grafana-microgateway
+                port:
+                  name: https
+          - path: /echo/
+            pathType: Prefix
+            backend:
+              service:
+                name: echo-microgateway
+                port:
+                  name: https
+          - path: /admin/
+            pathType: Prefix
+            backend:
+              service:
+                name: echo-microgateway
+                port:
+                  name: https
+          - path: /prometheus/
+            pathType: Prefix
+            backend:
+              service:
+                name: prometheus-microgateway
+                port:
+                  name: https

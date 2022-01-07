@@ -4,7 +4,6 @@ kind: Kustomization
 
 bases:
   - ../mariadb
-  - ../jwt-secrets
 
 resources:
   - deployment.yaml
@@ -55,3 +54,7 @@ secretGenerator:
     literals:
       - wordpress-password=password
       - wordpress-username=admin
+  - name: wordpress-jwt-secrets
+    literals:
+      - JWT_DECRYPTION_KEY=c3VwZXJsb25ndGV4dHRoYXRpc3VzZWRmb3Jqd3R0b2tlbgo=
+      - JWT_AUTH_CODE=superlongtextthatisusedforjwttoken

@@ -1,0 +1,22 @@
+---
+session:
+  redis_hosts: [redis-master]
+
+apps:
+  - virtual_host:
+      name: prometheus
+      hostname: prometheus.virtinc.local
+    mappings:
+      - name: prometheus
+        entry_path:
+          value: /prometheus/
+        backend_path: /
+        session_handling: enforce_session
+        deny_rule_groups:
+          - log_only: true
+        backend:
+          name: prometheus
+          hosts:
+            - protocol: http
+              name: prometheus-server
+              port: 80

@@ -5,6 +5,9 @@ metadata:
   name: microgateway
   labels:
     app: microgateway
+  annotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "9102"
 spec:
   selector:
     app: microgateway

@@ -1,0 +1,26 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - statefulset.yaml
+  - headless-svc.yaml
+  - redis-master-svc.yaml
+
+commonLabels:
+  purpose: microgateway-tutorial
+
+configMapGenerator:
+  - name: redis
+    files:
+      - config/master.conf
+      - config/redis.conf
+      - config/replica.conf
+  - name: redis-health
+    files:
+      - config/ping_readiness_local.sh
+      - config/ping_liveness_local.sh
+      - config/ping_readiness_master.sh
+      - config/ping_liveness_master.sh
+      - config/ping_readiness_local_and_master.sh
+      - config/ping_liveness_local_and_master.sh
