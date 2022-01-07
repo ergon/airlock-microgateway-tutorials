@@ -19,7 +19,7 @@ fi
 EXITCODE=$?
 if [ $EXITCODE -ne 0 ]; then
 
-  #.scripts/display_info.sh 
+  .scripts/display_info.sh 
   echo ""
   echo "**************************************************"
   echo "* Deployment NOK                                 *"
