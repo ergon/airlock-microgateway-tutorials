@@ -1,0 +1,42 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: microgateway
+spec:
+  template:
+    spec:
+      initContainers:
+        - name: configbuilder
+          volumeMounts:
+            - name: iam-mapping-template-adminapp
+              mountPath: /config/templates/iam-adminapp.xml
+              subPath: iam-adminapp.xml
+            - name: iam-mapping-template-loginapp
+              mountPath: /config/templates/iam-loginapp.xml
+              subPath: iam-loginapp.xml
+            - name: iam-mapping-template-loginapp-rest-protected
+              mountPath: /config/templates/iam-loginapp-rest-protected.xml
+              subPath: iam-loginapp-rest-protected.xml
+            - name: iam-mapping-template-loginapp-rest-public
+              mountPath: /config/templates/iam-loginapp-rest-public.xml
+              subPath: iam-loginapp-rest-public.xml
+            - name: iam-microgateway-openapi-login-rest
+              mountPath: /config/openapi/openapi-loginapp-rest.json
+              subPath: openapi-loginapp-rest.json
+      volumes:
+        - name: iam-mapping-template-adminapp
+          configMap:
+            name: iam-microgateway-mapping-template-adminapp
+        - name: iam-mapping-template-loginapp
+          configMap:
+            name: iam-microgateway-mapping-template-loginapp
+        - name: iam-mapping-template-loginapp-rest-protected
+          configMap:
+            name: iam-microgateway-mapping-template-loginapp-rest-protected
+        - name: iam-mapping-template-loginapp-rest-public
+          configMap:
+            name: iam-microgateway-mapping-template-loginapp-rest-public
+        - name: iam-microgateway-openapi-login-rest
+          configMap:
+            name: iam-microgateway-openapi-login-rest

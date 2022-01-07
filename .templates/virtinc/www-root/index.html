@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/bootstrap-grid.min.css">
+  <link rel="stylesheet" href="css/main.css">
+  <title>Virtinc</title>
+</head>
+
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="row justify-content-between">
+        <div class="col-4">
+          <img src="images/logo.svg" alt="">
+        </div>
+        <div class="col-8">
+          <nav class="main-navigation">
+            <ul class="nav-items">
+              <li class="nav-item">
+
+                <!--#if expr="(osenv('HIDE_BLOG') == 'true')" -->
+                <a href="/wordpress/" target="_blank" class="nav-link d-none">Blog</a>
+                <!--#else -->
+                <a href="/wordpress/" target="_blank" class="nav-link">Blog</a>
+                <!--#endif -->
+
+              </li>
+              <li class="nav-item">
+
+                <!--#if expr="(osenv('HIDE_MAIL') == 'true')" -->
+                <a href="/mail/" target="_blank" class="nav-link d-none">Mail</a>
+                <!--#else -->
+                <a href="/mail/" target="_blank" class="nav-link">Mail</a>
+                <!--#endif -->
+
+              </li>
+              <li class="nav-item">
+
+                <!--#if expr="(osenv('HIDE_ADMIN') == 'true')" -->
+                <a href="/wordpress/wp-admin/" target="_blank" class="nav-link d-none">Admin</a>
+                <!--#else -->
+                <a href="/wordpress/wp-admin/" target="_blank" class="nav-link">Admin</a>
+                <!--#endif -->
+
+              </li>
+              <li class="nav-item">
+
+                <!--#if expr="(osenv('HIDE_MEMBER_LOGIN') == 'true')" -->
+                <a href="/auth/check-login" target="_blank" class="nav-link btn-ghost d-none">Member Login</a>
+                <!--#else -->
+                <a href="/auth/check-login" target="_blank" class="nav-link btn-ghost">Member Login</a>
+                <!--#endif -->
+
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <h1>
+      </h1>
+      <div class="row">
+        <div class="col">
+          <h1 class="h1">
+            Welcome to Virtinc!
+          </h1>
+          <h2 class="h2">
+            We provide virtual identities for everyone!
+          </h2>
+          <p class="header-paragraph">
+            In a time, where digitalization and virtualization advance fast and are about to cover almost every aspect
+            of daily life, virtual identities are becoming the key to success.<br>Does a company only give their API
+            Keys to businesses, but not to private inidividuals? Virtinc creates an virtual business identity for
+            you.<br>
+            Is the access to files or websites restricted to members of certain country? Virtinc creates you a virtual
+            cititzenship identity for this country so you can access it.<br>
+            Do you want to contact someone without being recognized? Virtinc creates you a virtual identity which can
+            not be revealed as a fake identity.<br>
+            There are countless more usecases for virtual identities. Don't hesitate to contact us today in order to get
+            your own virtual identity.
+          </p>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="container">
+    <div class="row">
+      <div class="col text-align-center">
+        <a name="about"></a>
+        <h3 class="h3">About Virtinc</h3>
+        <p>
+          Virtinc, headquartered in Zurich, Switzerland, is the global number one when it comes to providing virtual
+          identities for companies and private persons.<br>Thanks to our advanced technological methods and excellent
+          coorporation with authorities all over the world, we create identities for thousands of customers every
+          day.Over 500 employees combine technological and legal expertise with a passion customer service to find the
+          perfectly fitting virtual identity for everyone.<br><br>The company was founded in 2013 as a start-up. Today
+          it belongs to the most important IT companies of Switzerland and is preparing its IPO at the Swiss stock
+          market.
+        </p>
+      </div>
+    </div>
+    <div class="row boxes">
+      <!--#if expr="(osenv('HIDE_BLOG') == 'true')" -->
+      <div class="col-4 d-none">
+        <!--#else -->
+        <div class="col-4">
+          <!--#endif -->
+
+          <div class="box">
+            <div class="box-icon box-blog"></div>
+            <div class="box-content">
+              <div class="h4">Blog</div>
+              <p class="box-content-text">
+                Check out our Wordpress Blog
+              </p>
+              <a href="/wordpress/" target="_blank" class="nav-link">Go to Blog</a>
+            </div>
+          </div>
+        </div>
+
+        <!--#if expr="(osenv('HIDE_MAIL') == 'true')" -->
+        <div class="col-4 d-none">
+
+          <!--#else -->
+          <div class="col-4">
+            <!--#endif -->
+
+            <div class="box">
+              <div class="box-icon box-mail"></div>
+              <div class="box-content">
+                <div class="h4">Mail</div>
+                <p class="box-content-text">
+                  Check your mailaccount. This requires a login
+                </p>
+                <a href="/mail/" target="_blank" class="nav-link">Go to Webmail</a>
+              </div>
+            </div>
+          </div>
+
+          <!--#if expr="(osenv('HIDE_ADMIN') == 'true')" -->
+
+          <div class="col-4 d-none">
+            <!--#else -->
+            <div class="col-4">
+              <!--#endif -->
+
+              <div class="box">
+                <div class="box-icon box-crm"></div>
+                <div class="box-content">
+                  <div class="h4">Admin</div>
+                  <p class="box-content-text">
+                    Edit Blog content. This requires a login
+                  </p>
+                  <a href="/wordpress/wp-admin/" target="_blank" class="nav-link">Go to Admin</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+</body>
+
+</html>

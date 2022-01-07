@@ -1,0 +1,21 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: iam
+spec:
+  template:
+    spec:
+      containers:
+        - name: iam
+          volumeMounts:
+            - name: properties
+              mountPath: /home/airlock/iam/instances/auth/admins.properties
+              subPath: admins.properties
+            - name: properties
+              mountPath: /home/airlock/iam/instances/auth/users.properties
+              subPath: users.properties
+      volumes:
+        - name: properties
+          configMap:
+            name: iam-properties

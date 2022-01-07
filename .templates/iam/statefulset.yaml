@@ -1,0 +1,78 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: iam
+  labels:
+    app: iam
+spec:
+  serviceName: iam
+  replicas: 1
+  selector:
+    matchLabels:
+      app: iam
+  template:
+    metadata:
+      labels:
+        app: iam
+    spec:
+      imagePullSecrets:
+        - name: dockerregcred
+
+      initContainers:
+        - name: iam-init
+          image: docker.io/ergon/airlock-iam:latest-7.5
+          imagePullPolicy: IfNotPresent
+          args: ["init"]
+          volumeMounts:
+            - name: data
+              mountPath: /home/airlock/iam/
+              subPath: iam
+      containers:
+        - name: iam
+          image: docker.io/ergon/airlock-iam:latest-7.5
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: IAM_HEALTH_ADDRESS
+              value: .*
+            - name: IAM_HEALTH_PORT
+              value: "9090"
+          envFrom:
+            - configMapRef:
+                name: iam-env-config
+          ports:
+            - name: https
+              containerPort: 8443
+            - name: probes
+              containerPort: 9090
+          volumeMounts:
+            - name: data
+              mountPath: /home/airlock/iam/
+              subPath: iam
+            - name: iam-config
+              mountPath: /home/airlock/iam/instances/auth/medusa-configuration.xml
+              subPath: medusa-configuration.xml
+            - name: iam-license
+              mountPath: /home/airlock/iam/license.txt
+              subPath: license.txt
+          livenessProbe:
+            httpGet:
+              path: /health/live
+              port: probes
+              scheme: HTTP
+            initialDelaySeconds: 120
+          readinessProbe:
+            httpGet:
+              path: /health/ready
+              port: probes
+              scheme: HTTP
+            initialDelaySeconds: 120
+      volumes:
+        - name: data
+          emptyDir: {}
+        - name: iam-config
+          configMap:
+            name: iam-config
+        - name: iam-license
+          secret:
+            secretName: iam-license

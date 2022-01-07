@@ -1,0 +1,70 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: virtinc
+  labels:
+    app: virtinc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: virtinc
+  template:
+    metadata:
+      labels:
+        app: virtinc
+    spec:
+      imagePullSecrets:
+        - name: dockerregcred
+      containers:
+        - name: virtinc
+          image: docker.io/httpd:2.4.46-alpine
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: virtinc-config
+          volumeMounts:
+            - name: config
+              mountPath: /usr/local/apache2/conf/httpd.conf
+              subPath: httpd.conf
+            - name: www-root
+              mountPath: /usr/local/apache2/htdocs/index.html
+              subPath: index.html
+            - name: www-root
+              mountPath: /usr/local/apache2/htdocs/css/bootstrap-grid.min.css
+              subPath: bootstrap-grid.min.css
+            - name: www-root
+              mountPath: /usr/local/apache2/htdocs/css/bootstrap-grid.min.css.map
+              subPath: bootstrap-grid.min.css.map
+            - name: www-root
+              mountPath: /usr/local/apache2/htdocs/css/main.css
+              subPath: main.css
+            - name: www-root
+              mountPath: /usr/local/apache2/htdocs/images/arrow.svg
+              subPath: arrow.svg
+            - name: www-root
+              mountPath: /usr/local/apache2/htdocs/images/blog.svg
+              subPath: blog.svg
+            - name: www-root
+              mountPath: /usr/local/apache2/htdocs/images/crm.svg
+              subPath: crm.svg
+            - name: www-root
+              mountPath: /usr/local/apache2/htdocs/images/logo-small.svg
+              subPath: logo-small.svg
+            - name: www-root
+              mountPath: /usr/local/apache2/htdocs/images/logo.svg
+              subPath: logo.svg
+            - name: www-root
+              mountPath: /usr/local/apache2/htdocs/images/mail.svg
+              subPath: mail.svg
+      volumes:
+        - name: config
+          configMap:
+            name: virtinc-apache-config
+        - name: www-root
+          configMap:
+            name: virtinc-www-root

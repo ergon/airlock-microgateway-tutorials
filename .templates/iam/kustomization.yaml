@@ -1,0 +1,32 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - statefulset.yaml
+  - service.yaml
+
+commonLabels:
+  purpose: microgateway-tutorial
+
+configMapGenerator:
+  - name: iam-env-config
+    literals:
+      - IAM_LOG_LEVEL=INFO
+      - IAM_LOG_STRUCTURED_STDOUT_ENABLED="true"
+      - IAM_MODULES=adminapp,loginapp
+  - name: iam-config
+    files:
+      - config/medusa-configuration.xml
+  - name: iam-properties
+    files:
+      - config/users.properties
+      - config/admins.properties
+
+secretGenerator:
+  - name: iam-license
+    files:
+      - license.txt=secret/iam.lic
+
+patchesStrategicMerge:
+  - patch-iam-statefulset.yaml
