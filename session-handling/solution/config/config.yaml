@@ -1,0 +1,18 @@
+---
+session:
+  redis_hosts: [redis-master]
+
+apps:
+  - virtual_host:
+      name: echo
+      hostname: echo.virtinc.local
+    mappings:
+      - name: echoserver
+        session_handling: enforce_session
+        operational_mode: integration
+        backend:
+          name: echoserver
+          hosts:
+            - protocol: http
+              name: echoserver
+              port: 8080
