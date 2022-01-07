@@ -1,0 +1,14 @@
+---
+apps:
+  - virtual_host:
+      name: echo
+      hostname: echo.virtinc.local
+    mappings:
+      - name: echoserver
+        operational_mode: integration
+        backend:
+          name: echoserver
+          hosts:
+            - protocol: http
+              name: echoserver
+              port: 8080
