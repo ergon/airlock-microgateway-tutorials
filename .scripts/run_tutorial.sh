@@ -23,7 +23,7 @@ echo "| deploying tutorial ..."
 echo "-------------------------------------------------"
 echo ""
 kubectl apply -k $TUTORIAL_DIR
-kubectl wait --for=condition=ready --timeout=180s pod -l purpose=microgateway-tutorial
+kubectl wait --for=condition=ready --timeout=240s pod -l purpose=microgateway-tutorial
 
 echo ""
 echo "-------------------------------------------------"

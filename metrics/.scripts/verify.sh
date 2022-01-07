@@ -83,6 +83,7 @@ else
     EXIT_CODE=1
 fi
 
+sleep 30
 WORKLOAD=$(curl -k "https://$kubernetes_ip/prometheus/api/v1/query?query=airlock_workload_ratio" | jq '.data.result[] | select(.metric.job=="kubernetes-pods") | select(.metric.kubernetes_pod_name|test("^echo-microgateway-.")) | .value[1]')
 if [ -z "$WORKLOAD" ]
 then
