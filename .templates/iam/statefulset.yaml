@@ -18,7 +18,6 @@ spec:
     spec:
       imagePullSecrets:
         - name: dockerregcred
-
       initContainers:
         - name: iam-init
           image: docker.io/ergon/airlock-iam:latest-7.5
@@ -49,12 +48,6 @@ spec:
             - name: data
               mountPath: /home/airlock/iam/
               subPath: iam
-            - name: iam-config
-              mountPath: /home/airlock/iam/instances/auth/medusa-configuration.xml
-              subPath: medusa-configuration.xml
-            - name: iam-license
-              mountPath: /home/airlock/iam/license.txt
-              subPath: license.txt
           livenessProbe:
             httpGet:
               path: /health/live
@@ -70,9 +63,3 @@ spec:
       volumes:
         - name: data
           emptyDir: {}
-        - name: iam-config
-          configMap:
-            name: iam-config
-        - name: iam-license
-          secret:
-            secretName: iam-license
