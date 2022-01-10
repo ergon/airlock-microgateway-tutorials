@@ -418,7 +418,7 @@
     <property name="hmacKey">[ENC]RegOpNNTzN7kVOGvGBCn5B51cHIPwyQ8NQIT8rGgiIctf4epOgFmuEJpg4+l8Po/T5TgczMFh41KljJl6UPdC5g6oaC0Bx14kiacRMEUlck9G9Wb5eUjbGDN+MOAIZO2YGRuYwEky3QEH/6vga5zeQ==</property>
   </plugin>
   <plugin class="com.airlock.iam.common.application.configuration.jwt.signature.JwtTicketHmacSettings" id="REST JWT Ticket Signer - Wordpress" uuid="5bd98e66-0f05-44ab-8fed-e5ea88aa255e">
-    <property name="hmacKey">kaDEKVxIA3bARGWlQ0SEMrHb+QYr+cuxNbCcN/vlKX3hnTxyAOnv9x72a2vdQb1JpLEZKq3fAyvXYlN5x/R2vg==</property>
+    <property name="hmacKey">raRLlkheZEjYlPE7xMx7WVXN6j0ohGXlPRWLQzfG8inKIxHyamGDhIS6d7eTAbN9iF0pxWHh1uMcjWFw8VfGFw==</property>
   </plugin>
   <plugin class="com.airlock.iam.common.application.configuration.templock.ExponentialTemporaryLockingStrategyConfig" uuid="9660523f-ed9a-4f62-b32a-e5bd5db8c73b"/>
   <plugin class="com.airlock.iam.common.application.configuration.templock.TemporaryLockingConfig" id="Temporary Locking (REST)" uuid="d15ca80a-96b2-4580-ad24-deedf43af120">
@@ -1034,16 +1034,6 @@ en</property>
       <plugin uuidref="2dd88e77-894f-4df8-b8e3-275b78f03b6c"/>
     </pluginProperty>
   </plugin>
-  <plugin class="com.airlock.iam.core.misc.impl.sso.CookieTicketIdentityPropagator" id="Wordpress Admin - JWT Cookie" uuid="5d766da7-5adb-481e-8a5f-9a644f03a894">
-    <property name="cookieDomain">.*</property>
-    <property name="cookieName">simple-jwt-login-token</property>
-    <pluginProperty name="ticketEncoder">
-      <plugin uuidref="fbf885b3-cac5-41c1-99ff-c7c5a022d292"/>
-    </pluginProperty>
-    <pluginProperty name="ticketService">
-      <plugin uuidref="2dd88e77-894f-4df8-b8e3-275b78f03b6c"/>
-    </pluginProperty>
-  </plugin>
   <plugin class="com.airlock.iam.core.misc.impl.sso.EncodedUserDataHeader" id="Encoded Authorization Header - Wordpress Authorization Header" uuid="dcb2f836-3d7f-4e88-ba0c-0e3fda82c2c2">
     <pluginProperty name="ticketEncoder">
       <plugin uuidref="fbf885b3-cac5-41c1-99ff-c7c5a022d292"/>
@@ -1292,26 +1282,12 @@ en</property>
   <plugin class="com.airlock.iam.login.application.configuration.targetapp.ApplicationIdConfig" id="Application ID &quot;default&quot;" uuid="fa470fb6-e80a-479d-b5c1-71a96764921d">
     <property name="applicationId">default</property>
   </plugin>
-  <plugin class="com.airlock.iam.login.application.configuration.targetapp.ContextDataUsernameProviderConfig" uuid="1fbad811-3e04-4ac5-b4d4-f39e2215cb47">
-    <property name="propertyName">username</property>
-  </plugin>
   <plugin class="com.airlock.iam.login.application.configuration.targetapp.LegacyIdPropagatorConfig" id="REST Identity Propagation" uuid="03aef40f-c255-436c-a730-749ca91c12c5">
     <pluginProperty name="identityPropagator">
       <plugin uuidref="3d37bb44-e93b-48e0-b9b7-18104b23885f"/>
     </pluginProperty>
     <pluginList name="roleProviders">
       <plugin uuidref="6af9773c-1081-4754-a038-390dbb5c2189"/>
-    </pluginList>
-  </plugin>
-  <plugin class="com.airlock.iam.login.application.configuration.targetapp.LegacyIdPropagatorConfig" id="Wordpress Admin - Cookie" uuid="5de3eb9c-5be6-4c37-a831-4737ffa089f8">
-    <pluginProperty name="identityPropagator">
-      <plugin uuidref="5d766da7-5adb-481e-8a5f-9a644f03a894"/>
-    </pluginProperty>
-    <pluginList name="roleProviders">
-      <plugin uuidref="6af9773c-1081-4754-a038-390dbb5c2189"/>
-    </pluginList>
-    <pluginList name="usernameProviders">
-      <plugin uuidref="1fbad811-3e04-4ac5-b4d4-f39e2215cb47"/>
     </pluginList>
   </plugin>
   <plugin class="com.airlock.iam.login.application.configuration.targetapp.LegacyIdPropagatorConfig" id="Wordpress Admin - Header" uuid="d9d751c4-d918-412d-a236-d06e36c85806">
@@ -1434,4 +1410,6 @@ en</property>
     </pluginProperty>
   </plugin>
   <plugin class="com.airlock.iam.selfservice.application.configuration.ui.SelfServiceUiConfigs" id="Protected Self-Service Flow UIs" uuid="50452fff-b076-4ef4-9cf0-787e24401b25"/>
+  <configHistoryMetaData>
+  </configHistoryMetaData>
 </medusaConfiguration>

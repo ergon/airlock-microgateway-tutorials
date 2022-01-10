@@ -3,7 +3,7 @@ wp plugin install /var/tmp/plugins/simple-jwt-login/simple-jwt-login.zip --activ
 wp option update simple_jwt_login_settings "
   {
     \"route_namespace\":\"simple-jwt-login\/v1\/\",
-    \"decryption_key\":\"${JWT_DECRYPTION_KEY:-c3VwZXJsb25ndGV4dHRoYXRpc3VzZWRmb3Jqd3R0b2tlbgo=}\",
+    \"decryption_key\":\"${JWT_DECRYPTION_KEY:-raRLlkheZEjYlPE7xMx7WVXN6j0ohGXlPRWLQzfG8inKIxHyamGDhIS6d7eTAbN9iF0pxWHh1uMcjWFw8VfGFw==}\",
     \"jwt_algorithm\":\"HS512\",
     \"jwt_login_by\":0,
     \"jwt_login_by_parameter\":\"email\",

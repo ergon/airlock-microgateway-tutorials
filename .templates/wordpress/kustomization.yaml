@@ -56,5 +56,5 @@ secretGenerator:
       - wordpress-username=admin
   - name: wordpress-jwt-secrets
     literals:
-      - JWT_DECRYPTION_KEY=c3VwZXJsb25ndGV4dHRoYXRpc3VzZWRmb3Jqd3R0b2tlbgo=
+      - JWT_DECRYPTION_KEY=raRLlkheZEjYlPE7xMx7WVXN6j0ohGXlPRWLQzfG8inKIxHyamGDhIS6d7eTAbN9iF0pxWHh1uMcjWFw8VfGFw==
       - JWT_AUTH_CODE=superlongtextthatisusedforjwttoken

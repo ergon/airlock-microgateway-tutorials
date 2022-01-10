@@ -17,22 +17,15 @@ spec:
                   - |
                     set -x
 
-                    cp /var/tmp/airlock-iam/license.txt /home/airlock/iam/license.txt
                     cp /var/tmp/airlock-iam/properties/* /home/airlock/iam/instances/auth/
                     cp /var/tmp/airlock-iam/medusa-configuration.xml /home/airlock/iam/instances/auth/medusa-configuration.xml
           volumeMounts:
-            - name: iam-license
-              mountPath: /var/tmp/airlock-iam/license.txt
-              subPath: license.txt
             - name: iam-config
               mountPath: /var/tmp/airlock-iam/medusa-configuration.xml
               subPath: medusa-configuration.xml
             - name: properties
               mountPath: /var/tmp/airlock-iam/properties/
       volumes:
-        - name: iam-license
-          secret:
-            secretName: iam-license
         - name: iam-config
           configMap:
             name: iam-config

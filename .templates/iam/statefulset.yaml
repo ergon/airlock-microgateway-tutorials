@@ -48,6 +48,9 @@ spec:
             - name: data
               mountPath: /home/airlock/iam/
               subPath: iam
+            - name: iam-license
+              mountPath: /home/airlock/iam/license.txt
+              subPath: license.txt
           livenessProbe:
             httpGet:
               path: /health/live
@@ -63,3 +66,6 @@ spec:
       volumes:
         - name: data
           emptyDir: {}
+        - name: iam-license
+          secret:
+            secretName: iam-license

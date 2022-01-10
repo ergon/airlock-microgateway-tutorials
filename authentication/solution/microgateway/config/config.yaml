@@ -19,6 +19,7 @@ apps:
       - name: wordpress
         entry_path:
           value: /wordpress/
+        backend_path: /
         session_handling: enforce_session
         operational_mode: integration
         cookies:
@@ -49,22 +50,13 @@ apps:
           rewrites:
             location_header:
               - url:
-                  pattern: ^(?:https?://%BACKENDHOSTNAME%(?::%BACKENDPORT%)?)?/%BACKENDPATH%(/.*)?$
-                to: /%ENTRYPATH%$1
-            any:
-              - content_type: ^(?:text|application)/(?:html|xhtml)
-                content:
-                  pattern: https?://%BACKENDHOSTNAME%(?::%BACKENDPORT%)?/
-                to: /
-              - content_type: ^(?:text|application)/(?:html|xhtml)
-                content:
-                  pattern: https?:\\/\\/%BACKENDHOSTNAME%(?::%BACKENDPORT%)?\\/
-                to: \\/
-              - content_type: ^(?:text|application)/(?:html|xhtml)
-                content:
-                  pattern: (?!https)http
-                to: https
+                  pattern: ^(?:https?://%BACKENDHOSTNAME%(?::%BACKENDPORT%)?)?/
+                to: /%ENTRYPATH%/
             html:
+              - url:
+                  pattern: ^(?:https?://%BACKENDHOSTNAME%(?::%BACKENDPORT%)?)?/
+                options: ["url", "event", "embedded"]
+                to: /%ENTRYPATH%/
               - url:
                   pattern: ^(?:/%ENTRYPATH%)?/wp-login\.php\?action=logout.*
                 options: ["url", "event", "embedded"]
