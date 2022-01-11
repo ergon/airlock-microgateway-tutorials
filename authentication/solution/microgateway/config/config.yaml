@@ -33,19 +33,12 @@ apps:
                 pattern: ^%ENTRYDIR%/(?!wp-admin/.*)
               roles:
                 - wp-user
-            - method:
-                pattern: ^POST$
-              path:
-                pattern: ^%ENTRYDIR%/wp-admin/admin-ajax.php$
-              roles:
-                - wp-user
             - path:
-                pattern: ^%ENTRYDIR%/wp-admin/(?!admin-ajax.php$)
+                pattern: ^%ENTRYDIR%/wp-admin/
               roles:
                 - wp-admin
         deny_rule_groups:
-          - level: standard
-            enabled: false
+          - enabled: false
         response:
           rewrites:
             location_header:
@@ -60,6 +53,10 @@ apps:
               - url:
                   pattern: ^(?:/%ENTRYPATH%)?/wp-login\.php\?action=logout.*
                 options: ["url", "event", "embedded"]
+                to: /auth/logout
+              - url:
+                  pattern: ^/%ENTRYPATH%/auth-logout/$
+                options: ["url"]
                 to: /auth/logout
         expert_settings:
           security_gate: |
