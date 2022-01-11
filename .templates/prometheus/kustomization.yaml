@@ -12,6 +12,7 @@ resources:
 
 commonLabels:
   purpose: microgateway-tutorial
+  app: prometheus
 
 configMapGenerator:
   - name: prometheus-server

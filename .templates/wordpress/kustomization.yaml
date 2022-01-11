@@ -12,6 +12,7 @@ resources:
 
 commonLabels:
   purpose: microgateway-tutorial
+  app: wordpress
 
 configMapGenerator:
   - name: wordpress

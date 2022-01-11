@@ -28,8 +28,8 @@ apps:
         auth:
           flow: redirect
           denied_access_url: /auth/ui/app/auth/application/access
-          access:
           # Configure here...
+
         deny_rule_groups:
           - enabled: false
         response:

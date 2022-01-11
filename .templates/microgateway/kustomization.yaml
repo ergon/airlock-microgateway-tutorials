@@ -8,6 +8,7 @@ resources:
 
 commonLabels:
   purpose: microgateway-tutorial
+  app: microgateway
 
 configMapGenerator:
   - name: microgateway-config

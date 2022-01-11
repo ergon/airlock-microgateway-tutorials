@@ -4,7 +4,7 @@ kind: Kustomization
 
 bases:
   - ../../.templates/ingress
-  - ../../.templates/microgateway
+  - ../../.templates/microgateway-with-iam-templates
   - ../../.templates/virtinc
   - ../../.templates/wordpress
   - ../../.templates/redis
@@ -18,21 +18,6 @@ configMapGenerator:
     behavior: replace
     files:
       - microgateway/config/config.yaml
-  - name: iam-microgateway-mapping-template-adminapp
-    files:
-      - iam-adminapp.xml=microgateway/config/iam-adminapp-mgw2.0-mapping-template.xml
-  - name: iam-microgateway-mapping-template-loginapp
-    files:
-      - iam-loginapp.xml=microgateway/config/iam-loginapp-mgw2.0-mapping-template.xml
-  - name: iam-microgateway-mapping-template-loginapp-rest-protected
-    files:
-      - iam-loginapp-rest-protected.xml=microgateway/config/iam-loginapp-rest-protected-mgw2.0-mapping-template.xml
-  - name: iam-microgateway-mapping-template-loginapp-rest-public
-    files:
-      - iam-loginapp-rest-public.xml=microgateway/config/iam-loginapp-rest-public-mgw2.0-mapping-template.xml
-  - name: iam-microgateway-openapi-login-rest
-    files:
-      - openapi-loginapp-rest.json=microgateway/config/login-rest-openapi.json
   - name: iam-config
     files:
       - iam/config/medusa-configuration.xml
@@ -42,5 +27,4 @@ configMapGenerator:
       - iam/config/admins.properties
 
 patchesStrategicMerge:
-  - patch-microgateway-deployment.yaml
   - patch-iam-statefulset.yaml
