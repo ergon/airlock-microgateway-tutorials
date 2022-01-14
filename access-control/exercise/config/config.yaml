@@ -1,0 +1,122 @@
+---
+session:
+  redis_hosts: [redis-master]
+
+apps:
+  - virtual_host:
+      name: virtinc
+      hostname: virtinc.local
+    mappings:
+      - name: virtinc
+        session_handling: enforce_session
+        operational_mode: integration
+        backend:
+          name: virtinc
+          hosts:
+            - name: virtinc
+              protocol: http
+              port: 8080
+      - name: wordpress
+        entry_path:
+          value: /wordpress/
+        backend_path: /
+        session_handling: enforce_session
+        operational_mode: integration
+        cookies:
+          passthrough:
+            pattern: "^$"
+        auth:
+          flow: redirect
+          denied_access_url: /auth/ui/app/auth/application/access
+          # Configure here...
+
+        deny_rule_groups:
+          - enabled: false
+        response:
+          rewrites:
+            location_header:
+              - url:
+                  pattern: ^(?:https?://%BACKENDHOSTNAME%(?::%BACKENDPORT%)?)?/
+                to: /%ENTRYPATH%/
+            html:
+              - url:
+                  pattern: ^(?:https?://%BACKENDHOSTNAME%(?::%BACKENDPORT%)?)?/
+                options: ["url", "event", "embedded"]
+                to: /%ENTRYPATH%/
+              - url:
+                  pattern: ^(?:/%ENTRYPATH%)?/wp-login\.php\?action=logout.*
+                options: ["url", "event", "embedded"]
+                to: /auth/logout
+              - url:
+                  pattern: ^/%ENTRYPATH%/auth-logout/$
+                options: ["url"]
+                to: /auth/logout
+        expert_settings:
+          security_gate: |
+            LogoutPropagation.Backend.LogoutUrl   "/wp-login.php?action=logout"
+        backend:
+          name: wordpress
+          hosts:
+            - name: wordpress
+              protocol: http
+              port: 8080
+      - mapping_template_file: /config/templates/iam-loginapp.xml
+        entry_path:
+          value: /auth/
+        backend_path: /auth-login/
+        operational_mode: integration
+        allow_rules:
+          - name: "Loginapp Single Page Application"
+            enabled: true
+        csrf_token:
+          enabled: false
+        backend:
+          name: beg-iam
+          hosts:
+            - protocol: "https"
+              name: iam-0.iam
+              port: 8443
+      - mapping_template_file: /config/templates/iam-loginapp-rest-public.xml
+        entry_path:
+          value: /auth/rest/public/
+        backend_path: /auth-login/rest/public/
+        operational_mode: integration
+        api_security:
+          openapi:
+            spec_file: /config/openapi/openapi-loginapp-rest.json
+        csrf_token:
+          enabled: false
+        backend:
+          name: beg-iam
+          hosts:
+            - protocol: "https"
+              name: iam-0.iam
+              port: 8443
+      - mapping_template_file: /config/templates/iam-loginapp-rest-protected.xml
+        entry_path:
+          value: /auth/rest/protected/
+        backend_path: /auth-login/rest/protected/
+        operational_mode: integration
+        api_security:
+          openapi:
+            spec_file: /config/openapi/openapi-loginapp-rest.json
+        csrf_token:
+          enabled: false
+        backend:
+          name: beg-iam
+          hosts:
+            - protocol: "https"
+              name: iam-0.iam
+              port: 8443
+      - mapping_template_file: /config/templates/iam-adminapp.xml
+        entry_path:
+          value: /auth-admin/
+        operational_mode: production
+        csrf_token:
+          enabled: false
+        backend:
+          name: beg-iam
+          hosts:
+            - protocol: "https"
+              name: iam-0.iam
+              port: 8443

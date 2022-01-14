@@ -1,0 +1,30 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+bases:
+  - ../../.templates/ingress
+  - ../../.templates/microgateway-with-iam-templates
+  - ../../.templates/virtinc
+  - ../../.templates/wordpress
+  - ../../.templates/redis
+  - ../../.templates/iam
+
+commonLabels:
+  purpose: microgateway-tutorial
+
+configMapGenerator:
+  - name: microgateway-config
+    behavior: replace
+    files:
+      - microgateway/config/config.yaml
+  - name: iam-config
+    files:
+      - iam/config/medusa-configuration.xml
+  - name: iam-properties
+    files:
+      - iam/config/users.properties
+      - iam/config/admins.properties
+
+patchesStrategicMerge:
+  - patch-iam-statefulset.yaml

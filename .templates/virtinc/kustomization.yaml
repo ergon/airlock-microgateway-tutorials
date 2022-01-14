@@ -1,0 +1,37 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - deployment.yaml
+  - service.yaml
+
+commonLabels:
+  purpose: microgateway-tutorial
+  app: virtinc
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+configMapGenerator:
+  - name: virtinc-apache-config
+    files:
+      - config/httpd.conf
+  - name: virtinc-www-root
+    files:
+      - www-root/index.html
+      - www-root/css/bootstrap-grid.min.css
+      - www-root/css/bootstrap-grid.min.css.map
+      - www-root/css/main.css
+      - www-root/images/arrow.svg
+      - www-root/images/blog.svg
+      - www-root/images/crm.svg
+      - www-root/images/logo-small.svg
+      - www-root/images/logo.svg
+      - www-root/images/mail.svg
+  - name: virtinc-config
+    literals:
+      - HIDE_BLOG=false
+      - HIDE_MAIL=true
+      - HIDE_ADMIN=false
+      - HIDE_MEMBER_LOGIN=false

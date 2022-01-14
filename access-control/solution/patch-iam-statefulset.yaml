@@ -1,0 +1,34 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: iam
+spec:
+  template:
+    spec:
+      containers:
+        - name: iam
+          lifecycle:
+            postStart:
+              exec:
+                command:
+                  - bash
+                  - "-c"
+                  - |
+                    set -x
+
+                    cp /var/tmp/airlock-iam/properties/* /home/airlock/iam/instances/auth/
+                    cp /var/tmp/airlock-iam/medusa-configuration.xml /home/airlock/iam/instances/auth/medusa-configuration.xml
+          volumeMounts:
+            - name: iam-config
+              mountPath: /var/tmp/airlock-iam/medusa-configuration.xml
+              subPath: medusa-configuration.xml
+            - name: properties
+              mountPath: /var/tmp/airlock-iam/properties/
+      volumes:
+        - name: iam-config
+          configMap:
+            name: iam-config
+        - name: properties
+          configMap:
+            name: iam-properties

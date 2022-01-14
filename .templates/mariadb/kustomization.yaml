@@ -9,6 +9,7 @@ resources:
 
 commonLabels:
   purpose: microgateway-tutorial
+  app: mariadb
 
 configMapGenerator:
   - name: mariadb

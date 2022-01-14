@@ -22,7 +22,12 @@ echo "-------------------------------------------------"
 echo "| deploying tutorial ..."
 echo "-------------------------------------------------"
 echo ""
-kubectl apply -k $TUTORIAL_DIR
+if [[ -f "${TUTORIAL_DIR}/../.scripts/custom_deploy.sh" ]]; then
+    ${TUTORIAL_DIR}/../.scripts/custom_deploy.sh $TUTORIAL_DIR
+else 
+    kubectl apply -k $TUTORIAL_DIR
+fi
+
 kubectl wait --for=condition=ready --timeout=240s pod -l purpose=microgateway-tutorial
 
 echo ""

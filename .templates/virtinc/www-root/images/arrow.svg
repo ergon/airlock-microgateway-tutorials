@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="22px" height="20px" viewBox="0 0 22 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+    <title>Pfeil</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <filter x="-3.0%" y="-1.7%" width="104.0%" height="107.5%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.274551164   0 0 0 0 0.297319051   0 0 0 0 0.410926871  0 0 0 0.0647078804 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+        <rect id="path-2" x="0" y="120" width="369" height="317" rx="5"></rect>
+        <filter x="-10.7%" y="-13.4%" width="124.1%" height="128.1%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="5" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="14" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.329411765   0 0 0 0 0.364705882   0 0 0 0 0.733333333  0 0 0 0.0439594656 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Virtinc" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g transform="translate(-358.000000, -1506.000000)" id="About-us">
+            <g filter="url(#filter-1)" transform="translate(135.000000, 852.000000)">
+                <g id="CRM" transform="translate(0.000000, 255.000000)">
+                    <g id="Rectangle-2-Copy-4">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
+                        <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-2"></use>
+                    </g>
+                    <g id="Pfeil" transform="translate(228.000000, 401.000000)" fill="#292A32" fill-rule="nonzero" stroke="#2E2F38">
+                        <path d="M0.486486391,5.00036969 L10.2832358,5.00036969 L5.99145288,0.868010669 C5.8622954,0.746464408 5.80674098,0.562987416 5.8460066,0.387651993 C5.88527223,0.212316571 6.01329357,0.0722020789 6.18117759,0.0208201027 C6.34906162,-0.0305618736 6.53087977,0.0147242622 6.65719328,0.139383133 L11.8463815,5.13568623 C11.9443958,5.23011272 12,5.36198081 12,5.5 C12,5.63801919 11.9443958,5.76988728 11.8463815,5.86431377 L6.65719328,10.8606169 C6.53087977,10.9852757 6.34906162,11.0305619 6.18117759,10.9791799 C6.01329357,10.9277979 5.88527223,10.7876834 5.8460066,10.612348 C5.80674098,10.4370126 5.8622954,10.2535356 5.99145288,10.1319893 L10.2832358,5.99963031 L0.486486391,5.99963031 C0.217807376,5.99963031 0,5.7759382 0,5.5 C0,5.2240618 0.217807376,5.00036969 0.486486391,5.00036969 Z" id="Shape"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
