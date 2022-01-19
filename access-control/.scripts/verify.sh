@@ -52,7 +52,7 @@ fi
 
 mkdir build
 
-STATUSCODE=$(curl -c build/cookies.txt -k -s -o /dev/null -w "%{http_code}" "https://${kubernetes_ip}/")
+STATUSCODE=$(curl -b build/cookies.txt -c build/cookies.txt -k -s -o /dev/null -w "%{http_code}" "https://${kubernetes_ip}/")
 if [ "${STATUSCODE}" = "200" ]
 then
     echo "OK: call to virtinc succeeded"
@@ -61,7 +61,7 @@ else
     EXIT_CODE=1
 fi
 
-STATUSCODE=$(curl -L -c build/cookies.txt -k -s -o /dev/null -w "%{http_code} %{num_redirects}" "https://${kubernetes_ip}/wordpress/")
+STATUSCODE=$(curl -L -b build/cookies.txt -c build/cookies.txt -k -s -o /dev/null -w "%{http_code} %{num_redirects}" "https://${kubernetes_ip}/wordpress/")
 if [ "${STATUSCODE}" = "200 1" ]
 then
     echo "OK: call to blog was redirected to login page"
@@ -70,8 +70,16 @@ else
     EXIT_CODE=1
 fi
 
+STATUSCODE=$(curl -b build/cookies.txt -c build/cookies.txt -X POST -H "Content-Type: application/json" -H "X-Same-Domain: 1" -d '{"location":"https://localhost/wordpress/"}' -k -s -o /dev/null -w "%{http_code}" "https://${kubernetes_ip}/auth/rest/public/authentication/location/access")
+if [ "${STATUSCODE}" = "401" ]
+then
+    echo "OK: call to login page succeeded"
+else
+    echo "NOK: call to login page did not succeed: ${STATUSCODE}"
+    EXIT_CODE=1
+fi
 
-STATUSCODE=$(curl -c build/cookies.txt -X POST -H "Content-Type: application/json" -H "X-Same-Domain: 1" -d '{"username":"user1","password":"password"}' -k -s -o /dev/null -w "%{http_code}" "https://${kubernetes_ip}/auth/rest/public/authentication/password/check")
+STATUSCODE=$(curl -b build/cookies.txt -c build/cookies.txt -X POST -H "Content-Type: application/json" -H "X-Same-Domain: 1" -d '{"username":"user1","password":"password"}' -k -s -o /dev/null -w "%{http_code}" "https://${kubernetes_ip}/auth/rest/public/authentication/password/check")
 if [ "${STATUSCODE}" = "200" ]
 then
     echo "OK: login call succeeded"
@@ -80,6 +88,14 @@ else
     EXIT_CODE=1
 fi
 
+STATUSCODE=$(curl -b build/cookies.txt -c build/cookies.txt -k -s -o /dev/null -w "%{http_code}" "https://${kubernetes_ip}/wordpress/")
+if [ "${STATUSCODE}" = "200" ]
+then
+    echo "OK: call to blog succeeded"
+else
+    echo "NOK: call to blog did not succeed: ${STATUSCODE}"
+    EXIT_CODE=1
+fi
 
 rm -rf build
 
