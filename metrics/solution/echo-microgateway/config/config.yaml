@@ -18,7 +18,7 @@ apps:
           flow: deny_access
           access:
             - path:
-                pattern: ^%ENTRYDIR%/member/
+                pattern: ^/echo/member/
               roles:
                 - member
         access_token:
