@@ -56,7 +56,7 @@ else
     EXIT_CODE=1
 fi
 
-STATUSCODE=$(curl -k -s -o /dev/null -w "%{http_code}" -H "Authorization: Bearer eyJjdHkiOiJKV1QiLCJlbmMiOiJBMjU2R0NNIiwiYWxnIjoiZGlyIn0..q_382QLa9P1N5xuv.STvykuZALmVkEDeRVssJ5J-W7gU-fbEUa3D-drurDji2CltNV31EW7mF7jnW-IGUw9dBvapHDtt-ADne8AhzpbDpmsCFDGY4pTbp-LFXpVtsLfhT1aWM8C245tB2CBT5Mr-wHzxfyRHwusZhgIljqE0qzQl6Ys-lxG2lYaXLc51ajBtq2C8TJoZ1WadhToNGoNx_begTDescWBerlrQxL-P2kMB-A_F_OpkUFkX3-S6dZOxtBTK-8EzZUvc_ButxskYjm24M3QneJ8J1NER0DORqxKh-MKdj3eTdYiQNUJ72N_POEQg_ubvDeSD4J9mF0XShE8Z5fWVhtPbzzw1VCSQbcp2gpIWfZuEnxkguwQwr1sV2.GcTNSVOFh5Coog2rY7dGXg" https://${kubernetes_ip}/echo/)
+STATUSCODE=$(curl -k -s -o /dev/null -w "%{http_code}" https://${kubernetes_ip}/echo/)
 if [ "${STATUSCODE}" = "200" ]
 then
     echo "OK: echo service returned status code 200"
