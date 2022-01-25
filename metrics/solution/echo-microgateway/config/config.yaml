@@ -22,7 +22,7 @@ apps:
               roles:
                 - member
         access_token:
-          mandatory: true
+          mandatory: false
           # expiry_checked is disabled to see authenticated sessions in Grafana
           # note: it is highly recommended to enable expiry_checked in production
           expiry_checked: false
