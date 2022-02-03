@@ -10,12 +10,12 @@ spec:
     matchLabels:
       app: redis
   serviceName: redis-headless
+  volumeClaimTemplates: []
   template:
     metadata:
       labels:
         app: redis
         role: master
-  volumeClaimTemplates: []
     spec:
       serviceAccountName: default
       containers:
