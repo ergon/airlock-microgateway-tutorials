@@ -11,6 +11,9 @@ commonLabels:
   purpose: microgateway-tutorial
   app: mariadb
 
+generatorOptions:
+  disableNameSuffixHash: true
+
 configMapGenerator:
   - name: mariadb
     files:
