@@ -9,6 +9,9 @@ namePrefix: prometheus-
 commonLabels:
   backend: prometheus
 
+generatorOptions:
+  disableNameSuffixHash: true
+
 configMapGenerator:
   - name: microgateway-config
     behavior: replace

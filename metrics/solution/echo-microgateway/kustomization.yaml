@@ -9,6 +9,9 @@ namePrefix: echo-
 commonLabels:
   backend: echo
 
+generatorOptions:
+  disableNameSuffixHash: true
+
 configMapGenerator:
   - name: microgateway-config
     behavior: replace

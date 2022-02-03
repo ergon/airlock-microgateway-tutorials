@@ -9,6 +9,9 @@ namePrefix: grafana-
 commonLabels:
   backend: grafana
 
+generatorOptions:
+  disableNameSuffixHash: true
+
 configMapGenerator:
   - name: microgateway-config
     behavior: replace
