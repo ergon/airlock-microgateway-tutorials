@@ -9,6 +9,9 @@ commonLabels:
   purpose: microgateway-tutorial
   app: microgateway
 
+generatorOptions:
+  disableNameSuffixHash: true
+
 configMapGenerator:
   - name: iam-microgateway-mapping-template-adminapp
     files:

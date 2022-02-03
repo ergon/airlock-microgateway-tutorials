@@ -11,6 +11,9 @@ commonLabels:
   purpose: microgateway-tutorial
   app: redis
 
+generatorOptions:
+  disableNameSuffixHash: true
+
 configMapGenerator:
   - name: redis
     files:
