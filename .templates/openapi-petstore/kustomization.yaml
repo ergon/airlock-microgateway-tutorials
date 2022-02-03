@@ -9,3 +9,6 @@ resources:
 commonLabels:
   purpose: microgateway-tutorial
   app: openapi-petstore
+
+generatorOptions:
+  disableNameSuffixHash: true
