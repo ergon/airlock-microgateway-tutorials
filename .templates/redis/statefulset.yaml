@@ -15,6 +15,7 @@ spec:
       labels:
         app: redis
         role: master
+  volumeClaimTemplates: []
     spec:
       serviceAccountName: default
       containers:
