@@ -25,20 +25,6 @@ spec:
             - status.localhost
           ip: 127.0.0.1
       # yamllint enable rule:indentation
-      affinity:
-        podAffinity:
-
-        podAntiAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-            - podAffinityTerm:
-                labelSelector:
-                  matchLabels:
-                    app: wordpress
-                namespaces:
-                  - "default"
-                topologyKey: kubernetes.io/hostname
-              weight: 1
-        nodeAffinity:
 
       securityContext:
         fsGroup: 1001
