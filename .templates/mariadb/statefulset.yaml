@@ -21,20 +21,6 @@ spec:
         app: mariadb
     spec:
       serviceAccountName: mariadb
-      affinity:
-        podAffinity:
-
-        podAntiAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-            - podAffinityTerm:
-                labelSelector:
-                  matchLabels:
-                    app: mariadb
-                namespaces:
-                  - "default"
-                topologyKey: kubernetes.io/hostname
-              weight: 1
-        nodeAffinity:
 
       securityContext:
         fsGroup: 1001
