@@ -16,6 +16,7 @@ apps:
               - SQLI_PARAM_VALUE
               - XSS_PARAM_VALUE
               - HTML_PARAM_VALUE
+              - UNIXCMD_PARAM_VALUE
             exceptions:
               - path:
                   pattern: ^/wp-comments-post.php$
@@ -26,6 +27,7 @@ apps:
               - SQLI_PARAM_VALUE
               - XSS_PARAM_VALUE
               - HTML_PARAM_VALUE
+              - UNIXCMD_PARAM_VALUE
             exceptions:
               - path:
                   pattern: ^/$
