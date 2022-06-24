@@ -21,7 +21,7 @@ spec:
         - name: dockerregcred
       initContainers:
         - name: iam-init
-          image: docker.io/ergon/airlock-iam:latest-7.5
+          image: docker.io/ergon/airlock-iam:latest-7.6
           imagePullPolicy: IfNotPresent
           args: ["init"]
           volumeMounts:
@@ -30,7 +30,7 @@ spec:
               subPath: iam
       containers:
         - name: iam
-          image: docker.io/ergon/airlock-iam:latest-7.5
+          image: docker.io/ergon/airlock-iam:latest-7.6
           imagePullPolicy: IfNotPresent
           env:
             - name: IAM_HEALTH_ADDRESS

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<medusaConfiguration xmlns="http://www.ergon.ch" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ergon.ch medusa-config.xsd" medusa-version="7.5">
+<medusaConfiguration xmlns="http://www.ergon.ch" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ergon.ch medusa-config.xsd" medusa-version="7.6">
   <plugin class="com.airlock.iam.admin.app.application.configuration.Adminapp" id="adminapp" uuid="a25f0193-6c34-44eb-9708-cf7ac234cca3">
     <pluginProperty name="accessControl">
       <plugin uuidref="2e2e41d5-5bca-450b-bc88-b1c0b273a9ba"/>
@@ -1139,6 +1139,9 @@ en</property>
   </plugin>
   <plugin class="com.airlock.iam.flow.shared.application.configuration.step.RequiredRolesStepConfig" id="Required Role wp-admin" uuid="5a073c8f-902e-486b-b2a9-bea4f49933e9">
     <property name="requiredRole">wp-admin</property>
+    <pluginList name="roleProviders">
+      <plugin uuidref="91e47b29-e5cb-428a-be06-52f2f16c2f57"/>
+    </pluginList>
   </plugin>
   <plugin class="com.airlock.iam.flow.ui.application.configuration.SameFlowRedirectTargetConfig" uuid="34a9b7e9-d759-48a4-8237-2994765a4fc8"/>
   <plugin class="com.airlock.iam.flow.ui.application.configuration.SameFlowRedirectTargetConfig" uuid="61f44b4e-fb0e-4a79-bd97-b75c193c6424"/>
@@ -1315,6 +1318,7 @@ en</property>
     <property name="userRoleName">wp-admin</property>
   </plugin>
   <plugin class="com.airlock.iam.login.application.configuration.targetapp.UserRolesProviderConfig" uuid="6af9773c-1081-4754-a038-390dbb5c2189"/>
+  <plugin class="com.airlock.iam.login.application.configuration.targetapp.UserRolesProviderConfig" uuid="91e47b29-e5cb-428a-be06-52f2f16c2f57"/>
   <plugin class="com.airlock.iam.login.misc.oneshot.SSOCredentialAuthenticator" id="Cookie Ticket Authenticator" uuid="090acc94-84af-4f41-b768-04ca5cc22055"/>
   <plugin class="com.airlock.iam.login.rest.application.configuration.LoginappRestConfig" id="Loginapp REST API" uuid="b969c373-e53f-4234-93e2-1c52b0acc6c5">
     <pluginProperty name="accessController">
@@ -1411,5 +1415,6 @@ en</property>
   </plugin>
   <plugin class="com.airlock.iam.selfservice.application.configuration.ui.SelfServiceUiConfigs" id="Protected Self-Service Flow UIs" uuid="50452fff-b076-4ef4-9cf0-787e24401b25"/>
   <configHistoryMetaData>
+    <configHistoryMetaDataItem author="UpdateTool" comment="Automatic update to version 7.6" datetime="2022-06-24 11:51:50"/>
   </configHistoryMetaData>
 </medusaConfiguration>
