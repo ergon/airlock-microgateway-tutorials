@@ -89,6 +89,11 @@ apps:
         api_security:
           openapi:
             spec_file: /config/openapi/openapi-loginapp-rest.json
+        # FIX: AI-15348
+        deny_rule_groups:
+          - enabled: false
+            rule_group_keys:
+              - IDOR_PATH
         csrf_token:
           enabled: false
         backend:
@@ -105,6 +110,11 @@ apps:
         api_security:
           openapi:
             spec_file: /config/openapi/openapi-loginapp-rest.json
+        # FIX: AI-15348
+        deny_rule_groups:
+          - enabled: false
+            rule_group_keys:
+              - IDOR_PATH
         csrf_token:
           enabled: false
         backend:
