@@ -2,7 +2,7 @@
     "openapi": "3.0.1",
     "info": {
         "title": "Airlock IAM Loginapp REST API",
-        "version": "7.5.1"
+        "version": "7.6.2"
     },
     "servers": [
         {
@@ -154,7 +154,8 @@
                             }
                         }
                     }
-                }
+                },
+                "deprecated": true
             }
         },
         "/public/user-self-registration/verification/email/otp/check": {
@@ -185,9 +186,19 @@
                 }
             }
         },
-        "/public/authentication/airlock-2fa/activation/device-edit/continue": {
+        "/public/authentication/airlock-2fa/activation/device-edit/data": {
             "post": {
-                "operationId": "validateAndContinue",
+                "operationId": "editDevice",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Airlock2FADeviceEditRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -236,12 +247,23 @@
                             }
                         }
                     }
-                }
+                },
+                "deprecated": true
             }
         },
-        "/protected/my/tokens/cronto/devices": {
-            "get": {
-                "operationId": "listCrontoDevices",
+        "/protected/my/tokens/cronto/devices/{id}/push/allow": {
+            "post": {
+                "operationId": "allowPushNotifications",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -254,7 +276,64 @@
                             }
                         }
                     }
-                }
+                },
+                "deprecated": true
+            },
+            "delete": {
+                "operationId": "disallowPushNotifications",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                },
+                "deprecated": true
+            }
+        },
+        "/protected/my/tokens/cronto/devices/activation/complete": {
+            "post": {
+                "operationId": "completeDeviceActivation",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CrontoCompleteDeviceActivationRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                },
+                "deprecated": true
             }
         },
         "/protected/my/tokens/cronto/devices/{id}": {
@@ -282,7 +361,8 @@
                             }
                         }
                     }
-                }
+                },
+                "deprecated": true
             },
             "delete": {
                 "operationId": "deleteDevice",
@@ -308,7 +388,8 @@
                             }
                         }
                     }
-                }
+                },
+                "deprecated": true
             },
             "patch": {
                 "operationId": "updateLabel",
@@ -349,63 +430,8 @@
                             }
                         }
                     }
-                }
-            }
-        },
-        "/protected/my/tokens/cronto/devices/activation/start": {
-            "post": {
-                "operationId": "startDeviceActivation",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/CrontoStartDeviceActivationRequest"
-                            }
-                        }
-                    },
-                    "required": true
                 },
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/protected/my/tokens/cronto/devices/activation/complete": {
-            "post": {
-                "operationId": "completeDeviceActivation",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/CrontoCompleteDeviceActivationRequest"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
+                "deprecated": true
             }
         },
         "/protected/my/tokens/cronto/devices/{id}/enable": {
@@ -433,7 +459,8 @@
                             }
                         }
                     }
-                }
+                },
+                "deprecated": true
             },
             "delete": {
                 "operationId": "disableDevice",
@@ -459,22 +486,13 @@
                             }
                         }
                     }
-                }
+                },
+                "deprecated": true
             }
         },
-        "/protected/my/tokens/cronto/devices/{id}/push/allow": {
-            "post": {
-                "operationId": "allowPushNotifications",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
+        "/protected/my/tokens/cronto/devices": {
+            "get": {
+                "operationId": "listCrontoDevices",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -487,13 +505,45 @@
                             }
                         }
                     }
-                }
-            },
+                },
+                "deprecated": true
+            }
+        },
+        "/protected/my/tokens/cronto/devices/activation/start": {
+            "post": {
+                "operationId": "startDeviceActivation",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CrontoStartDeviceActivationRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                },
+                "deprecated": true
+            }
+        },
+        "/protected/my/tokens/device-tokens/{deviceTokenId}": {
             "delete": {
-                "operationId": "disallowPushNotifications",
+                "operationId": "deleteDeviceToken",
                 "parameters": [
                     {
-                        "name": "id",
+                        "name": "deviceTokenId",
                         "in": "path",
                         "required": true,
                         "schema": {
@@ -565,34 +615,6 @@
                 }
             }
         },
-        "/protected/my/tokens/device-tokens/{deviceTokenId}": {
-            "delete": {
-                "operationId": "deleteDeviceToken",
-                "parameters": [
-                    {
-                        "name": "deviceTokenId",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
-            }
-        },
         "/protected/my/email/change": {
             "post": {
                 "operationId": "changeEmail",
@@ -618,7 +640,8 @@
                             }
                         }
                     }
-                }
+                },
+                "deprecated": true
             }
         },
         "/protected/my/email/verify-email-change": {
@@ -646,7 +669,8 @@
                             }
                         }
                     }
-                }
+                },
+                "deprecated": true
             }
         },
         "/protected/my/tokens/mtan": {
@@ -664,7 +688,47 @@
                             }
                         }
                     }
-                }
+                },
+                "deprecated": true
+            }
+        },
+        "/protected/my/tokens/mtan/{mtanId}/start-number-change": {
+            "post": {
+                "operationId": "startMtanNumberChange",
+                "parameters": [
+                    {
+                        "name": "mtanId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/MtanNumberChangeRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                },
+                "deprecated": true
             }
         },
         "/protected/my/tokens/mtan/{mtanId}": {
@@ -707,45 +771,8 @@
                             }
                         }
                     }
-                }
-            }
-        },
-        "/protected/my/tokens/mtan/{mtanId}/start-number-change": {
-            "post": {
-                "operationId": "startMtanNumberChange",
-                "parameters": [
-                    {
-                        "name": "mtanId",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/MtanNumberChangeRequest"
-                            }
-                        }
-                    },
-                    "required": true
                 },
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
+                "deprecated": true
             }
         },
         "/protected/my/tokens/mtan/{mtanId}/verify-number-change": {
@@ -783,7 +810,8 @@
                             }
                         }
                     }
-                }
+                },
+                "deprecated": true
             }
         },
         "/protected/my/password/change": {
@@ -811,7 +839,8 @@
                             }
                         }
                     }
-                }
+                },
+                "deprecated": true
             }
         },
         "/protected/my/secret-questions/{questionId}/answer": {
@@ -870,19 +899,9 @@
                 }
             }
         },
-        "/public/authentication/airlock-2fa/activation/device-edit/data": {
+        "/public/authentication/airlock-2fa/activation/status/poll": {
             "post": {
-                "operationId": "editDevice",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Airlock2FADeviceEditRequest"
-                            }
-                        }
-                    },
-                    "required": true
-                },
+                "operationId": "pollActivationStatus",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -916,24 +935,6 @@
                 }
             }
         },
-        "/public/authentication/airlock-2fa/activation/status/poll": {
-            "post": {
-                "operationId": "pollActivationStatus",
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
-            }
-        },
         "/public/authentication/airlock-2fa/activation/device-edit/data/retrieve": {
             "post": {
                 "operationId": "retrieveCurrentDisplayName",
@@ -952,37 +953,9 @@
                 }
             }
         },
-        "/public/authentication/airlock-2fa/passcode/check": {
+        "/public/authentication/airlock-2fa/activation/device-edit/continue": {
             "post": {
-                "operationId": "checkPasscode",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Airlock2FAPasscodeCheckRequest"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/public/authentication/airlock-2fa/offline-qr-code/challenge/retrieve": {
-            "post": {
-                "operationId": "retrieveOfflineQrCodeChallenge",
+                "operationId": "validateAndContinue",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -1026,9 +999,19 @@
                 }
             }
         },
-        "/public/authentication/airlock-2fa/mobile-only/challenge/retrieve": {
+        "/public/authentication/airlock-2fa/passcode/check": {
             "post": {
-                "operationId": "retrieveChallenge",
+                "operationId": "checkPasscode",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Airlock2FAPasscodeCheckRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -1044,9 +1027,9 @@
                 }
             }
         },
-        "/public/authentication/airlock-2fa/offline": {
+        "/public/authentication/airlock-2fa/devices/retrieve": {
             "post": {
-                "operationId": "switchToOffline",
+                "operationId": "listDevices",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -1080,9 +1063,45 @@
                 }
             }
         },
-        "/public/authentication/airlock-2fa/devices/retrieve": {
+        "/public/authentication/airlock-2fa/mobile-only/challenge/retrieve": {
             "post": {
-                "operationId": "listDevices",
+                "operationId": "retrieveChallenge",
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/public/authentication/airlock-2fa/offline-qr-code/challenge/retrieve": {
+            "post": {
+                "operationId": "retrieveOfflineQrCodeChallenge",
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/public/authentication/airlock-2fa/zero-touch-info/retrieve": {
+            "post": {
+                "operationId": "retrieveZeroTouchInformation",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -1126,9 +1145,9 @@
                 }
             }
         },
-        "/public/authentication/airlock-2fa/zero-touch-info/retrieve": {
+        "/public/authentication/airlock-2fa/offline": {
             "post": {
-                "operationId": "retrieveZeroTouchInformation",
+                "operationId": "switchToOffline",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -1153,6 +1172,8 @@
                         "in": "path",
                         "required": true,
                         "schema": {
+                            "maxLength": 30,
+                            "minLength": 1,
                             "type": "string"
                         }
                     }
@@ -1274,6 +1295,36 @@
                 }
             }
         },
+        "/public/authentication/dynamic-steps/{stepId}/activate": {
+            "post": {
+                "operationId": "activate",
+                "parameters": [
+                    {
+                        "name": "stepId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 30,
+                            "minLength": 1,
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/public/authentication/dynamic-steps/{stepId}/deactivate": {
             "post": {
                 "operationId": "deactivate",
@@ -1283,6 +1334,8 @@
                         "in": "path",
                         "required": true,
                         "schema": {
+                            "maxLength": 30,
+                            "minLength": 1,
                             "type": "string"
                         }
                     }
@@ -1305,34 +1358,6 @@
         "/public/authentication/dynamic-steps/retrieve": {
             "post": {
                 "operationId": "retrieve",
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/public/authentication/dynamic-steps/{stepId}/activate": {
-            "post": {
-                "operationId": "activate",
-                "parameters": [
-                    {
-                        "name": "stepId",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -1391,6 +1416,8 @@
                         "in": "path",
                         "required": true,
                         "schema": {
+                            "maxLength": 30,
+                            "minLength": 1,
                             "type": "string"
                         }
                     }
@@ -1428,9 +1455,9 @@
                 }
             }
         },
-        "/public/authentication/selection/options/retrieve": {
-            "post": {
-                "operationId": "retrieveOptions",
+        "/public/authentication/selection/options": {
+            "get": {
+                "operationId": "getOptionsLegacy",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -1443,12 +1470,13 @@
                             }
                         }
                     }
-                }
+                },
+                "deprecated": true
             }
         },
-        "/public/authentication/selection/options": {
-            "get": {
-                "operationId": "getOptionsLegacy",
+        "/public/authentication/selection/options/retrieve": {
+            "post": {
+                "operationId": "retrieveOptions",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -1473,28 +1501,12 @@
                         "in": "path",
                         "required": true,
                         "schema": {
+                            "maxLength": 1000,
+                            "minLength": 1,
                             "type": "string"
                         }
                     }
                 ],
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/public/authentication/terms-of-services/retrieve": {
-            "post": {
-                "operationId": "retrieveOpenTermsOfService",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -1543,9 +1555,74 @@
                 }
             }
         },
+        "/public/authentication/terms-of-services/retrieve": {
+            "post": {
+                "operationId": "retrieveOpenTermsOfService",
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/public/authentication/ui/configuration/access": {
+            "get": {
+                "operationId": "getAccessConfiguration",
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/public/authentication/ui/default/application/id": {
             "get": {
                 "operationId": "getDefaultTargetApplicationId",
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/public/authentication/ui/configuration/logout": {
+            "get": {
+                "operationId": "getLogoutConfiguration",
+                "parameters": [
+                    {
+                        "name": "params",
+                        "in": "query",
+                        "style": "form",
+                        "explode": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -1597,56 +1674,27 @@
                 }
             }
         },
-        "/public/authentication/ui/configuration/logout": {
-            "get": {
-                "operationId": "getLogoutConfiguration",
-                "parameters": [
-                    {
-                        "name": "params",
-                        "in": "query",
-                        "style": "form",
-                        "explode": true,
-                        "schema": {
-                            "type": "object"
-                        }
-                    }
-                ],
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/public/authentication/ui/configuration/access": {
-            "get": {
-                "operationId": "getAccessConfiguration",
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
-            }
-        },
         "/public/authentication/cronto/activation/start-challenge/retrieve": {
             "post": {
                 "operationId": "retrieveFirstActivationChallenge",
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/public/authentication/cronto/activation/challenge/retrieve": {
+            "post": {
+                "operationId": "retrieveSecondActivationChallenge",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -1690,24 +1738,6 @@
                 }
             }
         },
-        "/public/authentication/cronto/activation/challenge/retrieve": {
-            "post": {
-                "operationId": "retrieveSecondActivationChallenge",
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
-            }
-        },
         "/public/authentication/cronto/activation/complete": {
             "post": {
                 "operationId": "verifySecondOtp",
@@ -1721,42 +1751,6 @@
                     },
                     "required": true
                 },
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/public/authentication/cronto/challenge/retrieve": {
-            "post": {
-                "operationId": "retrieveChallenge_1",
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/public/authentication/cronto/challenge": {
-            "get": {
-                "operationId": "getChallengeLegacy",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -1800,9 +1794,9 @@
                 }
             }
         },
-        "/public/authentication/cronto/otp/poll": {
-            "post": {
-                "operationId": "pollOnlineValidation",
+        "/public/authentication/cronto/challenge": {
+            "get": {
+                "operationId": "getChallengeLegacy",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -1815,7 +1809,8 @@
                             }
                         }
                     }
-                }
+                },
+                "deprecated": true
             }
         },
         "/public/authentication/cronto/push-devices/retrieve": {
@@ -1839,6 +1834,43 @@
         "/public/authentication/cronto/push-devices": {
             "get": {
                 "operationId": "getPushDeviceChoicesLegacy",
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                },
+                "deprecated": true
+            }
+        },
+        "/public/authentication/cronto/otp/poll": {
+            "post": {
+                "operationId": "pollOnlineValidation",
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/public/authentication/cronto/challenge/retrieve": {
+            "post": {
+                "operationId": "retrieveChallenge_1",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -1881,28 +1913,12 @@
                         "in": "path",
                         "required": true,
                         "schema": {
+                            "maxLength": 50,
+                            "minLength": 1,
                             "type": "string"
                         }
                     }
                 ],
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/public/authentication/cronto/push-devices/activation/challenge/retrieve": {
-            "post": {
-                "operationId": "retrievePushActivationChallenge",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -1936,9 +1952,9 @@
                 }
             }
         },
-        "/public/authentication/cronto/push-devices/activation/skip": {
+        "/public/authentication/cronto/push-devices/activation/never": {
             "post": {
-                "operationId": "skip",
+                "operationId": "never",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -1954,9 +1970,27 @@
                 }
             }
         },
-        "/public/authentication/cronto/push-devices/activation/never": {
+        "/public/authentication/cronto/push-devices/activation/challenge/retrieve": {
             "post": {
-                "operationId": "never",
+                "operationId": "retrievePushActivationChallenge",
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/public/authentication/cronto/push-devices/activation/skip": {
+            "post": {
+                "operationId": "skip",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -1990,19 +2024,19 @@
                 }
             }
         },
-        "/public/authentication/device-token/{deviceTokenId}/challenge/retrieve": {
+        "/public/authentication/device-token/check": {
             "post": {
-                "operationId": "retrieveChallenge_2",
-                "parameters": [
-                    {
-                        "name": "deviceTokenId",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
+                "operationId": "checkJwt",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/DeviceTokenResponseCheckRequest"
+                            }
                         }
-                    }
-                ],
+                    },
+                    "required": true
+                },
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -2027,6 +2061,8 @@
                         "in": "path",
                         "required": true,
                         "schema": {
+                            "maxLength": 50,
+                            "minLength": 1,
                             "type": "string"
                         }
                     }
@@ -2043,22 +2079,25 @@
                             }
                         }
                     }
-                }
+                },
+                "deprecated": true
             }
         },
-        "/public/authentication/device-token/check": {
+        "/public/authentication/device-token/{deviceTokenId}/challenge/retrieve": {
             "post": {
-                "operationId": "checkJwt",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/DeviceTokenResponseCheckRequest"
-                            }
+                "operationId": "retrieveChallenge_2",
+                "parameters": [
+                    {
+                        "name": "deviceTokenId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 50,
+                            "minLength": 1,
+                            "type": "string"
                         }
-                    },
-                    "required": true
-                },
+                    }
+                ],
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -2232,24 +2271,6 @@
                 }
             }
         },
-        "/public/authentication/kobil-tms/transaction/restart": {
-            "post": {
-                "operationId": "restartTransaction",
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
-            }
-        },
         "/public/authentication/kobil-tms/devices/list": {
             "post": {
                 "operationId": "listPushDeviceChoices",
@@ -2286,6 +2307,24 @@
                 }
             }
         },
+        "/public/authentication/kobil-tms/transaction/restart": {
+            "post": {
+                "operationId": "restartTransaction",
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/public/authentication/kobil-tms/devices/{id}/select": {
             "post": {
                 "operationId": "selectPushDevice_1",
@@ -2295,6 +2334,8 @@
                         "in": "path",
                         "required": true,
                         "schema": {
+                            "maxLength": 100,
+                            "minLength": 0,
                             "type": "string"
                         }
                     }
@@ -2327,24 +2368,6 @@
                     },
                     "required": true
                 },
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/public/authentication/matrix/challenge/retrieve": {
-            "post": {
-                "operationId": "retrieveChallenge_3",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -2403,30 +2426,13 @@
                             }
                         }
                     }
-                }
+                },
+                "deprecated": true
             }
         },
-        "/public/authentication/migration/options/retrieve": {
+        "/public/authentication/matrix/challenge/retrieve": {
             "post": {
-                "operationId": "retrieveOptions_1",
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/public/authentication/migration/options/skip": {
-            "post": {
-                "operationId": "skipMigration",
+                "operationId": "retrieveChallenge_3",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -2460,6 +2466,24 @@
                 }
             }
         },
+        "/public/authentication/migration/options/retrieve": {
+            "post": {
+                "operationId": "retrieveOptions_1",
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/public/authentication/migration/options/{id}/select": {
             "post": {
                 "operationId": "selectOption_1",
@@ -2469,6 +2493,8 @@
                         "in": "path",
                         "required": true,
                         "schema": {
+                            "maxLength": 1000,
+                            "minLength": 1,
                             "type": "string"
                         }
                     }
@@ -2488,9 +2514,9 @@
                 }
             }
         },
-        "/public/authentication/mtan/otp/resend-info/retrieve": {
+        "/public/authentication/migration/options/skip": {
             "post": {
-                "operationId": "retrieveResendInfo",
+                "operationId": "skipMigration",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -2504,6 +2530,53 @@
                         }
                     }
                 }
+            }
+        },
+        "/public/authentication/mtan/otp/check": {
+            "post": {
+                "operationId": "checkMtanOtp",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/GenericOtpCheckRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/public/authentication/mtan/tokens": {
+            "get": {
+                "operationId": "getMtanTokensLegacy",
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                },
+                "deprecated": true
             }
         },
         "/public/authentication/mtan/otp/resend": {
@@ -2521,38 +2594,11 @@
                             }
                         }
                     }
-                }
+                },
+                "deprecated": true
             },
             "post": {
                 "operationId": "resendMtanOtp",
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/public/authentication/mtan/tokens/{id}/select": {
-            "post": {
-                "operationId": "selectMtanToken",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -2586,9 +2632,9 @@
                 }
             }
         },
-        "/public/authentication/mtan/tokens": {
-            "get": {
-                "operationId": "getMtanTokensLegacy",
+        "/public/authentication/mtan/otp/resend-info/retrieve": {
+            "post": {
+                "operationId": "retrieveResendInfo",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -2604,14 +2650,44 @@
                 }
             }
         },
-        "/public/authentication/mtan/otp/check": {
+        "/public/authentication/mtan/tokens/{id}/select": {
             "post": {
-                "operationId": "checkMtanOtp",
+                "operationId": "selectMtanToken",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 50,
+                            "minLength": 1,
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/public/authentication/mtan/registration/iak/check": {
+            "post": {
+                "operationId": "checkIak",
                 "requestBody": {
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/GenericOtpCheckRequest"
+                                "$ref": "#/components/schemas/CheckIakRequest"
                             }
                         }
                     },
@@ -2660,19 +2736,9 @@
                 }
             }
         },
-        "/public/authentication/mtan/registration/iak/check": {
+        "/public/authentication/mtan/registration/otp/resend": {
             "post": {
-                "operationId": "checkIak",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/CheckIakRequest"
-                            }
-                        }
-                    },
-                    "required": true
-                },
+                "operationId": "resendMtanOtp_1",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -2709,24 +2775,6 @@
         "/public/authentication/mtan/registration/otp/resend-info/retrieve": {
             "post": {
                 "operationId": "retrieveResendInfo_1",
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/public/authentication/mtan/registration/otp/resend": {
-            "post": {
-                "operationId": "resendMtanOtp_1",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -2798,7 +2846,53 @@
                 }
             }
         },
-        "/public/authentication/oauth2/authorization-server/consent/grant": {
+        "/public/authentication/oauth2/authorization-server/consent/remote/check": {
+            "post": {
+                "operationId": "check",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/OAuth2CheckConsentRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/public/authentication/oauth2/authorization-server/consent/local/deny": {
+            "post": {
+                "operationId": "deny_1",
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/public/authentication/oauth2/authorization-server/consent/local/grant": {
             "post": {
                 "operationId": "grant",
                 "requestBody": {
@@ -2826,9 +2920,37 @@
                 }
             }
         },
-        "/public/authentication/oauth2/authorization-server/consent/deny": {
+        "/public/authentication/oauth2/authorization-server/consent/local/retrieve": {
             "post": {
-                "operationId": "deny_1",
+                "operationId": "retrieve_2",
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/public/authentication/ui/configuration/oauth2/authorization-servers/{authorizationServerId}/session-management": {
+            "get": {
+                "operationId": "getCheckSessionConfiguration",
+                "parameters": [
+                    {
+                        "name": "authorizationServerId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -2852,34 +2974,6 @@
                         "application/json": {
                             "schema": {
                                 "$ref": "#/components/schemas/GenericOtpCheckRequest"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/public/authentication/password/check": {
-            "post": {
-                "operationId": "checkPassword",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/PasswordCheckRequest"
                             }
                         }
                     },
@@ -2928,6 +3022,34 @@
                 }
             }
         },
+        "/public/authentication/password/check": {
+            "post": {
+                "operationId": "checkPassword",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PasswordCheckRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/public/authentication/password/set": {
             "post": {
                 "operationId": "setPassword",
@@ -2956,9 +3078,19 @@
                 }
             }
         },
-        "/public/authentication/secret-questions/status/retrieve": {
+        "/public/authentication/saml2/idp/sso/init": {
             "post": {
-                "operationId": "retrieveSecretQuestions",
+                "operationId": "access_4",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Saml2AccessRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -2987,6 +3119,24 @@
                     },
                     "required": true
                 },
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/public/authentication/secret-questions/status/retrieve": {
+            "post": {
+                "operationId": "retrieveSecretQuestions",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -3048,9 +3198,9 @@
                 }
             }
         },
-        "/public/authentication/data/continue": {
+        "/public/authentication/data/validate": {
             "post": {
-                "operationId": "validateAndContinue_1",
+                "operationId": "validate",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -3066,9 +3216,9 @@
                 }
             }
         },
-        "/public/authentication/data/validate": {
+        "/public/authentication/data/continue": {
             "post": {
-                "operationId": "validate",
+                "operationId": "validateAndContinue_1",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -3168,27 +3318,19 @@
                 }
             }
         },
-        "/public/user-self-registration/registration/info/retrieve": {
+        "/public/user-self-registration/registration/data": {
             "post": {
-                "operationId": "retrieveInfo_2",
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
+                "operationId": "registerData",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/USER-SELF-REG-USER-DATA"
                             }
                         }
-                    }
-                }
-            }
-        },
-        "/public/user-self-registration/registration/continue": {
-            "post": {
-                "operationId": "validateAndContinue_2",
+                    },
+                    "required": true
+                },
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -3229,10 +3371,30 @@
                             }
                         }
                     }
-                }
+                },
+                "deprecated": true
             },
             "delete": {
                 "operationId": "removePassword",
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                },
+                "deprecated": true
+            }
+        },
+        "/public/user-self-registration/registration/info/retrieve": {
+            "post": {
+                "operationId": "retrieveInfo_2",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -3266,19 +3428,9 @@
                 }
             }
         },
-        "/public/user-self-registration/registration/data": {
+        "/public/user-self-registration/registration/continue": {
             "post": {
-                "operationId": "registerData",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/USER-SELF-REG-USER-DATA"
-                            }
-                        }
-                    },
-                    "required": true
-                },
+                "operationId": "validateAndContinue_2",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -3312,6 +3464,36 @@
                 }
             }
         },
+        "/public/user-self-registration/dynamic-steps/{stepId}/activate": {
+            "post": {
+                "operationId": "activate_1",
+                "parameters": [
+                    {
+                        "name": "stepId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 30,
+                            "minLength": 1,
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/public/user-self-registration/dynamic-steps/{stepId}/deactivate": {
             "post": {
                 "operationId": "deactivate_1",
@@ -3321,6 +3503,8 @@
                         "in": "path",
                         "required": true,
                         "schema": {
+                            "maxLength": 30,
+                            "minLength": 1,
                             "type": "string"
                         }
                     }
@@ -3342,53 +3526,7 @@
         },
         "/public/user-self-registration/dynamic-steps/retrieve": {
             "post": {
-                "operationId": "retrieve_2",
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/public/user-self-registration/dynamic-steps/{stepId}/activate": {
-            "post": {
-                "operationId": "activate_1",
-                "parameters": [
-                    {
-                        "name": "stepId",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/public/user-self-registration/default-flow/select": {
-            "post": {
-                "operationId": "selectDefaultFlow",
+                "operationId": "retrieve_3",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -3422,6 +3560,24 @@
                 }
             }
         },
+        "/public/user-self-registration/default-flow/select": {
+            "post": {
+                "operationId": "selectDefaultFlow",
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/public/user-self-registration/flows/{flowId}/select": {
             "post": {
                 "operationId": "selectFlow",
@@ -3431,6 +3587,8 @@
                         "in": "path",
                         "required": true,
                         "schema": {
+                            "maxLength": 30,
+                            "minLength": 1,
                             "type": "string"
                         }
                     }
@@ -3459,6 +3617,8 @@
                         "in": "path",
                         "required": true,
                         "schema": {
+                            "maxLength": 30,
+                            "minLength": 1,
                             "type": "string"
                         }
                     }
@@ -3480,7 +3640,7 @@
         },
         "/public/user-self-registration/goto-targets/retrieve": {
             "post": {
-                "operationId": "retrieve_3",
+                "operationId": "retrieve_4",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -3523,28 +3683,12 @@
                         "in": "path",
                         "required": true,
                         "schema": {
+                            "maxLength": 1000,
+                            "minLength": 1,
                             "type": "string"
                         }
                     }
                 ],
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/public/user-self-registration/terms-of-services/retrieve": {
-            "post": {
-                "operationId": "retrieveOpenTermsOfService_1",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -3593,37 +3737,9 @@
                 }
             }
         },
-        "/public/user-self-registration/ui/configuration": {
-            "get": {
-                "operationId": "getUiForCurrentFlow",
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/public/user-self-registration/ui/on-completed/{flowId}": {
-            "get": {
-                "operationId": "getOnCompletedInfo",
-                "parameters": [
-                    {
-                        "name": "flowId",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
+        "/public/user-self-registration/terms-of-services/retrieve": {
+            "post": {
+                "operationId": "retrieveOpenTermsOfService_1",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -3654,51 +3770,17 @@
                 }
             }
         },
-        "/public/password-reset/factors/airlock-2fa/offline-qr-code/challenge/retrieve": {
-            "post": {
-                "operationId": "retrieveOfflineQrCodeChallenge_1",
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/public/password-reset/factors/airlock-2fa/offline": {
-            "post": {
-                "operationId": "switchToOffline_1",
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/public/password-reset/factors/airlock-2fa/devices/{id}/select": {
-            "post": {
-                "operationId": "selectDevice_1",
+        "/public/user-self-registration/ui/on-completed/{flowId}": {
+            "get": {
+                "operationId": "getOnCompletedInfo",
                 "parameters": [
                     {
-                        "name": "id",
+                        "name": "flowId",
                         "in": "path",
                         "required": true,
                         "schema": {
+                            "maxLength": 30,
+                            "minLength": 1,
                             "type": "string"
                         }
                     }
@@ -3718,55 +3800,9 @@
                 }
             }
         },
-        "/public/password-reset/factors/airlock-2fa/offline-qr-code/otp/check": {
-            "post": {
-                "operationId": "validateOfflineQrCode",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/GenericOtpCheckRequest"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/public/password-reset/factors/airlock-2fa/mobile-only/challenge/retrieve": {
-            "post": {
-                "operationId": "retrieveMobileOnlyChallenge",
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/public/password-reset/factors/airlock-2fa/devices/retrieve": {
-            "post": {
-                "operationId": "retrieveDeviceChoices",
+        "/public/user-self-registration/ui/configuration": {
+            "get": {
+                "operationId": "getUiForCurrentFlow",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -3797,12 +3833,13 @@
                             }
                         }
                     }
-                }
+                },
+                "deprecated": true
             }
         },
-        "/public/password-reset/factors/cronto/challenge/retrieve": {
+        "/public/password-reset/factors/airlock-2fa/devices/retrieve": {
             "post": {
-                "operationId": "retrieveChallenge_4",
+                "operationId": "retrieveDeviceChoices",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -3815,7 +3852,123 @@
                             }
                         }
                     }
-                }
+                },
+                "deprecated": true
+            }
+        },
+        "/public/password-reset/factors/airlock-2fa/mobile-only/challenge/retrieve": {
+            "post": {
+                "operationId": "retrieveMobileOnlyChallenge",
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                },
+                "deprecated": true
+            }
+        },
+        "/public/password-reset/factors/airlock-2fa/offline-qr-code/challenge/retrieve": {
+            "post": {
+                "operationId": "retrieveOfflineQrCodeChallenge_1",
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                },
+                "deprecated": true
+            }
+        },
+        "/public/password-reset/factors/airlock-2fa/devices/{id}/select": {
+            "post": {
+                "operationId": "selectDevice_1",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                },
+                "deprecated": true
+            }
+        },
+        "/public/password-reset/factors/airlock-2fa/offline": {
+            "post": {
+                "operationId": "switchToOffline_1",
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                },
+                "deprecated": true
+            }
+        },
+        "/public/password-reset/factors/airlock-2fa/offline-qr-code/otp/check": {
+            "post": {
+                "operationId": "validateOfflineQrCode",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/GenericOtpCheckRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                },
+                "deprecated": true
             }
         },
         "/public/password-reset/factors/cronto/otp/check": {
@@ -3843,25 +3996,8 @@
                             }
                         }
                     }
-                }
-            }
-        },
-        "/public/password-reset/factors/cronto/otp/poll": {
-            "post": {
-                "operationId": "pollOnlineValidation_2",
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
+                },
+                "deprecated": true
             }
         },
         "/public/password-reset/factors/cronto/push-devices/retrieve": {
@@ -3879,7 +4015,46 @@
                             }
                         }
                     }
-                }
+                },
+                "deprecated": true
+            }
+        },
+        "/public/password-reset/factors/cronto/otp/poll": {
+            "post": {
+                "operationId": "pollOnlineValidation_2",
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                },
+                "deprecated": true
+            }
+        },
+        "/public/password-reset/factors/cronto/challenge/retrieve": {
+            "post": {
+                "operationId": "retrieveChallenge_4",
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                },
+                "deprecated": true
             }
         },
         "/public/password-reset/factors/cronto/offline": {
@@ -3897,7 +4072,8 @@
                             }
                         }
                     }
-                }
+                },
+                "deprecated": true
             }
         },
         "/public/password-reset/factors/cronto/push-devices/{id}/select": {
@@ -3925,7 +4101,8 @@
                             }
                         }
                     }
-                }
+                },
+                "deprecated": true
             }
         },
         "/public/password-reset/verification/email/otp/check": {
@@ -3953,25 +4130,8 @@
                             }
                         }
                     }
-                }
-            }
-        },
-        "/public/password-reset/default-flow/select": {
-            "post": {
-                "operationId": "selectDefaultFlow_1",
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
+                },
+                "deprecated": true
             }
         },
         "/public/password-reset/flow": {
@@ -3989,7 +4149,27 @@
                             }
                         }
                     }
-                }
+                },
+                "deprecated": true
+            }
+        },
+        "/public/password-reset/default-flow/select": {
+            "post": {
+                "operationId": "selectDefaultFlow_1",
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                },
+                "deprecated": true
             }
         },
         "/public/password-reset/goto-targets/{stepId}/goto": {
@@ -4017,12 +4197,13 @@
                             }
                         }
                     }
-                }
+                },
+                "deprecated": true
             }
         },
         "/public/password-reset/goto-targets/retrieve": {
             "post": {
-                "operationId": "retrieve_4",
+                "operationId": "retrieve_5",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -4035,7 +4216,8 @@
                             }
                         }
                     }
-                }
+                },
+                "deprecated": true
             }
         },
         "/public/password-reset/selection/options/retrieve": {
@@ -4053,7 +4235,8 @@
                             }
                         }
                     }
-                }
+                },
+                "deprecated": true
             }
         },
         "/public/password-reset/selection/options/{id}/select": {
@@ -4081,89 +4264,8 @@
                             }
                         }
                     }
-                }
-            }
-        },
-        "/public/password-reset/factors/mtan/otp/resend-info/retrieve": {
-            "post": {
-                "operationId": "retrieveResendInfo_2",
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/public/password-reset/factors/mtan/tokens/{id}/select": {
-            "post": {
-                "operationId": "selectMtanToken_1",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/public/password-reset/factors/mtan/tokens/retrieve": {
-            "post": {
-                "operationId": "retrieveMtanTokens_1",
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/public/password-reset/factors/mtan/otp/resend": {
-            "post": {
-                "operationId": "resendMtanOtp_2",
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
+                },
+                "deprecated": true
             }
         },
         "/public/password-reset/factors/mtan/otp/check": {
@@ -4191,7 +4293,94 @@
                             }
                         }
                     }
-                }
+                },
+                "deprecated": true
+            }
+        },
+        "/public/password-reset/factors/mtan/otp/resend": {
+            "post": {
+                "operationId": "resendMtanOtp_2",
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                },
+                "deprecated": true
+            }
+        },
+        "/public/password-reset/factors/mtan/tokens/retrieve": {
+            "post": {
+                "operationId": "retrieveMtanTokens_1",
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                },
+                "deprecated": true
+            }
+        },
+        "/public/password-reset/factors/mtan/otp/resend-info/retrieve": {
+            "post": {
+                "operationId": "retrieveResendInfo_2",
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                },
+                "deprecated": true
+            }
+        },
+        "/public/password-reset/factors/mtan/tokens/{id}/select": {
+            "post": {
+                "operationId": "selectMtanToken_1",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                },
+                "deprecated": true
             }
         },
         "/public/password-reset/verification/mtan/otp/check": {
@@ -4219,7 +4408,8 @@
                             }
                         }
                     }
-                }
+                },
+                "deprecated": true
             }
         },
         "/public/password-reset/verification/secret-questions/retrieve": {
@@ -4237,7 +4427,8 @@
                             }
                         }
                     }
-                }
+                },
+                "deprecated": true
             }
         },
         "/public/password-reset/verification/secret-questions/answer": {
@@ -4265,7 +4456,8 @@
                             }
                         }
                     }
-                }
+                },
+                "deprecated": true
             }
         },
         "/public/password-reset/password": {
@@ -4293,7 +4485,8 @@
                             }
                         }
                     }
-                }
+                },
+                "deprecated": true
             }
         },
         "/public/password-reset/username/identify": {
@@ -4309,6 +4502,61 @@
                     },
                     "required": true
                 },
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                },
+                "deprecated": true
+            }
+        },
+        "/public/self-service/approval/airlock-2fa/status/poll": {
+            "post": {
+                "operationId": "pollOnlineValidation_3",
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/public/self-service/approval/airlock-2fa/devices/retrieve": {
+            "post": {
+                "operationId": "retrieveDeviceChoices_1",
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/public/self-service/approval/airlock-2fa/mobile-only/challenge/retrieve": {
+            "post": {
+                "operationId": "retrieveMobileOnlyChallenge_1",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -4342,9 +4590,21 @@
                 }
             }
         },
-        "/public/self-service/approval/airlock-2fa/offline": {
+        "/public/self-service/approval/airlock-2fa/devices/{id}/select": {
             "post": {
-                "operationId": "switchToOffline_2",
+                "operationId": "selectDevice_2",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 50,
+                            "minLength": 1,
+                            "type": "string"
+                        }
+                    }
+                ],
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -4360,19 +4620,9 @@
                 }
             }
         },
-        "/public/self-service/approval/airlock-2fa/devices/{id}/select": {
+        "/public/self-service/approval/airlock-2fa/offline": {
             "post": {
-                "operationId": "selectDevice_2",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
+                "operationId": "switchToOffline_2",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -4416,78 +4666,6 @@
                 }
             }
         },
-        "/public/self-service/approval/airlock-2fa/mobile-only/challenge/retrieve": {
-            "post": {
-                "operationId": "retrieveMobileOnlyChallenge_1",
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/public/self-service/approval/airlock-2fa/devices/retrieve": {
-            "post": {
-                "operationId": "retrieveDeviceChoices_1",
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/public/self-service/approval/airlock-2fa/status/poll": {
-            "post": {
-                "operationId": "pollOnlineValidation_3",
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/public/self-service/approval/cronto/challenge/retrieve": {
-            "post": {
-                "operationId": "retrieveChallenge_5",
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
-            }
-        },
         "/public/self-service/approval/cronto/otp/check": {
             "post": {
                 "operationId": "checkCrontoOtp_2",
@@ -4501,6 +4679,24 @@
                     },
                     "required": true
                 },
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/public/self-service/approval/cronto/push-devices/retrieve": {
+            "post": {
+                "operationId": "getPushDeviceChoices_2",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -4534,9 +4730,9 @@
                 }
             }
         },
-        "/public/self-service/approval/cronto/push-devices/retrieve": {
+        "/public/self-service/approval/cronto/challenge/retrieve": {
             "post": {
-                "operationId": "getPushDeviceChoices_2",
+                "operationId": "retrieveChallenge_5",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -4579,6 +4775,38 @@
                         "in": "path",
                         "required": true,
                         "schema": {
+                            "maxLength": 50,
+                            "minLength": 1,
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/public/self-service/dynamic-steps/{stepId}/activate": {
+            "post": {
+                "operationId": "activate_2",
+                "parameters": [
+                    {
+                        "name": "stepId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 30,
+                            "minLength": 1,
                             "type": "string"
                         }
                     }
@@ -4607,6 +4835,8 @@
                         "in": "path",
                         "required": true,
                         "schema": {
+                            "maxLength": 30,
+                            "minLength": 1,
                             "type": "string"
                         }
                     }
@@ -4628,35 +4858,7 @@
         },
         "/public/self-service/dynamic-steps/retrieve": {
             "post": {
-                "operationId": "retrieve_5",
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/public/self-service/dynamic-steps/{stepId}/activate": {
-            "post": {
-                "operationId": "activate_2",
-                "parameters": [
-                    {
-                        "name": "stepId",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
+                "operationId": "retrieve_6",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -4727,6 +4929,8 @@
                         "in": "path",
                         "required": true,
                         "schema": {
+                            "maxLength": 30,
+                            "minLength": 1,
                             "type": "string"
                         }
                     }
@@ -4755,6 +4959,8 @@
                         "in": "path",
                         "required": true,
                         "schema": {
+                            "maxLength": 30,
+                            "minLength": 1,
                             "type": "string"
                         }
                     }
@@ -4776,7 +4982,7 @@
         },
         "/public/self-service/goto-targets/retrieve": {
             "post": {
-                "operationId": "retrieve_6",
+                "operationId": "retrieve_7",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -4819,10 +5025,76 @@
                         "in": "path",
                         "required": true,
                         "schema": {
+                            "maxLength": 1000,
+                            "minLength": 1,
                             "type": "string"
                         }
                     }
                 ],
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/public/self-service/approval/mtan/otp/check": {
+            "post": {
+                "operationId": "checkMtanOtp_2",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/GenericOtpCheckRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/public/self-service/approval/mtan/otp/resend": {
+            "post": {
+                "operationId": "resendMtanOtp_3",
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/public/self-service/approval/mtan/tokens/retrieve": {
+            "post": {
+                "operationId": "retrieveMtanTokens_2",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -4865,74 +5137,12 @@
                         "in": "path",
                         "required": true,
                         "schema": {
+                            "maxLength": 50,
+                            "minLength": 1,
                             "type": "string"
                         }
                     }
                 ],
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/public/self-service/approval/mtan/tokens/retrieve": {
-            "post": {
-                "operationId": "retrieveMtanTokens_2",
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/public/self-service/approval/mtan/otp/resend": {
-            "post": {
-                "operationId": "resendMtanOtp_3",
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/public/self-service/approval/mtan/otp/check": {
-            "post": {
-                "operationId": "checkMtanOtp_2",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/GenericOtpCheckRequest"
-                            }
-                        }
-                    },
-                    "required": true
-                },
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -5050,9 +5260,21 @@
                 }
             }
         },
-        "/public/self-service/ui/configuration": {
+        "/public/self-service/ui/on-completed/{flowId}": {
             "get": {
-                "operationId": "getUiForCurrentFlow_1",
+                "operationId": "getOnCompletedInfo_1",
+                "parameters": [
+                    {
+                        "name": "flowId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 30,
+                            "minLength": 1,
+                            "type": "string"
+                        }
+                    }
+                ],
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -5068,19 +5290,9 @@
                 }
             }
         },
-        "/public/self-service/ui/on-completed/{flowId}": {
+        "/public/self-service/ui/configuration": {
             "get": {
-                "operationId": "getOnCompletedInfo_1",
-                "parameters": [
-                    {
-                        "name": "flowId",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
+                "operationId": "getUiForCurrentFlow_1",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -5124,6 +5336,36 @@
                 }
             }
         },
+        "/public/tech-client-registration/dynamic-steps/{stepId}/activate": {
+            "post": {
+                "operationId": "activate_3",
+                "parameters": [
+                    {
+                        "name": "stepId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "maxLength": 30,
+                            "minLength": 1,
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/public/tech-client-registration/dynamic-steps/{stepId}/deactivate": {
             "post": {
                 "operationId": "deactivate_3",
@@ -5133,6 +5375,8 @@
                         "in": "path",
                         "required": true,
                         "schema": {
+                            "maxLength": 30,
+                            "minLength": 1,
                             "type": "string"
                         }
                     }
@@ -5154,35 +5398,7 @@
         },
         "/public/tech-client-registration/dynamic-steps/retrieve": {
             "post": {
-                "operationId": "retrieve_7",
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/public/tech-client-registration/dynamic-steps/{stepId}/activate": {
-            "post": {
-                "operationId": "activate_3",
-                "parameters": [
-                    {
-                        "name": "stepId",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
+                "operationId": "retrieve_8",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -5207,6 +5423,8 @@
                         "in": "path",
                         "required": true,
                         "schema": {
+                            "maxLength": 30,
+                            "minLength": 1,
                             "type": "string"
                         }
                     }
@@ -5228,7 +5446,7 @@
         },
         "/public/tech-client-registration/goto-targets/retrieve": {
             "post": {
-                "operationId": "retrieve_8",
+                "operationId": "retrieve_9",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -5272,34 +5490,6 @@
                 }
             }
         },
-        "/protected/self-service/account-links/{id}/remove": {
-            "post": {
-                "operationId": "selectForRemoval",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
-            }
-        },
         "/protected/self-service/account-links": {
             "get": {
                 "operationId": "listAccountLinks",
@@ -5318,9 +5508,19 @@
                 }
             }
         },
-        "/protected/self-service/airlock-2fa/activation/challenge/retrieve": {
+        "/protected/self-service/account-links/{id}/remove": {
             "post": {
-                "operationId": "retrieveActivationChallenge_1",
+                "operationId": "selectForRemoval",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -5354,9 +5554,9 @@
                 }
             }
         },
-        "/protected/self-service/airlock-2fa/device-edit/continue": {
+        "/protected/self-service/airlock-2fa/activation/challenge/retrieve": {
             "post": {
-                "operationId": "validateAndContinue_3",
+                "operationId": "retrieveActivationChallenge_1",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -5403,6 +5603,24 @@
         "/protected/self-service/airlock-2fa/device-edit/data/retrieve": {
             "post": {
                 "operationId": "retrieveCurrentDisplayName_1",
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/protected/self-service/airlock-2fa/device-edit/continue": {
+            "post": {
+                "operationId": "validateAndContinue_3",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -5474,9 +5692,9 @@
                 }
             }
         },
-        "/protected/self-service/approval/airlock-2fa/offline-qr-code/challenge/retrieve": {
+        "/protected/self-service/approval/airlock-2fa/status/poll": {
             "post": {
-                "operationId": "retrieveOfflineQrCodeChallenge_3",
+                "operationId": "pollOnlineValidation_5",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -5492,9 +5710,45 @@
                 }
             }
         },
-        "/protected/self-service/approval/airlock-2fa/offline": {
+        "/protected/self-service/approval/airlock-2fa/devices/retrieve": {
             "post": {
-                "operationId": "switchToOffline_3",
+                "operationId": "retrieveDeviceChoices_2",
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/protected/self-service/approval/airlock-2fa/mobile-only/challenge/retrieve": {
+            "post": {
+                "operationId": "retrieveMobileOnlyChallenge_2",
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/protected/self-service/approval/airlock-2fa/offline-qr-code/challenge/retrieve": {
+            "post": {
+                "operationId": "retrieveOfflineQrCodeChallenge_3",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -5538,6 +5792,24 @@
                 }
             }
         },
+        "/protected/self-service/approval/airlock-2fa/offline": {
+            "post": {
+                "operationId": "switchToOffline_3",
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/protected/self-service/approval/airlock-2fa/offline-qr-code/otp/check": {
             "post": {
                 "operationId": "validateOfflineQrCode_2",
@@ -5551,78 +5823,6 @@
                     },
                     "required": true
                 },
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/protected/self-service/approval/airlock-2fa/mobile-only/challenge/retrieve": {
-            "post": {
-                "operationId": "retrieveMobileOnlyChallenge_2",
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/protected/self-service/approval/airlock-2fa/devices/retrieve": {
-            "post": {
-                "operationId": "retrieveDeviceChoices_2",
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/protected/self-service/approval/airlock-2fa/status/poll": {
-            "post": {
-                "operationId": "pollOnlineValidation_5",
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/protected/self-service/airlock-2fa/hardware-devices": {
-            "get": {
-                "operationId": "hardwareDevices",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -5656,9 +5856,45 @@
                 }
             }
         },
+        "/protected/self-service/airlock-2fa/hardware-devices": {
+            "get": {
+                "operationId": "hardwareDevices",
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/protected/self-service/cronto/activation/start-challenge/retrieve": {
             "post": {
                 "operationId": "retrieveFirstActivationChallenge_1",
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/protected/self-service/cronto/activation/challenge/retrieve": {
+            "post": {
+                "operationId": "retrieveSecondActivationChallenge_1",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -5702,24 +5938,6 @@
                 }
             }
         },
-        "/protected/self-service/cronto/activation/challenge/retrieve": {
-            "post": {
-                "operationId": "retrieveSecondActivationChallenge_1",
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
-            }
-        },
         "/protected/self-service/cronto/activation/complete": {
             "post": {
                 "operationId": "verifySecondOtp_1",
@@ -5733,24 +5951,6 @@
                     },
                     "required": true
                 },
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/protected/self-service/cronto/push-devices/activation/challenge/retrieve": {
-            "post": {
-                "operationId": "retrievePushActivationChallenge_1",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -5784,9 +5984,9 @@
                 }
             }
         },
-        "/protected/self-service/approval/cronto/challenge/retrieve": {
+        "/protected/self-service/cronto/push-devices/activation/challenge/retrieve": {
             "post": {
-                "operationId": "retrieveChallenge_6",
+                "operationId": "retrievePushActivationChallenge_1",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -5848,6 +6048,42 @@
                 }
             }
         },
+        "/protected/self-service/approval/cronto/challenge/retrieve": {
+            "post": {
+                "operationId": "retrieveChallenge_6",
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/protected/self-service/approval/cronto/push-devices/retrieve": {
+            "post": {
+                "operationId": "retrievePushDeviceChoices",
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/protected/self-service/approval/cronto/offline": {
             "post": {
                 "operationId": "selectOfflineAuthentication_3",
@@ -5894,55 +6130,19 @@
                 }
             }
         },
-        "/protected/self-service/approval/cronto/push-devices/retrieve": {
+        "/protected/self-service/cronto/device/edit": {
             "post": {
-                "operationId": "retrievePushDeviceChoices",
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
+                "operationId": "editName",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CrontoDeviceRenameRequest"
                             }
                         }
-                    }
-                }
-            }
-        },
-        "/protected/self-service/cronto/devices/{id}/select": {
-            "post": {
-                "operationId": "selectDevice_4",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/protected/self-service/cronto/device/edit/continue": {
-            "post": {
-                "operationId": "validateAndContinue_4",
+                    },
+                    "required": true
+                },
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -5976,19 +6176,9 @@
                 }
             }
         },
-        "/protected/self-service/cronto/device/edit": {
+        "/protected/self-service/cronto/device/info/retrieve": {
             "post": {
-                "operationId": "editName",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/CrontoDeviceRenameRequest"
-                            }
-                        }
-                    },
-                    "required": true
-                },
+                "operationId": "retriveInfo",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -6004,9 +6194,9 @@
                 }
             }
         },
-        "/protected/self-service/cronto/devices/{id}/remove": {
+        "/protected/self-service/cronto/devices/{id}/select": {
             "post": {
-                "operationId": "selectForRemoval_1",
+                "operationId": "selectDevice_4",
                 "parameters": [
                     {
                         "name": "id",
@@ -6144,9 +6334,37 @@
                 }
             }
         },
-        "/protected/self-service/cronto/device/info/retrieve": {
+        "/protected/self-service/cronto/devices/{id}/remove": {
             "post": {
-                "operationId": "retriveInfo",
+                "operationId": "selectForRemoval_1",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/protected/self-service/cronto/device/edit/continue": {
+            "post": {
+                "operationId": "validateAndContinue_4",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -6246,6 +6464,70 @@
                 }
             }
         },
+        "/protected/self-service/approval/mtan/otp/check": {
+            "post": {
+                "operationId": "checkMtanOtp_3",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/GenericOtpCheckRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/protected/self-service/approval/mtan/otp/resend": {
+            "post": {
+                "operationId": "resendMtanOtp_4",
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/protected/self-service/approval/mtan/tokens/retrieve": {
+            "post": {
+                "operationId": "retrieveMtanTokens_3",
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/protected/self-service/approval/mtan/otp/resend-info/retrieve": {
             "post": {
                 "operationId": "retrieveResendInfo_4",
@@ -6292,50 +6574,14 @@
                 }
             }
         },
-        "/protected/self-service/approval/mtan/tokens/retrieve": {
+        "/protected/self-service/mtan/token/edit": {
             "post": {
-                "operationId": "retrieveMtanTokens_3",
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/protected/self-service/approval/mtan/otp/resend": {
-            "post": {
-                "operationId": "resendMtanOtp_4",
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/protected/self-service/approval/mtan/otp/check": {
-            "post": {
-                "operationId": "checkMtanOtp_3",
+                "operationId": "editToken",
                 "requestBody": {
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/GenericOtpCheckRequest"
+                                "$ref": "#/components/schemas/MTAN-TOKEN-EDIT-DATA"
                             }
                         }
                     },
@@ -6392,65 +6638,9 @@
                 }
             }
         },
-        "/protected/self-service/mtan/token/edit": {
-            "post": {
-                "operationId": "editToken",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/MtanTokenEditRequest"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
-            }
-        },
         "/protected/self-service/mtan/tokens": {
             "get": {
                 "operationId": "listNumbers",
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/protected/self-service/mtan/tokens/{tokenId}/remove": {
-            "post": {
-                "operationId": "selectForDeletion",
-                "parameters": [
-                    {
-                        "name": "tokenId",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -6494,6 +6684,34 @@
                 }
             }
         },
+        "/protected/self-service/mtan/tokens/{tokenId}/remove": {
+            "post": {
+                "operationId": "selectForDeletion",
+                "parameters": [
+                    {
+                        "name": "tokenId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/protected/self-service/oauth2/client/authorization/check": {
             "post": {
                 "operationId": "verifyAuthorizationResponse_1",
@@ -6507,6 +6725,52 @@
                     },
                     "required": true
                 },
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/protected/self-service/oauth2/sessions/{sessionId}/remove": {
+            "post": {
+                "operationId": "removeSession",
+                "parameters": [
+                    {
+                        "name": "sessionId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/protected/self-service/oauth2/sessions": {
+            "get": {
+                "operationId": "retrieveAllSessions",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -6568,6 +6832,34 @@
                 }
             }
         },
+        "/protected/self-service/dynamic-steps/{stepId}/activate": {
+            "post": {
+                "operationId": "activate_4",
+                "parameters": [
+                    {
+                        "name": "stepId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/protected/self-service/dynamic-steps/{stepId}/deactivate": {
             "post": {
                 "operationId": "deactivate_4",
@@ -6598,7 +6890,7 @@
         },
         "/protected/self-service/dynamic-steps/retrieve": {
             "post": {
-                "operationId": "retrieve_9",
+                "operationId": "retrieve_10",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -6614,19 +6906,9 @@
                 }
             }
         },
-        "/protected/self-service/dynamic-steps/{stepId}/activate": {
-            "post": {
-                "operationId": "activate_4",
-                "parameters": [
-                    {
-                        "name": "stepId",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
+        "/protected/self-service/flow": {
+            "delete": {
+                "operationId": "abort_3",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -6688,24 +6970,6 @@
                 }
             }
         },
-        "/protected/self-service/flow": {
-            "delete": {
-                "operationId": "abort_3",
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
-            }
-        },
         "/protected/self-service/goto-targets/{stepId}/goto": {
             "post": {
                 "operationId": "doGoto_5",
@@ -6736,7 +7000,7 @@
         },
         "/protected/self-service/goto-targets/retrieve": {
             "post": {
-                "operationId": "retrieve_10",
+                "operationId": "retrieve_11",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -6798,34 +7062,6 @@
                 }
             }
         },
-        "/protected/self-service/mtan/registration/otp/check": {
-            "post": {
-                "operationId": "checkVerificationOtp_1",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/GenericOtpCheckRequest"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
-            }
-        },
         "/protected/self-service/mtan/registration/iak/check": {
             "post": {
                 "operationId": "checkIak_1",
@@ -6854,9 +7090,19 @@
                 }
             }
         },
-        "/protected/self-service/mtan/registration/otp/resend-info/retrieve": {
+        "/protected/self-service/mtan/registration/otp/check": {
             "post": {
-                "operationId": "retrieveResendInfo_5",
+                "operationId": "checkVerificationOtp_1",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/GenericOtpCheckRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -6875,6 +7121,24 @@
         "/protected/self-service/mtan/registration/otp/resend": {
             "post": {
                 "operationId": "resendMtanOtp_5",
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/protected/self-service/mtan/registration/otp/resend-info/retrieve": {
+            "post": {
+                "operationId": "retrieveResendInfo_5",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -6918,81 +7182,19 @@
                 }
             }
         },
-        "/protected/self-service/ui/configuration/tokens/airlock-2fa": {
+        "/protected/self-service/ui/on-completed/{flowId}": {
             "get": {
-                "operationId": "getUiForAirlock2FAManagement",
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
+                "operationId": "getOnCompletedInfo_2",
+                "parameters": [
+                    {
+                        "name": "flowId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
                         }
                     }
-                }
-            }
-        },
-        "/protected/self-service/ui/configuration/tokens/mtan": {
-            "get": {
-                "operationId": "getUiForMtanManagement",
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/protected/self-service/ui/configuration/tokens/cronto": {
-            "get": {
-                "operationId": "getUiForCrontoManagement",
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/protected/self-service/ui/configuration/representation": {
-            "get": {
-                "operationId": "getUiForRepresentation",
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/protected/self-service/ui/configuration/portal": {
-            "get": {
-                "operationId": "getUiForApplicationPortal",
+                ],
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -7026,6 +7228,60 @@
                 }
             }
         },
+        "/protected/self-service/ui/configuration/tokens/airlock-2fa": {
+            "get": {
+                "operationId": "getUiForAirlock2FAManagement",
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/protected/self-service/ui/configuration/portal": {
+            "get": {
+                "operationId": "getUiForApplicationPortal",
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/protected/self-service/ui/configuration/tokens/cronto": {
+            "get": {
+                "operationId": "getUiForCrontoManagement",
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/protected/self-service/ui/configuration/flow": {
             "get": {
                 "operationId": "getUiForCurrentFlow_2",
@@ -7044,19 +7300,45 @@
                 }
             }
         },
-        "/protected/self-service/ui/on-completed/{flowId}": {
+        "/protected/self-service/ui/configuration/tokens/mtan": {
             "get": {
-                "operationId": "getOnCompletedInfo_2",
-                "parameters": [
-                    {
-                        "name": "flowId",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
+                "operationId": "getUiForMtanManagement",
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
                         }
                     }
-                ],
+                }
+            }
+        },
+        "/protected/self-service/ui/configuration/oauth2/sessions": {
+            "get": {
+                "operationId": "getUiForOAuth2SessionManagement",
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/protected/self-service/ui/configuration/representation": {
+            "get": {
+                "operationId": "getUiForRepresentation",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -7146,9 +7428,9 @@
                 }
             }
         },
-        "/protected/self-service/data/continue": {
+        "/protected/self-service/data/validate": {
             "post": {
-                "operationId": "validateAndContinue_6",
+                "operationId": "validate_2",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -7164,9 +7446,9 @@
                 }
             }
         },
-        "/protected/self-service/data/validate": {
+        "/protected/self-service/data/continue": {
             "post": {
-                "operationId": "validate_2",
+                "operationId": "validateAndContinue_6",
                 "responses": {
                     "default": {
                         "description": "default response",
@@ -7283,7 +7565,8 @@
                             }
                         }
                     }
-                }
+                },
+                "deprecated": true
             }
         },
         "/public/users/{userId}/password/verify-reset": {
@@ -7321,7 +7604,8 @@
                             }
                         }
                     }
-                }
+                },
+                "deprecated": true
             }
         },
         "/public/users/register": {
@@ -7354,83 +7638,8 @@
                             }
                         }
                     }
-                }
-            }
-        },
-        "/public/users/{userId}/verify-registration": {
-            "post": {
-                "operationId": "verifyChannelVerificationDeprecated",
-                "parameters": [
-                    {
-                        "name": "userId",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/UserVerificationRequest"
-                            }
-                        }
-                    },
-                    "required": true
                 },
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/public/users/{userId}/registration/verify": {
-            "post": {
-                "operationId": "verifyChannelVerification",
-                "parameters": [
-                    {
-                        "name": "userId",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/UserVerificationRequest"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "responses": {
-                    "default": {
-                        "description": "default response",
-                        "content": {
-                            "application/vnd.api+json": {
-                                
-                            },
-                            "application/json": {
-                                
-                            }
-                        }
-                    }
-                }
+                "deprecated": true
             }
         },
         "/public/users/{userId}/registration/resend": {
@@ -7468,7 +7677,86 @@
                             }
                         }
                     }
-                }
+                },
+                "deprecated": true
+            }
+        },
+        "/public/users/{userId}/registration/verify": {
+            "post": {
+                "operationId": "verifyChannelVerification",
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserVerificationRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                },
+                "deprecated": true
+            }
+        },
+        "/public/users/{userId}/verify-registration": {
+            "post": {
+                "operationId": "verifyChannelVerificationDeprecated",
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserVerificationRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "default": {
+                        "description": "default response",
+                        "content": {
+                            "application/vnd.api+json": {
+                                
+                            },
+                            "application/json": {
+                                
+                            }
+                        }
+                    }
+                },
+                "deprecated": true
             }
         },
         "/public/ui/languages": {
@@ -7655,6 +7943,8 @@
                         "in": "path",
                         "required": true,
                         "schema": {
+                            "maxLength": 10000,
+                            "minLength": 1,
                             "type": "string"
                         }
                     }
@@ -7688,6 +7978,8 @@
                         "in": "path",
                         "required": true,
                         "schema": {
+                            "maxLength": 1000,
+                            "minLength": 1,
                             "type": "string"
                         }
                     }
@@ -7833,9 +8125,13 @@
                                 "type": "object",
                                 "properties": {
                                     "token": {
+                                        "maxLength": 10000,
+                                        "minLength": 1,
                                         "type": "string"
                                     },
                                     "token_type_hint": {
+                                        "maxLength": 1000,
+                                        "minLength": 0,
                                         "type": "string"
                                     }
                                 }
@@ -7973,6 +8269,18 @@
                                 }
                             }
                         }
+                    }
+                }
+            },
+            "MTAN-TOKEN-EDIT-DATA": {
+                "type": "object",
+                "properties": {
+                    "number": {
+                        "type": "string"
+                    },
+                    "label": {
+                        "type": "string",
+                        "nullable": true
                     }
                 }
             },
@@ -8242,19 +8550,6 @@
                     }
                 }
             },
-            "CrontoStartDeviceActivationRequest": {
-                "required": [
-                    "otp"
-                ],
-                "type": "object",
-                "properties": {
-                    "otp": {
-                        "maxLength": 200,
-                        "minLength": 0,
-                        "type": "string"
-                    }
-                }
-            },
             "CrontoCompleteDeviceActivationRequest": {
                 "required": [
                     "context",
@@ -8272,6 +8567,19 @@
                         "type": "string"
                     },
                     "label": {
+                        "type": "string"
+                    }
+                }
+            },
+            "CrontoStartDeviceActivationRequest": {
+                "required": [
+                    "otp"
+                ],
+                "type": "object",
+                "properties": {
+                    "otp": {
+                        "maxLength": 200,
+                        "minLength": 0,
                         "type": "string"
                     }
                 }
@@ -8431,6 +8739,17 @@
                     }
                 }
             },
+            "MtanNumberChangeRequest": {
+                "required": [
+                    "newPhoneNumber"
+                ],
+                "type": "object",
+                "properties": {
+                    "newPhoneNumber": {
+                        "type": "string"
+                    }
+                }
+            },
             "MtanTokenDataUpdateRequest": {
                 "type": "object",
                 "properties": {
@@ -8465,17 +8784,6 @@
                     },
                     "meta": {
                         "$ref": "#/components/schemas/Metadata"
-                    }
-                }
-            },
-            "MtanNumberChangeRequest": {
-                "required": [
-                    "newPhoneNumber"
-                ],
-                "type": "object",
-                "properties": {
-                    "newPhoneNumber": {
-                        "type": "string"
                     }
                 }
             },
@@ -8533,19 +8841,6 @@
                     }
                 }
             },
-            "Airlock2FAPasscodeCheckRequest": {
-                "required": [
-                    "passcode"
-                ],
-                "type": "object",
-                "properties": {
-                    "passcode": {
-                        "maxLength": 40,
-                        "minLength": 0,
-                        "type": "string"
-                    }
-                }
-            },
             "Airlock2FAOfflineQrCodeCheckRequest": {
                 "required": [
                     "otp"
@@ -8553,6 +8848,19 @@
                 "type": "object",
                 "properties": {
                     "otp": {
+                        "maxLength": 40,
+                        "minLength": 0,
+                        "type": "string"
+                    }
+                }
+            },
+            "Airlock2FAPasscodeCheckRequest": {
+                "required": [
+                    "passcode"
+                ],
+                "type": "object",
+                "properties": {
+                    "passcode": {
                         "maxLength": 40,
                         "minLength": 0,
                         "type": "string"
@@ -8807,7 +9115,7 @@
                     },
                     "label": {
                         "maxLength": 200,
-                        "minLength": 0,
+                        "minLength": 1,
                         "type": "string"
                     }
                 }
@@ -8819,6 +9127,19 @@
                 "type": "object",
                 "properties": {
                     "queryString": {
+                        "type": "string"
+                    }
+                }
+            },
+            "OAuth2CheckConsentRequest": {
+                "required": [
+                    "consentToken"
+                ],
+                "type": "object",
+                "properties": {
+                    "consentToken": {
+                        "maxLength": 100000,
+                        "minLength": 1,
                         "type": "string"
                     }
                 }
@@ -8835,6 +9156,24 @@
                         "items": {
                             "type": "string"
                         }
+                    }
+                }
+            },
+            "MandatoryPasswordChangeRequest": {
+                "required": [
+                    "newPassword"
+                ],
+                "type": "object",
+                "properties": {
+                    "oldPassword": {
+                        "maxLength": 100000,
+                        "minLength": 0,
+                        "type": "string"
+                    },
+                    "newPassword": {
+                        "maxLength": 100000,
+                        "minLength": 1,
+                        "type": "string"
                     }
                 }
             },
@@ -8863,24 +9202,6 @@
                     }
                 }
             },
-            "MandatoryPasswordChangeRequest": {
-                "required": [
-                    "newPassword"
-                ],
-                "type": "object",
-                "properties": {
-                    "oldPassword": {
-                        "maxLength": 100000,
-                        "minLength": 0,
-                        "type": "string"
-                    },
-                    "newPassword": {
-                        "maxLength": 100000,
-                        "minLength": 1,
-                        "type": "string"
-                    }
-                }
-            },
             "SetPasswordRequest": {
                 "required": [
                     "newPassword"
@@ -8889,6 +9210,19 @@
                 "properties": {
                     "newPassword": {
                         "maxLength": 100000,
+                        "minLength": 1,
+                        "type": "string"
+                    }
+                }
+            },
+            "Saml2AccessRequest": {
+                "required": [
+                    "requestId"
+                ],
+                "type": "object",
+                "properties": {
+                    "requestId": {
+                        "maxLength": 100,
                         "minLength": 1,
                         "type": "string"
                     }
@@ -9092,17 +9426,6 @@
                     }
                 }
             },
-            "MtanTokenEditRequest": {
-                "type": "object",
-                "properties": {
-                    "number": {
-                        "type": "string"
-                    },
-                    "label": {
-                        "type": "string"
-                    }
-                }
-            },
             "PasswordChangeSelfServiceRequest": {
                 "required": [
                     "newPassword",
@@ -9227,17 +9550,6 @@
                     }
                 }
             },
-            "UserVerificationRequest": {
-                "required": [
-                    "token"
-                ],
-                "type": "object",
-                "properties": {
-                    "token": {
-                        "type": "string"
-                    }
-                }
-            },
             "ResendChannelVerificationRequest": {
                 "required": [
                     "context"
@@ -9245,6 +9557,17 @@
                 "type": "object",
                 "properties": {
                     "context": {
+                        "type": "string"
+                    }
+                }
+            },
+            "UserVerificationRequest": {
+                "required": [
+                    "token"
+                ],
+                "type": "object",
+                "properties": {
+                    "token": {
                         "type": "string"
                     }
                 }

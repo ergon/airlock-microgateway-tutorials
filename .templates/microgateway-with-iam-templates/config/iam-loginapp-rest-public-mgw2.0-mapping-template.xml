@@ -199,7 +199,7 @@
                                         <Comment></Comment>
                                         <Active>true</Active>
                                         <Pattern>
-                                            <PatternString>^%ENTRYDIR%/authentication/fido/registration/attestation-response/check$</PatternString>
+                                            <PatternString>^%ENTRYDIR%/authentication/fido/registration/attestation-response/check/?$</PatternString>
                                             <IgnoreCase>false</IgnoreCase>
                                             <InvertPattern>false</InvertPattern>
                                             <AirlockRegexFormat>true</AirlockRegexFormat>
@@ -237,7 +237,7 @@ The empty pattern matches any string.</Comment>
                                         <Comment></Comment>
                                         <Active>true</Active>
                                         <Pattern>
-                                            <PatternString>[a-z,A-Z,0-9,-,_]*</PatternString>
+                                            <PatternString>[a-zA-Z0-9_-]*</PatternString>
                                             <IgnoreCase>false</IgnoreCase>
                                             <InvertPattern>false</InvertPattern>
                                             <AirlockRegexFormat>true</AirlockRegexFormat>
@@ -251,7 +251,7 @@ The empty pattern matches any string.</Comment>
                                         <Active>false</Active>
                                         <Pattern>
                                             <PatternString></PatternString>
-                                            <IgnoreCase>false</IgnoreCase>
+                                            <IgnoreCase>true</IgnoreCase>
                                             <InvertPattern>false</InvertPattern>
                                             <AirlockRegexFormat>true</AirlockRegexFormat>
                                         </Pattern>
@@ -303,7 +303,7 @@ The empty pattern matches any string.</Comment>
                                         <Comment></Comment>
                                         <Active>true</Active>
                                         <Pattern>
-                                            <PatternString>^%ENTRYDIR%/authentication/fido/assertion-response/check$</PatternString>
+                                            <PatternString>^%ENTRYDIR%/authentication/fido/assertion-response/check/?$</PatternString>
                                             <IgnoreCase>false</IgnoreCase>
                                             <InvertPattern>false</InvertPattern>
                                             <AirlockRegexFormat>true</AirlockRegexFormat>
@@ -343,7 +343,7 @@ The empty pattern matches any string.</Comment>
                                         <Comment></Comment>
                                         <Active>true</Active>
                                         <Pattern>
-                                            <PatternString>[a-z,A-Z,0-9,-,_]*</PatternString>
+                                            <PatternString>[a-zA-Z0-9_-]*</PatternString>
                                             <IgnoreCase>false</IgnoreCase>
                                             <InvertPattern>false</InvertPattern>
                                             <AirlockRegexFormat>true</AirlockRegexFormat>
@@ -357,7 +357,7 @@ The empty pattern matches any string.</Comment>
                                         <Active>false</Active>
                                         <Pattern>
                                             <PatternString></PatternString>
-                                            <IgnoreCase>false</IgnoreCase>
+                                            <IgnoreCase>true</IgnoreCase>
                                             <InvertPattern>false</InvertPattern>
                                             <AirlockRegexFormat>true</AirlockRegexFormat>
                                         </Pattern>
@@ -452,7 +452,7 @@ The empty pattern matches any string.</Comment>
                                         <Comment></Comment>
                                         <Active>true</Active>
                                         <Pattern>
-                                            <PatternString>^%ENTRYDIR%/authentication/fido/registration/attestation-response/check$</PatternString>
+                                            <PatternString>^%ENTRYDIR%/authentication/fido/registration/attestation-response/check/?$</PatternString>
                                             <IgnoreCase>false</IgnoreCase>
                                             <InvertPattern>false</InvertPattern>
                                             <AirlockRegexFormat>true</AirlockRegexFormat>
@@ -490,7 +490,7 @@ The empty pattern matches any string.</Comment>
                                         <Comment></Comment>
                                         <Active>true</Active>
                                         <Pattern>
-                                            <PatternString>[a-z,A-Z,0-9,-,_]*</PatternString>
+                                            <PatternString>[a-zA-Z0-9_-]*</PatternString>
                                             <IgnoreCase>false</IgnoreCase>
                                             <InvertPattern>false</InvertPattern>
                                             <AirlockRegexFormat>true</AirlockRegexFormat>
@@ -504,7 +504,7 @@ The empty pattern matches any string.</Comment>
                                         <Active>false</Active>
                                         <Pattern>
                                             <PatternString></PatternString>
-                                            <IgnoreCase>false</IgnoreCase>
+                                            <IgnoreCase>true</IgnoreCase>
                                             <InvertPattern>false</InvertPattern>
                                             <AirlockRegexFormat>true</AirlockRegexFormat>
                                         </Pattern>
@@ -556,7 +556,7 @@ The empty pattern matches any string.</Comment>
                                         <Comment></Comment>
                                         <Active>true</Active>
                                         <Pattern>
-                                            <PatternString>^%ENTRYDIR%/authentication/fido/assertion-response/check$</PatternString>
+                                            <PatternString>^%ENTRYDIR%/authentication/fido/assertion-response/check/?$</PatternString>
                                             <IgnoreCase>false</IgnoreCase>
                                             <InvertPattern>false</InvertPattern>
                                             <AirlockRegexFormat>true</AirlockRegexFormat>
@@ -596,7 +596,7 @@ The empty pattern matches any string.</Comment>
                                         <Comment></Comment>
                                         <Active>true</Active>
                                         <Pattern>
-                                            <PatternString>[a-z,A-Z,0-9,-,_]*</PatternString>
+                                            <PatternString>[a-zA-Z0-9_-]*</PatternString>
                                             <IgnoreCase>false</IgnoreCase>
                                             <InvertPattern>false</InvertPattern>
                                             <AirlockRegexFormat>true</AirlockRegexFormat>
@@ -610,7 +610,7 @@ The empty pattern matches any string.</Comment>
                                         <Active>false</Active>
                                         <Pattern>
                                             <PatternString></PatternString>
-                                            <IgnoreCase>false</IgnoreCase>
+                                            <IgnoreCase>true</IgnoreCase>
                                             <InvertPattern>false</InvertPattern>
                                             <AirlockRegexFormat>true</AirlockRegexFormat>
                                         </Pattern>
@@ -713,7 +713,7 @@ The empty pattern matches any string.</Comment>
                                         <Active>false</Active>
                                         <Pattern>
                                             <PatternString></PatternString>
-                                            <IgnoreCase>false</IgnoreCase>
+                                            <IgnoreCase>true</IgnoreCase>
                                             <InvertPattern>false</InvertPattern>
                                             <AirlockRegexFormat>true</AirlockRegexFormat>
                                         </Pattern>
@@ -839,7 +839,7 @@ The empty pattern matches any string.</Comment>
                                 <Active>false</Active>
                                 <Pattern>
                                     <PatternString></PatternString>
-                                    <IgnoreCase>false</IgnoreCase>
+                                    <IgnoreCase>true</IgnoreCase>
                                     <InvertPattern>false</InvertPattern>
                                     <AirlockRegexFormat>true</AirlockRegexFormat>
                                 </Pattern>
@@ -960,7 +960,108 @@ The empty pattern matches any string.</Comment>
                             <DenyRuleExceptions Locked="false"/>
                         </DenyRuleUsage>
                     </DenyRuleUsages>
-                    <DenyRuleExceptions Locked="false"/>
+                    <DenyRuleExceptions Locked="false">
+                        <DenyRuleException>
+                            <Comment></Comment>
+                            <Enabled>true</Enabled>
+                            <PathPattern>
+                                <Name>Authentication Access Endpoints (in Public REST Subpath)</Name>
+                                <Comment></Comment>
+                                <Active>true</Active>
+                                <Pattern>
+                                    <PatternString>^%ENTRYDIR%/authentication/(?:location|default-application|applications/[a-z0-9_-]+)/access/?$</PatternString>
+                                    <IgnoreCase>false</IgnoreCase>
+                                    <InvertPattern>false</InvertPattern>
+                                    <AirlockRegexFormat>true</AirlockRegexFormat>
+                                </Pattern>
+                                <DefaultId>-1</DefaultId>
+                            </PathPattern>
+                            <IpPattern>
+                                <Name>(default) No Restriction</Name>
+                                <Comment>All IP addresses. The empty pattern matches any string.</Comment>
+                                <Active>false</Active>
+                                <Pattern>
+                                    <PatternString></PatternString>
+                                    <IgnoreCase>false</IgnoreCase>
+                                    <InvertPattern>false</InvertPattern>
+                                    <AirlockRegexFormat>true</AirlockRegexFormat>
+                                </Pattern>
+                                <DefaultId>-100</DefaultId>
+                            </IpPattern>
+                            <ParameterNamePattern>
+                                <Name>(default) No Restriction</Name>
+                                <Comment>All names. The empty pattern matches any string.</Comment>
+                                <Active>false</Active>
+                                <Pattern>
+                                    <PatternString></PatternString>
+                                    <IgnoreCase>false</IgnoreCase>
+                                    <InvertPattern>false</InvertPattern>
+                                    <AirlockRegexFormat>true</AirlockRegexFormat>
+                                </Pattern>
+                                <DefaultId>-300</DefaultId>
+                            </ParameterNamePattern>
+                            <ParameterValuePattern>
+                                <Name>(default) No Restriction</Name>
+                                <Comment>All values. The empty pattern matches any string.</Comment>
+                                <Active>false</Active>
+                                <Pattern>
+                                    <PatternString></PatternString>
+                                    <IgnoreCase>false</IgnoreCase>
+                                    <InvertPattern>false</InvertPattern>
+                                    <AirlockRegexFormat>true</AirlockRegexFormat>
+                                </Pattern>
+                                <DefaultId>-400</DefaultId>
+                            </ParameterValuePattern>
+                            <HeaderNamePattern>
+                                <Name>IAM SSO Ticket Header</Name>
+                                <Comment></Comment>
+                                <Active>true</Active>
+                                <Pattern>
+                                    <PatternString>^X-IAM-SSO-Ticket$</PatternString>
+                                    <IgnoreCase>true</IgnoreCase>
+                                    <InvertPattern>false</InvertPattern>
+                                    <AirlockRegexFormat>true</AirlockRegexFormat>
+                                </Pattern>
+                                <DefaultId>-1</DefaultId>
+                            </HeaderNamePattern>
+                            <HeaderValuePattern>
+                                <Name>JWT</Name>
+                                <Comment></Comment>
+                                <Active>true</Active>
+                                <Pattern>
+                                    <PatternString>[a-zA-Z0-9_.-]+</PatternString>
+                                    <IgnoreCase>false</IgnoreCase>
+                                    <InvertPattern>false</InvertPattern>
+                                    <AirlockRegexFormat>true</AirlockRegexFormat>
+                                </Pattern>
+                                <DefaultId>-1</DefaultId>
+                            </HeaderValuePattern>
+                            <HttpMethodPattern>
+                                <Name>(default) No Restriction</Name>
+                                <Comment>All HTTP Methods. The empty pattern matches any string.</Comment>
+                                <Active>false</Active>
+                                <Pattern>
+                                    <PatternString></PatternString>
+                                    <IgnoreCase>false</IgnoreCase>
+                                    <InvertPattern>false</InvertPattern>
+                                    <AirlockRegexFormat>true</AirlockRegexFormat>
+                                </Pattern>
+                                <DefaultId>-604</DefaultId>
+                            </HttpMethodPattern>
+                            <ContentTypePattern>
+                                <Name>(default) No Restriction</Name>
+                                <Comment>All content types. The empty pattern matches any string.</Comment>
+                                <Active>false</Active>
+                                <Pattern>
+                                    <PatternString></PatternString>
+                                    <IgnoreCase>false</IgnoreCase>
+                                    <InvertPattern>false</InvertPattern>
+                                    <AirlockRegexFormat>true</AirlockRegexFormat>
+                                </Pattern>
+                                <DefaultId>-700</DefaultId>
+                            </ContentTypePattern>
+                        </DenyRuleException>
+                    </DenyRuleExceptions>
                 </DenyRuleGroupUsage>
                 <DenyRuleGroupUsage>
                     <DenyRuleGroupId>-30001</DenyRuleGroupId>
@@ -1069,7 +1170,7 @@ The empty pattern matches any string.</Comment>
                                         <Active>false</Active>
                                         <Pattern>
                                             <PatternString></PatternString>
-                                            <IgnoreCase>false</IgnoreCase>
+                                            <IgnoreCase>true</IgnoreCase>
                                             <InvertPattern>false</InvertPattern>
                                             <AirlockRegexFormat>true</AirlockRegexFormat>
                                         </Pattern>
@@ -1173,7 +1274,7 @@ The empty pattern matches any string.</Comment>
                                         <Active>false</Active>
                                         <Pattern>
                                             <PatternString></PatternString>
-                                            <IgnoreCase>false</IgnoreCase>
+                                            <IgnoreCase>true</IgnoreCase>
                                             <InvertPattern>false</InvertPattern>
                                             <AirlockRegexFormat>true</AirlockRegexFormat>
                                         </Pattern>
@@ -1226,7 +1327,7 @@ The empty pattern matches any string.</Comment>
                                         <Comment></Comment>
                                         <Active>true</Active>
                                         <Pattern>
-                                            <PatternString>^%ENTRYDIR%/authentication/fido/assertion-response/check$</PatternString>
+                                            <PatternString>^%ENTRYDIR%/authentication/fido/assertion-response/check/?$</PatternString>
                                             <IgnoreCase>false</IgnoreCase>
                                             <InvertPattern>false</InvertPattern>
                                             <AirlockRegexFormat>true</AirlockRegexFormat>
@@ -1277,7 +1378,7 @@ The empty pattern matches any string.</Comment>
                                         <Active>false</Active>
                                         <Pattern>
                                             <PatternString></PatternString>
-                                            <IgnoreCase>false</IgnoreCase>
+                                            <IgnoreCase>true</IgnoreCase>
                                             <InvertPattern>false</InvertPattern>
                                             <AirlockRegexFormat>true</AirlockRegexFormat>
                                         </Pattern>
@@ -1329,7 +1430,7 @@ The empty pattern matches any string.</Comment>
                                         <Comment></Comment>
                                         <Active>true</Active>
                                         <Pattern>
-                                            <PatternString>^%ENTRYDIR%/authentication/fido/registration/attestation-response/check$</PatternString>
+                                            <PatternString>^%ENTRYDIR%/authentication/fido/registration/attestation-response/check/?$</PatternString>
                                             <IgnoreCase>false</IgnoreCase>
                                             <InvertPattern>false</InvertPattern>
                                             <AirlockRegexFormat>true</AirlockRegexFormat>
@@ -1380,7 +1481,7 @@ The empty pattern matches any string.</Comment>
                                         <Active>false</Active>
                                         <Pattern>
                                             <PatternString></PatternString>
-                                            <IgnoreCase>false</IgnoreCase>
+                                            <IgnoreCase>true</IgnoreCase>
                                             <InvertPattern>false</InvertPattern>
                                             <AirlockRegexFormat>true</AirlockRegexFormat>
                                         </Pattern>
@@ -1483,7 +1584,7 @@ The empty pattern matches any string.</Comment>
                                         <Active>false</Active>
                                         <Pattern>
                                             <PatternString></PatternString>
-                                            <IgnoreCase>false</IgnoreCase>
+                                            <IgnoreCase>true</IgnoreCase>
                                             <InvertPattern>false</InvertPattern>
                                             <AirlockRegexFormat>true</AirlockRegexFormat>
                                         </Pattern>
@@ -1586,7 +1687,7 @@ The empty pattern matches any string.</Comment>
                                         <Active>false</Active>
                                         <Pattern>
                                             <PatternString></PatternString>
-                                            <IgnoreCase>false</IgnoreCase>
+                                            <IgnoreCase>true</IgnoreCase>
                                             <InvertPattern>false</InvertPattern>
                                             <AirlockRegexFormat>true</AirlockRegexFormat>
                                         </Pattern>
@@ -1711,7 +1812,7 @@ The empty pattern matches any string.</Comment>
                                 <Active>false</Active>
                                 <Pattern>
                                     <PatternString></PatternString>
-                                    <IgnoreCase>false</IgnoreCase>
+                                    <IgnoreCase>true</IgnoreCase>
                                     <InvertPattern>false</InvertPattern>
                                     <AirlockRegexFormat>true</AirlockRegexFormat>
                                 </Pattern>
@@ -1942,7 +2043,7 @@ The empty pattern matches any string.</Comment>
                                 <Active>false</Active>
                                 <Pattern>
                                     <PatternString></PatternString>
-                                    <IgnoreCase>false</IgnoreCase>
+                                    <IgnoreCase>true</IgnoreCase>
                                     <InvertPattern>false</InvertPattern>
                                     <AirlockRegexFormat>true</AirlockRegexFormat>
                                 </Pattern>
@@ -2081,7 +2182,7 @@ The empty pattern matches any string.</Comment>
                                 <Active>false</Active>
                                 <Pattern>
                                     <PatternString></PatternString>
-                                    <IgnoreCase>false</IgnoreCase>
+                                    <IgnoreCase>true</IgnoreCase>
                                     <InvertPattern>false</InvertPattern>
                                     <AirlockRegexFormat>true</AirlockRegexFormat>
                                 </Pattern>
@@ -2288,7 +2389,7 @@ The empty pattern matches any string.</Comment>
                                 <Active>false</Active>
                                 <Pattern>
                                     <PatternString></PatternString>
-                                    <IgnoreCase>false</IgnoreCase>
+                                    <IgnoreCase>true</IgnoreCase>
                                     <InvertPattern>false</InvertPattern>
                                     <AirlockRegexFormat>true</AirlockRegexFormat>
                                 </Pattern>
@@ -2449,7 +2550,7 @@ The empty pattern matches any string.</Comment>
                                 <Active>false</Active>
                                 <Pattern>
                                     <PatternString></PatternString>
-                                    <IgnoreCase>false</IgnoreCase>
+                                    <IgnoreCase>true</IgnoreCase>
                                     <InvertPattern>false</InvertPattern>
                                     <AirlockRegexFormat>true</AirlockRegexFormat>
                                 </Pattern>
@@ -2606,7 +2707,7 @@ The empty pattern matches any string.</Comment>
                                         <Active>false</Active>
                                         <Pattern>
                                             <PatternString></PatternString>
-                                            <IgnoreCase>false</IgnoreCase>
+                                            <IgnoreCase>true</IgnoreCase>
                                             <InvertPattern>false</InvertPattern>
                                             <AirlockRegexFormat>true</AirlockRegexFormat>
                                         </Pattern>
@@ -2714,7 +2815,7 @@ The empty pattern matches any string.</Comment>
                                 <Active>false</Active>
                                 <Pattern>
                                     <PatternString></PatternString>
-                                    <IgnoreCase>false</IgnoreCase>
+                                    <IgnoreCase>true</IgnoreCase>
                                     <InvertPattern>false</InvertPattern>
                                     <AirlockRegexFormat>true</AirlockRegexFormat>
                                 </Pattern>
@@ -3001,7 +3102,7 @@ The empty pattern matches any string.</Comment>
                                 <Active>false</Active>
                                 <Pattern>
                                     <PatternString></PatternString>
-                                    <IgnoreCase>false</IgnoreCase>
+                                    <IgnoreCase>true</IgnoreCase>
                                     <InvertPattern>false</InvertPattern>
                                     <AirlockRegexFormat>true</AirlockRegexFormat>
                                 </Pattern>
@@ -3395,7 +3496,7 @@ The empty pattern matches any string.</Comment>
                                 <Active>false</Active>
                                 <Pattern>
                                     <PatternString></PatternString>
-                                    <IgnoreCase>false</IgnoreCase>
+                                    <IgnoreCase>true</IgnoreCase>
                                     <InvertPattern>false</InvertPattern>
                                     <AirlockRegexFormat>true</AirlockRegexFormat>
                                 </Pattern>
@@ -3499,7 +3600,7 @@ The empty pattern matches any string.</Comment>
                                 <Active>false</Active>
                                 <Pattern>
                                     <PatternString></PatternString>
-                                    <IgnoreCase>false</IgnoreCase>
+                                    <IgnoreCase>true</IgnoreCase>
                                     <InvertPattern>false</InvertPattern>
                                     <AirlockRegexFormat>true</AirlockRegexFormat>
                                 </Pattern>
@@ -3688,7 +3789,7 @@ The empty pattern matches any string.</Comment>
                                 <Active>false</Active>
                                 <Pattern>
                                     <PatternString></PatternString>
-                                    <IgnoreCase>false</IgnoreCase>
+                                    <IgnoreCase>true</IgnoreCase>
                                     <InvertPattern>false</InvertPattern>
                                     <AirlockRegexFormat>true</AirlockRegexFormat>
                                 </Pattern>
@@ -3792,7 +3893,7 @@ The empty pattern matches any string.</Comment>
                                 <Active>false</Active>
                                 <Pattern>
                                     <PatternString></PatternString>
-                                    <IgnoreCase>false</IgnoreCase>
+                                    <IgnoreCase>true</IgnoreCase>
                                     <InvertPattern>false</InvertPattern>
                                     <AirlockRegexFormat>true</AirlockRegexFormat>
                                 </Pattern>
@@ -3896,7 +3997,7 @@ The empty pattern matches any string.</Comment>
                                 <Active>false</Active>
                                 <Pattern>
                                     <PatternString></PatternString>
-                                    <IgnoreCase>false</IgnoreCase>
+                                    <IgnoreCase>true</IgnoreCase>
                                     <InvertPattern>false</InvertPattern>
                                     <AirlockRegexFormat>true</AirlockRegexFormat>
                                 </Pattern>
@@ -4000,7 +4101,7 @@ The empty pattern matches any string.</Comment>
                                 <Active>false</Active>
                                 <Pattern>
                                     <PatternString></PatternString>
-                                    <IgnoreCase>false</IgnoreCase>
+                                    <IgnoreCase>true</IgnoreCase>
                                     <InvertPattern>false</InvertPattern>
                                     <AirlockRegexFormat>true</AirlockRegexFormat>
                                 </Pattern>
@@ -4103,7 +4204,7 @@ The empty pattern matches any string.</Comment>
                                 <Active>false</Active>
                                 <Pattern>
                                     <PatternString></PatternString>
-                                    <IgnoreCase>false</IgnoreCase>
+                                    <IgnoreCase>true</IgnoreCase>
                                     <InvertPattern>false</InvertPattern>
                                     <AirlockRegexFormat>true</AirlockRegexFormat>
                                 </Pattern>
@@ -4618,10 +4719,10 @@ Pattern: the empty string.</Comment>
                 </ParameterLengthException>
                 <Comment></Comment>
             </HttpLimits>
-            <UseEncryptedCookiePrefix Locked="false">false</UseEncryptedCookiePrefix>
-            <EncryptedCookiePrefix Locked="false"></EncryptedCookiePrefix>
-            <UsePassthroughCookiePrefix Locked="false">false</UsePassthroughCookiePrefix>
-            <PassthroughCookiePrefix Locked="false"></PassthroughCookiePrefix>
+            <UseEncryptedCookiePrefix Locked="false">true</UseEncryptedCookiePrefix>
+            <EncryptedCookiePrefix Locked="false">^RememberMe$</EncryptedCookiePrefix>
+            <UsePassthroughCookiePrefix Locked="false">true</UsePassthroughCookiePrefix>
+            <PassthroughCookiePrefix Locked="false">^IAM_OP_USER_AGENT_STATE$</PassthroughCookiePrefix>
             <EntryPathRegexEnabled Locked="false">false</EntryPathRegexEnabled>
             <OrderPriority Locked="false">-1</OrderPriority>
             <RequestBodySizeLimit Locked="false">10485760</RequestBodySizeLimit>

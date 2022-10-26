@@ -321,7 +321,7 @@
                                 <Active>false</Active>
                                 <Pattern>
                                     <PatternString></PatternString>
-                                    <IgnoreCase>false</IgnoreCase>
+                                    <IgnoreCase>true</IgnoreCase>
                                     <InvertPattern>false</InvertPattern>
                                     <AirlockRegexFormat>true</AirlockRegexFormat>
                                 </Pattern>
@@ -572,7 +572,7 @@
                                 <Active>false</Active>
                                 <Pattern>
                                     <PatternString></PatternString>
-                                    <IgnoreCase>false</IgnoreCase>
+                                    <IgnoreCase>true</IgnoreCase>
                                     <InvertPattern>false</InvertPattern>
                                     <AirlockRegexFormat>true</AirlockRegexFormat>
                                 </Pattern>
@@ -803,7 +803,7 @@
                                 <Active>false</Active>
                                 <Pattern>
                                     <PatternString></PatternString>
-                                    <IgnoreCase>false</IgnoreCase>
+                                    <IgnoreCase>true</IgnoreCase>
                                     <InvertPattern>false</InvertPattern>
                                     <AirlockRegexFormat>true</AirlockRegexFormat>
                                 </Pattern>
@@ -942,7 +942,7 @@
                                 <Active>false</Active>
                                 <Pattern>
                                     <PatternString></PatternString>
-                                    <IgnoreCase>false</IgnoreCase>
+                                    <IgnoreCase>true</IgnoreCase>
                                     <InvertPattern>false</InvertPattern>
                                     <AirlockRegexFormat>true</AirlockRegexFormat>
                                 </Pattern>
@@ -1149,7 +1149,7 @@
                                 <Active>false</Active>
                                 <Pattern>
                                     <PatternString></PatternString>
-                                    <IgnoreCase>false</IgnoreCase>
+                                    <IgnoreCase>true</IgnoreCase>
                                     <InvertPattern>false</InvertPattern>
                                     <AirlockRegexFormat>true</AirlockRegexFormat>
                                 </Pattern>
@@ -1310,7 +1310,7 @@
                                 <Active>false</Active>
                                 <Pattern>
                                     <PatternString></PatternString>
-                                    <IgnoreCase>false</IgnoreCase>
+                                    <IgnoreCase>true</IgnoreCase>
                                     <InvertPattern>false</InvertPattern>
                                     <AirlockRegexFormat>true</AirlockRegexFormat>
                                 </Pattern>
@@ -1459,7 +1459,7 @@
                                 <Active>false</Active>
                                 <Pattern>
                                     <PatternString></PatternString>
-                                    <IgnoreCase>false</IgnoreCase>
+                                    <IgnoreCase>true</IgnoreCase>
                                     <InvertPattern>false</InvertPattern>
                                     <AirlockRegexFormat>true</AirlockRegexFormat>
                                 </Pattern>
@@ -1746,7 +1746,7 @@
                                 <Active>false</Active>
                                 <Pattern>
                                     <PatternString></PatternString>
-                                    <IgnoreCase>false</IgnoreCase>
+                                    <IgnoreCase>true</IgnoreCase>
                                     <InvertPattern>false</InvertPattern>
                                     <AirlockRegexFormat>true</AirlockRegexFormat>
                                 </Pattern>
@@ -2129,7 +2129,7 @@
                                 <Active>false</Active>
                                 <Pattern>
                                     <PatternString></PatternString>
-                                    <IgnoreCase>false</IgnoreCase>
+                                    <IgnoreCase>true</IgnoreCase>
                                     <InvertPattern>false</InvertPattern>
                                     <AirlockRegexFormat>true</AirlockRegexFormat>
                                 </Pattern>
@@ -2318,7 +2318,7 @@
                                 <Active>false</Active>
                                 <Pattern>
                                     <PatternString></PatternString>
-                                    <IgnoreCase>false</IgnoreCase>
+                                    <IgnoreCase>true</IgnoreCase>
                                     <InvertPattern>false</InvertPattern>
                                     <AirlockRegexFormat>true</AirlockRegexFormat>
                                 </Pattern>
@@ -2647,7 +2647,12 @@ ParameterMasking.Name.InvertPattern &quot;FALSE&quot;
 # Change default content type from application/x-www-form-urlencoded to application/json, such that
 # bodiless POST requests to the REST API are allowed.
 DefaultPostRequestContentType &quot;application/json&quot;
-			</ExpertSettingsSg>
+
+# Static resources are sessionless, but we use an existing session if present
+Session.Mode.Rule.0.Mode &quot;OPTIONAL_SESSION_NO_REFRESH&quot;
+Session.Mode.Rule.0.Pattern &quot;^/.+\.(?:css|js|json|gif|ico|jpe?g|png|svg|eof|ttf|woff2?)$&quot;
+Session.Mode.Rule.0.IgnoreCase &quot;FALSE&quot;
+Session.Mode.Rule.0.InvertPattern &quot;FALSE&quot;</ExpertSettingsSg>
             <ExpertSettingsSgComment></ExpertSettingsSgComment>
             <ExpertSettingsApacheEnabled Locked="false">true</ExpertSettingsApacheEnabled>
             <ExpertSettingsApache Locked="false"># Ensure that a CSRF-Block is redirected to a URL that returns 403 to be intercepted by IAM Adminapp UI
