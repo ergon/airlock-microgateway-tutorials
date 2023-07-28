@@ -46,9 +46,9 @@ You can find additional information in our [guide][Microgateway Tutorials].
 
 [Airlock Forum]: https://forum.airlock.com
 
-[Microgateway Documentation]: https://docs.airlock.com/microgateway/latest/
+[Microgateway Documentation]: https://docs.airlock.com/microgateway/3.3/
 
-[Microgateway Tutorials]: https://docs.airlock.com/microgateway/latest/#data/tutorials.html
+[Microgateway Tutorials]: https://docs.airlock.com/microgateway/3.3/#data/1627907723170.html
 
 [Minikube start]: https://minikube.sigs.k8s.io/docs/start/
 
