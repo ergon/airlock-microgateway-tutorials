@@ -23,7 +23,7 @@ spec:
       initContainers:
         - name: configbuilder
           image: docker.io/ergon/airlock-microgateway-configbuilder:3.3
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           volumeMounts:
             - name: config
               mountPath: /config/config.yaml
@@ -45,7 +45,7 @@ spec:
       containers:
         - name: microgateway
           image: docker.io/ergon/airlock-microgateway:3.3
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           volumeMounts:
             - name: config-files
               mountPath: /config/
