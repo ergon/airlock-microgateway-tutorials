@@ -1,3 +1,6 @@
+# DEPRECATED
+This repository was deprecated on 2024-01-19. It is no longer maintained. From Airlock Microgateway 4.1 onward it is replaced by in-browser labs: https://docs.airlock.com/microgateway/4.1/#data/1686902934318.html
+
 # Airlock Microgateway Tutorials
 In this tutorial, you will learn how to protect your web applications and services using the Airlock Microgateway.
 
